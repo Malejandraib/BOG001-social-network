@@ -38,8 +38,7 @@ const containerName = document.querySelector(".inputName");
 const btnSign = document.querySelector(".btn-signup");
 const btnSignGoogle = document.querySelector(".btn-signup-google");
 alreadyAccount.addEventListener("click", function (e) {
-  console.log(containerName.className);
-  containerName.classList.toggle("hide");12566t5rfyggggggggggggggggggggg
+  containerName.classList.toggle("hide");
   if (containerName.className == "inputName hide") {
     alreadyAccount.textContent = "Don’t have an account? Sign Up";
     btnSign.textContent = "SIGN IN";
@@ -49,6 +48,4 @@ alreadyAccount.addEventListener("click", function (e) {
     btnSign.textContent = "SIGN UP";
     btnSignGoogle.textContent = "REGISTER WITH GOOGLE";
   }
-
-  console.log("hola");
 });
