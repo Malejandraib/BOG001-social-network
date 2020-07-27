@@ -1,0 +1,71 @@
+@media only screen and (min-width:1025px){
+    body{
+        display: flex;
+        align-items: center;
+        font-size: 1.5em;
+        text-align: center;
+        flex-direction: row-reverse;
+    }
+    #containerFormRegister{
+        justify-content: space-around;
+        background: white;
+        margin: 5%;
+        width: 50%;
+        border-radius: 3%;
+        color: black;
+        padding-bottom: 60px;
+    }   
+    #signup-form {
+        padding: 10px;
+        text-align: center;
+    }
+
+    #signup-form input{
+        width: 90%;
+    }
+
+    #signup-form label{
+        text-align: left;
+    }
+    #containerFormRegister input{
+        height: 25px;
+    }
+    input::placeholder {
+        color: rgb(78, 69, 69);
+        font-size: 20px;
+    }
+
+    .btn-signup-google, .btn-signup, .signin-google{
+        margin-left: 30px;
+        height: 42px;
+        width: 500px;
+        font-size: 20px;
+        padding: 1% 0;
+        background-color: #a92066;
+        font-weight: bold;
+    }
+
+    .btn-signup{
+        margin-top: 25px;
+    }
+
+    .btn-signup-google{
+        margin-top: 10px;
+    }
+
+    .container-musicians{
+        width: 500px;
+    }
+
+    #musicians{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #logo{
+        content: url(images/logo1.png);
+    }
+
+}   
+
