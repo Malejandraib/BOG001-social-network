@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-mediaquerys.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -20,8 +21,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
 
     <script>
       // Your web app's Firebase configuration
@@ -40,6 +40,7 @@
   </head>
   <body>
     <div id="containerFormRegister">
+      <!-- <div class ="container-logo"></div> -->
       <img src="images/logo2.png" id="logo" />
       <form id="signup-form">
         <p>
@@ -48,26 +49,29 @@
         </p>
 
         <div class="inputName">
-          <label>name</label>
-          <input type="text" name="name" placeholder="Luke Skywalker" />
+          <label>Name</label>
+          <input type="text" placeholder="Luke Skywalker" class="name-signup" />
         </div>
 
-        <label>email</label>
+        <label>Email</label>
         <input
           type="email"
           class="email-signup"
-          name="email"
           placeholder="example@gmail.com"
         />
-        <label>password</label>
+        <label>Password</label>
         <input type="password" class="password-signup" placeholcer="password" />
 
         <button class="btn-signup">SIGN UP</button>
-        <button class="btn-signup-google">
-          <i class="fa fa-google"></i> REGISTER WITH GOOGLE
-        </button>
       </form>
-      <p id="alreadyAccount">Already have an account? Sign in</p>
+      <button class="btn-signup-google">
+        <i class="fa fa-google"></i> REGISTER WITH GOOGLE
+      </button>
+      <p id="alreadyAccount">
+        Already have an account? <span class="color-link">Sign in</span>
+      </p>
+    </div>
+    <div class="container-musicians">
       <img src="images/musicos.png" id="musicians" />
     </div>
     <script type="module" src="main.js"></script>

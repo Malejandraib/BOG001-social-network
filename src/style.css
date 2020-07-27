@@ -3,25 +3,61 @@
   padding: 0;
 }
 
+
+
 body {
   font-family: "Cabin", sans-serif;
   background: rgb(113, 0, 255);
-  background: linear-gradient(
-    90deg,
-    rgb(91, 0, 238) 0%,
-    rgba(193, 0, 242, 1) 82%
-  );
+  background: linear-gradient(90deg, rgb(91, 0, 238) 0%,rgba(193, 0, 242, 1) 82%);
   width: 100%;
   height: 100%;
+}
+.container-logo{
+  width: 100%;
+  height: 10vh;
 }
 
 #logo {
   margin-bottom: 5px;
-  height: 200px;
+  height: 200px;  
 }
 
-.btn-signup-google,
+#containerFormRegister {
+  width: 100%;
+  color: rgb(235, 235, 235);
+}
+
+#containerFormRegister p {
+  text-align: center;
+  margin: 5px;
+}
+#signup-form, .btn-signup-google {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin: -50px 30px 0px 30px;
+}
+
+.inputName {
+  display: grid;
+}
+
+#signup-form input {
+  margin: 7px 0px;
+  padding: 10px;
+  background-color: rgba(151, 151, 151, 0.47);
+  border: none;
+  border-radius: 10px;
+}
+
+input::placeholder {
+  color: white;
+}
+
 .btn-signup {
+  margin-top: 20px;
+}
+
+.btn-signup-google, .btn-signup, .signin-google {
   margin: 3px 0px;
   padding: 10px 5px;
   background-color: rgb(36, 33, 33, 0.5);
@@ -32,41 +68,18 @@ body {
   color: white;
 }
 
-.btn-signup {
-  margin-top: 20px;
+span{
+  color:#a92066;
+}
+.container-musicians{
+  display: flex;
+  align-items:center;
 }
 
-#containerFormRegister {
-  width: 90%;
-  height: 90%;
-  color: rgb(235, 235, 235);
-}
-
-#containerFormRegister input {
-  margin: 7px 0px;
-  padding: 10px;
-  background-color: rgba(151, 151, 151, 0.47);
-  border: none;
-  border-radius: 10px;
-}
-#containerFormRegister p {
-  text-align: center;
-  margin: 5px;
-}
-
-#signup-form {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  margin: -50px 20px 0px 60px;
-}
-
-#musicians {
-  width: 90%;
-  margin-left: 35px;
-}
-
-.inputName {
-  display: grid;
+#musicians{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hide {
