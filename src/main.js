@@ -39,7 +39,7 @@ const btnSign = document.querySelector(".btn-signup");
 const btnSignGoogle = document.querySelector(".btn-signup-google");
 alreadyAccount.addEventListener("click", function (e) {
   console.log(containerName.className);
-  containerName.classList.toggle("hide");
+  containerName.classList.toggle("hide");12566t5rfyggggggggggggggggggggg
   if (containerName.className == "inputName hide") {
     alreadyAccount.textContent = "Don’t have an account? Sign Up";
     btnSign.textContent = "SIGN IN";
