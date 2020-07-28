@@ -4,6 +4,11 @@ import { myFunction } from "./lib/index.js";
 
 myFunction();
 
+var btnLogOut = document.querySelector(".btn-log-out");
+
+btnLogOut.style.display = 'none';
+btnLogOut.addEventListener("click", logOut);
+
 const signupForm = document.querySelector("#signup-form");
 
 signupForm.addEventListener("submit", (e) => {
@@ -54,25 +59,25 @@ alreadyAccount.addEventListener("click", function (e) {
 
     // btnSignGoogle.setAttribute = ("id", "register-google");
   }
+
+  
 });
 
 const registerWithGoogle = document.querySelector(".btn-signup-google");
 console.log(registerWithGoogle);
 registerWithGoogle.addEventListener("click", googleRegister);
 
+
 function googleRegister() {
+
+  //aqui va el change al otro html
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then(function (result) {
+  firebase.auth().signInWithPopup(provider).then(function (result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      console.log(provider);
-      console.log(result);
       var token = result.credential.accessToken;
-      // The signed-in user info.
       var user = result.user;
+      
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -82,28 +87,59 @@ function googleRegister() {
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
-      // ...
     });
-
-  if (errorCode === "auth/account-exists-with-different-credential") {
-    alert(
-      "You have already signed up with a different auth provider for that email."
-    );
-    // If you are using multiple auth providers on your app you should handle linking
-    // the user's accounts here.
-  } else {
-    console.error(error);
   }
-}
 
-function signOut() {
-  firebase
-    .auth()
-    .signOut()
-    .then(function () {
-      // Sign-out successful.
-    })
-    .catch(function (error) {
-      // An error happened.
-    });
-}
+    
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+
+          //Que vaya a timeline
+          btnLogOut.style.display = 'block';
+          console.log(btnLogOut);
+          var displayName = user.displayName;
+          console.log(displayName);
+          var email = user.email;
+          var emailVerified = user.emailVerified;
+          var photoURL = user.photoURL;
+        } else {
+          console.log("nope");
+        }
+      });
+
+
+      function logOut(){
+      firebase.auth().signOut().then(function() {
+        console.log("// Sign-out successful.");
+      }).catch(function(error) {
+        // An error happened.
+      });}
+    
+
+// function signOut() {
+//   firebase
+//     .auth()
+//     .signOut()
+//     .then(function () {
+//       // Sign-out successful.
+//     })
+//     .catch(function (error) {
+//       // An error happened.
+//     });
+// }
+
+// const signInForm = document.querySelector("#login-form");
+
+// signInForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const email = signInForm["login-email"].value;
+//   const password = signInForm["login-password"].value;
+
+//   // Authenticate the User
+//   auth.signInWithEmailAndPassword(email, password).then((userCredential) => {
+//     // clear the form
+//     signInForm.reset();
+//     // close the modal
+//     $("#signinModal").modal("hide");
+//   });
+// });
