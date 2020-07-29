@@ -3,8 +3,6 @@
   padding: 0;
 }
 
-
-
 body {
   font-family: "Cabin", sans-serif;
   background: rgb(113, 0, 255);
@@ -27,11 +25,11 @@ body {
   color: rgb(235, 235, 235);
 }
 
-#containerFormRegister p {
+#containerFormRegister p, .btn-signin-google{
   text-align: center;
   margin: 5px;
 }
-#signup-form, .btn-signup-google {
+#signup-form {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   margin: -50px 30px 0px 30px;
@@ -42,7 +40,7 @@ body {
 }
 
 #signup-form input {
-  margin: 7px 0px;
+  margin-bottom: 7px;
   padding: 10px;
   background-color: rgba(151, 151, 151, 0.47);
   border: none;
@@ -57,8 +55,29 @@ input::placeholder {
   margin-top: 20px;
 }
 
-.btn-signup-google, .btn-signup, .signin-google {
+.btn-signup {
   margin: 3px 0px;
+  padding: 10px 5px;
+  background-color: rgb(36, 33, 33, 0.5);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.container-btn-google {
+  width: auto;
+  display:flex;
+  align-items: center;
+  /* margin: 0px 30px 0px 30px; */
+  
+}
+
+
+.btn-signin-google{
+  width:100%;
+  margin: 3px 30px;
   padding: 10px 5px;
   background-color: rgb(36, 33, 33, 0.5);
   border: none;
