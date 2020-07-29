@@ -58,52 +58,49 @@ alreadyAccount.addEventListener("click", function (e) {
   if (containerName.className == "inputName hide") {
     alreadyAccount.innerHTML = "Don’t have an account? <span>Sign Up<span>";
     btnSign.textContent = "SIGN IN";
-    btnSignGoogle.textContent = "SIGN IN WITH GOOGLE";
-    btnSignGoogle.classList.add("signin-google");
-    btnSignGoogle.classList.remove("btn-signup-google");
   } else {
     alreadyAccount.innerHTML = "Already have an account? <span>Sign In</span>";
     btnSign.textContent = "SIGN UP";
-    btnSignGoogle.textContent = `REGISTER WITH GOOGLE`;
-    btnSignGoogle.classList.add("btn-signup-google");
-    btnSignGoogle.classList.remove("signin-google");
 
-  }
-
-  
+  }  
 });
 
 //signup with google and login 
-const registerWithGoogle = document.querySelector(".btn-signup-google");
-console.log(registerWithGoogle);
+const registerWithGoogle = document.querySelector(".btn-signin-google");
 registerWithGoogle.addEventListener("click", googleRegister);
 
-function googleRegister() {
+function googleRegister(e) {
+  e.preventDefault();
+  signupForm.reset();
   //aqui va el change al otro html
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function (result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
-    let token = result.credential.accessToken;
-    let user = result.user;
-    console.log(user);
+    var token = result.credential.accessToken;
+    var user = result.user;
+    var idcredential = result.credential.idToken;
+    var additional = result.additionalUserInfo.isNewUser;
+
+    
     console.log(token);
-  })
-  .catch(function (error) {
-    // Handle Errors here.
-    let errorCode = error.code;
-    let errorMessage = error.message;
-    // The email of the user's account used.
-    let email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    let credential = error.credential;
-    console.log(credential);
-  });
-  }
+
+    console.log("Es un nuevo usuario?:" + additional );
+
+    
+    console.log(result); //isnewUser: False
+  }).catch(function(error) {
+
+    //var errorsito2 = error.credential;
+    //var errorsito = error.code;
+    console.log(error.code, error.credential);  });
+    // An error happened
+}
+
 
 
 //Cambio a timeline 
     
-firebase.auth().onAuthStateChanged(function(user) {
+/* firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log(user);
     //Que vaya a timeline
@@ -117,7 +114,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   } else {
     console.log("nope");
   }
-});
+});  */
 
 //LogOut
 let btnLogOut = document.querySelector(".btn-log-out");
