@@ -1,7 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+* {margin: 0; padding: 0;}
 
 body {
   font-family: "Cabin", sans-serif;
@@ -15,38 +12,31 @@ body {
   height: 10vh;
 }
 
-#logo {
-  margin-bottom: 5px;
-  height: 200px;  
-}
+#logo {margin-bottom: 5px;}
 
-#containerFormRegister {
+.container-form {
   width: 100%;
   box-sizing: border-box;
   color: rgb(235, 235, 235);
 }
 
-#containerFormRegister p, .btn-signin-google{
+.container-form p, .btn-signin-google{
   text-align: center;
   margin: 5px;
 }
+
 #signup-form {
   display: flex;
   flex-direction:column;
   margin-top:-50px;
 }
 
-.inputName {
-  display: grid;
-}
-
 #signup-form input {
-  margin-bottom: 7px;
   padding: 10px;
   background-color: rgba(151, 151, 151, 0.47);
   border: none;
   border-radius: 10px;
-  max-width: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -111,3 +101,78 @@ span{
 input::placeholder {
   color: rgb(235, 235, 235);
 }
+
+
+/* INICIO DE MEDIA QUERYS  */
+
+@media only screen and (min-width:1025px){
+  body{
+      display: flex;
+      align-items: center;
+      font-size: 1.5em;
+      text-align: center;
+      flex-direction: row-reverse;
+  }
+  .container-form{
+      justify-content: space-around;
+      background: white;
+      margin: 5%;
+      width: 50%;
+      border-radius: 3%;
+      color: black;
+      padding: 0 30px 60px 30px;
+  }   
+  #signup-form {
+      padding: 10px;
+      align-items: center;
+
+  }
+
+  #signup-form input{
+      width: 100%;
+  }
+
+  #signup-form label{
+      text-align: left;
+  }
+
+  input::placeholder {
+      color: rgb(78, 69, 69);
+      font-size: 20px;
+  }
+
+  .btn-signin-google, .btn-signup, .btn-signin{
+      margin:5%;
+      height: 42px;
+      width: 500px;
+      font-size: 20px;
+      padding: 1% 0;
+      background-color: #a92066;
+      font-weight: bold;
+  }
+
+  .btn-signup, .btn-signin{
+      margin-top: 25px;
+  }
+
+  .btn-signin-google{
+      margin-top: 10px;
+      margin-left: 30px;
+  }
+
+  .container-musicians{
+      width: 500px;
+  }
+
+  #musicians{
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #logo{
+      content: url(images/logo1.png);
+  }
+
+}   
+

@@ -1,40 +1,12 @@
 // Este es el punto de entrada de tu aplicacion
 import { myFunction } from "./lib/index.js"; myFunction();
 import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./lib/firebasefunction.js"
-
-//Variables verificacion de contraseña
-let passwordValidation = document.querySelector('.password-signup');
-let msjVerification= document.querySelector('#verification-password');
-//Variables verificacion de email
+/* SIGNUP */
+//Variables de formulario signup y verificacion de contraseña
 const signupForm = document.querySelector('#signup-form');
+const passwordValidation = document.querySelector('.password-signup');
 const msjEmailVer = document.querySelector('#verification-email');
-/* const passwordSignIn = document.querySelector('.password-signin'); */
-
-//Cambiar vista de registro a inicio de sesión y viceversa
-const alreadyAccount = document.getElementById("alreadyAccount");
-const containerName = document.querySelector(".inputName");
-const btnSign = document.querySelector(".btn-signup"); 
-const btnSignIn = document.querySelector(".btn-signin");
-
-btnSignIn.style.display = 'none';
-
-alreadyAccount.addEventListener("click", function (e) {
-  containerName.classList.toggle("hide");
-
-  if (containerName.className == "inputName hide") {
-    alreadyAccount.innerHTML = "Don’t have an account? <span>Sign Up<span>";
-    btnSign.textContent = "SIGN IN";
-    btnSign.style.display = 'none';;
-    btnSignIn.style.display ='block';
-  } else {
-    alreadyAccount.innerHTML = "Already have an account? <span>Sign In</span>";
-    btnSign.textContent = "SIGN UP";
-    btnSignIn.style.display = 'none';
-    btnSign.style.display ='block';
-
-  }  
-});
-
+const msjVerification= document.querySelector('#verification-password');
 
 //Verificacion de contraseña
 passwordValidation.addEventListener('blur', verification);
@@ -52,21 +24,17 @@ function verification(){
   }
 }
 
-/* Enviar formulario con email y password, para crear nuevo usuario  */
+//Enviar formulario con email y password, para crear nuevo usuario 
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = document.querySelector(".name-signup").value;
+  /* const name = document.querySelector(".name-signup").value; */
   const email = document.querySelector(".email-signup").value;
   const password = document.querySelector(".password-signup").value;
-  createUserEmailAndPassword(email,password, msjEmailVer);
+  createUserEmailAndPassword( email,password, msjEmailVer);
 });
 
-
-
 //signup with google and login 
-const registerWithGoogle = document.querySelector(".btn-signin-google");
 registerWithGoogle.addEventListener("click", googleRegister);
-
 function googleRegister(e) {
   e.preventDefault();
   signupForm.reset();
@@ -75,6 +43,7 @@ function googleRegister(e) {
   registerGoogle(provider);
 }
 
+//************************************************* */
 //Cambio a timeline 
     
 /* firebase.auth().onAuthStateChanged(function(user) {
@@ -125,7 +94,4 @@ function emailSignIn(){
   });
   // [END authwithemail]
 }
-
-
-btnSignIn.addEventListener('click', emailSignIn);
 

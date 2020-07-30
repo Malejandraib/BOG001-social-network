@@ -20,6 +20,8 @@ function createUserEmailAndPassword (email,password, msjEmailVer){
     });
 }
 
+console.log(createUserEmailAndPassword);
+
 /*----- Creating and login user with google account ----- */
 function registerGoogle (provider){
     firebase.auth().signInWithPopup(provider).then(function (result) {

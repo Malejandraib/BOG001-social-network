@@ -1,4 +1,4 @@
-/// Your web app's Firebase configurati
+/// Your web app's Firebase configuration
 import * as firebase from 'firebase';
 
 var firebaseConfig = {
