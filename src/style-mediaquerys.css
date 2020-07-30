@@ -13,7 +13,7 @@
         width: 50%;
         border-radius: 3%;
         color: black;
-        padding-bottom: 60px;
+        padding: 0 30px 60px 30px;
     }   
     #signup-form {
         padding: 10px;
@@ -28,15 +28,13 @@
     #signup-form label{
         text-align: left;
     }
-    #containerFormRegister input{
-        height: 25px;
-    }
+
     input::placeholder {
         color: rgb(78, 69, 69);
         font-size: 20px;
     }
 
-    .btn-signin-google, .btn-signup{
+    .btn-signin-google, .btn-signup, .btn-signin{
         margin:5%;
         height: 42px;
         width: 500px;
@@ -46,7 +44,7 @@
         font-weight: bold;
     }
 
-    .btn-signup{
+    .btn-signup, .btn-signin{
         margin-top: 25px;
     }
 
