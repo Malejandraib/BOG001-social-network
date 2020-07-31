@@ -1,4 +1,5 @@
-///aqui
+import {pages} from './lib/index.js'
+
 
 export const router = async (route) =>{
     let content = document.getElementById("root");
@@ -6,15 +7,13 @@ export const router = async (route) =>{
     console.log(route);
 
     switch(route) {
-        case "#/":
+        case '#/':
           //la idea es poner aquí la función que nos pinte el html final
-            return content.innerHTML = "si estamos acá xd signup";
-        case "#/SignIn":
-            return content.innerHTML = "si estamos acá xd signout";
+            return content.appendChild(pages.signup());
+        case "/SignIn":
+            return  content.innerHTML = "start";
         case '/':
             return content.innerHTML = "home";
-        case '':
-            return content.innerHTML = "vacia";
         default:
           // code block
     }

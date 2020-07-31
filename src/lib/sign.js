@@ -1,4 +1,23 @@
-import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./lib/firebasefunction.js"
+import view from '../views/signup.html';
+
+console.log(view);
+import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./firebasefunction.js"
+
+export default () => {
+  const divElement = createElement('div');
+  divElement.innerHTML = view;
+
+/*   const btnClick = divElement.querySelector('#btnClick');
+  btnClick.addEventListener('click', () => {
+    alert('clicked'); 
+  });*/
+
+  return divElement;
+}
+
+
+
+
 /* SIGNUP */
 //Variables de formulario signup y verificacion de contraseña
 const signupForm = document.querySelector('#signup-form');
@@ -6,28 +25,9 @@ const passwordValidation = document.querySelector('.password-signup');
 const msjEmailVer = document.querySelector('#verification-email');
 const msjVerification= document.querySelector('#verification-password');
 
-////////////////////////////////////////////////////
-
-import view from 'signup.html'
-
-export ashdkasjda() => {
-
-const divElement = document.createElement('div'); // <div></div>
-  divElement.innerHTML = view;
-
-//todas nuestras cosas 
-
-return divElement;
-
-
-}
-
-
-
-
-
-
-
+/* const signup (){
+  const signingUp = document.querySelector('#signup')
+} */
 
 
 //Verificacion de contraseña
