@@ -1,13 +1,12 @@
 // Este es el punto de entrada de tu aplicacion
-import { myFunction } from "./lib/index.js";
-myFunction();
-
-//Variables verificacion de contraseña
-let passwordValidation = document.querySelector('.password-signup');
-let msjVerification= document.querySelector('#verification-password');
-//Variables verificacion de email
+import { myFunction } from "./lib/index.js"; myFunction();
+import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./lib/firebasefunction.js"
+/* SIGNUP */
+//Variables de formulario signup y verificacion de contraseña
 const signupForm = document.querySelector('#signup-form');
+const passwordValidation = document.querySelector('.password-signup');
 const msjEmailVer = document.querySelector('#verification-email');
+const msjVerification= document.querySelector('#verification-password');
 
 //Verificacion de contraseña
 passwordValidation.addEventListener('blur', verification);
@@ -25,79 +24,26 @@ function verification(){
   }
 }
 
-//Enviar formulario
+//Enviar formulario con email y password, para crear nuevo usuario 
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = document.querySelector(".name-signup").value;
+  /* const name = document.querySelector(".name-signup").value; */
   const email = document.querySelector(".email-signup").value;
   const password = document.querySelector(".password-signup").value;
-  
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-      // Handle Errors here.
-    let errorCode = error.code; //Nos muestra el tipo de error así: auth/email-already-in-use
-    let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida
-    console.log(errorMessage); 
-    if (errorCode == "auth/weak-password") {
-      alert("The password is too weak.");
-    } else {
-      msjEmailVer.textContent = errorMessage;
-      //alert("Welcome, successfully registered user");
-    }
-    console.log(error);
-  });
-});
-
-//Cambiar vista de registro a inicio de sesión y viceversa
-const alreadyAccount = document.getElementById("alreadyAccount");
-const containerName = document.querySelector(".inputName");
-const btnSign = document.querySelector(".btn-signup"); 
-const btnSignGoogle = document.querySelector(".btn-signup-google");
-alreadyAccount.addEventListener("click", function (e) {
-  containerName.classList.toggle("hide");
-
-  if (containerName.className == "inputName hide") {
-    alreadyAccount.innerHTML = "Don’t have an account? <span>Sign Up<span>";
-    btnSign.textContent = "SIGN IN";
-  } else {
-    alreadyAccount.innerHTML = "Already have an account? <span>Sign In</span>";
-    btnSign.textContent = "SIGN UP";
-
-  }  
+  createUserEmailAndPassword( email,password, msjEmailVer);
 });
 
 //signup with google and login 
-const registerWithGoogle = document.querySelector(".btn-signin-google");
 registerWithGoogle.addEventListener("click", googleRegister);
-
 function googleRegister(e) {
   e.preventDefault();
   signupForm.reset();
   //aqui va el change al otro html
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function (result) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    var user = result.user;
-    var idcredential = result.credential.idToken;
-    var additional = result.additionalUserInfo.isNewUser;
-
-    
-    console.log(token);
-
-    console.log("Es un nuevo usuario?:" + additional );
-
-    
-    console.log(result); //isnewUser: False
-  }).catch(function(error) {
-
-    //var errorsito2 = error.credential;
-    //var errorsito = error.code;
-    console.log(error.code, error.credential);  });
-    // An error happened
+  registerGoogle(provider);
 }
 
-
-
+//************************************************* */
 //Cambio a timeline 
     
 /* firebase.auth().onAuthStateChanged(function(user) {
@@ -122,26 +68,30 @@ btnLogOut.style.display = 'none';
 btnLogOut.addEventListener("click", logOut);
 
 function logOut(){
-  firebase.auth().signOut().then(function() {
-    console.log("// Sign-out successful.");
-  }).catch(function(error) {
-    // An error happened.
-  });
+  logOutAccount();
+  //Faltan los botones 
 }
 
+function emailSignIn(){
 
-// const signInForm = document.querySelector("#login-form");
+  let email = document.querySelector(".email-signup").value;
+  let password = document.querySelector(".password-signup").value;
+  
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // [START_EXCLUDE]
+    if (errorCode === 'auth/wrong-password') {
+      alert('Wrong password.');
+    } else {
+      alert(errorMessage);
+    }
+    console.log(error);
+    console.log("entre wiii");
+  //acceso aquiiiiii
+  // [END_EXCLUDE]
+  });
+  // [END authwithemail]
+}
 
-// signInForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const email = signInForm["login-email"].value;
-//   const password = signInForm["login-password"].value;
-
-//   // Authenticate the User
-//   auth.signInWithEmailAndPassword(email, password).then((userCredential) => {
-//     // clear the form
-//     signInForm.reset();
-//     // close the modal
-//     $("#signinModal").modal("hide");
-//   });
-// });

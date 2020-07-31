@@ -4,85 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Musicmood</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="style-mediaquerys.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyAU6GifzqwRQsDU0QHNKSc89fNAEWt_qiU",
-        authDomain: "musicmood-3ed5b.firebaseapp.com",
-        databaseURL: "https://musicmood-3ed5b.firebaseio.com",
-        projectId: "musicmood-3ed5b",
-        storageBucket: "musicmood-3ed5b.appspot.com",
-        messagingSenderId: "1065383111932",
-        appId: "1:1065383111932:web:da1841d91e809d1a287b79",
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
   </head>
   <body>
-    <div id="containerFormRegister">
-      <!-- <div class ="container-logo"></div> -->
-      <img src="images/logo2.png" id="logo" />
-      <form id="signup-form">
-        <p>
-          Find events close to you and build music connections to share your
-          passion
-        </p>
+    <script src="/src/firebaseInit.js"></script>
+    
+    <div id ="root"></div>
 
-        <div class="inputName">
-          <label>Name</label>
-          <input type="text" placeholder="Luke Skywalker" class="name-signup" />
-        </div>
-
-        <label>Email</label>
-        <input
-          type="email"
-          class="email-signup"
-          placeholder="example@gmail.com"
-        />
-        <p id = "verification-email" class="style-wrong"></p>
-        <label>Password</label>
-        <input type="password" class="password-signup" placeholcer="password" />
-        <p id="verification-password" class="hide style-wrong"></p>
-
-        <button class="btn-signup">SIGN UP</button>
-      </form>
-
-      <div class ="container-btn-google">
-      <button class="btn-signin-google">
-        <i class="fa fa-google"></i> SIGN IN WITH GOOGLE
-      </button></div>
-      <p id="alreadyAccount">
-        Already have an account? <span class="color-link">Sign in</span>
-      </p>
-    </div>
-    <div class="container-musicians">
-      <img src="images/musicos.png" id="musicians" />
-    </div>
-
-
-    <div>
-      <button class =  "btn-log-out">Log Out</button>
-    </div>
     <script type="module" src="main.js"></script>
   </body>
 </html>
