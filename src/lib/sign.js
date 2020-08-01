@@ -1,7 +1,11 @@
-import view from '../views/signup.html';
-
 console.log(view);
 import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./firebasefunction.js"
+
+const botoncito = document.querySelector(".signin-view");
+console.log(botoncito);
+
+console.log(window.location.hash);
+
 
 export default () => {
   const divElement = createElement('div');

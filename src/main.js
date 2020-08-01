@@ -2,6 +2,12 @@
 import { myFunction } from "./lib/index.js"; myFunction();
 import{router} from  "./router.js";
 
+const botoncito = document.querySelector(".signin-view");
+console.log(botoncito);
+
+console.log(window.location.hash);
+
+
 const init = () => {
   router(window.location.hash);
   window.addEventListener("hashchange", () => {
@@ -10,4 +16,4 @@ const init = () => {
   });
 };
 
-window.addEventListener("load", init);
+window.addEventListener("load", init); 

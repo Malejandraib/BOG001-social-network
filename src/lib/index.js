@@ -1,5 +1,6 @@
 // aqui exportaras las funciones que necesites
-import sign from './sign.js';
+import signup from './signup.js';
+import signin from './signin.js';
 
 
 
@@ -9,7 +10,8 @@ export const myFunction = () => {
 };
 
 const pages = {
-  signup: sign,
+  signup: signup,
+  signin: signin,
 };
 
 export { pages };
