@@ -1,29 +1,10 @@
 import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./firebasefunction.js"
 
-const botoncito = document.querySelector(".signin-view");
-console.log(botoncito);
-
-console.log(window.location.hash);
-
-
-export default () => {
-  const divElement = createElement('div');
-  divElement.innerHTML = view;
-
-/*   const btnClick = divElement.querySelector('#btnClick');
-  btnClick.addEventListener('click', () => {
-    alert('clicked'); 
-  });*/
-
-  return divElement;
-}
-
 /* SIGNUP */
 //Variables de formulario signup y verificacion de contraseña
 const signupForm = document.querySelector('#signup-form');
 const passwordValidation = document.querySelector('.password-signup');
-const msjEmailVer = document.querySelector('#verification-email');
-const msjVerification= document.querySelector('#verification-password');
+;
 
 /* const signup (){
   const signingUp = document.querySelector('#signup')
@@ -46,14 +27,7 @@ function verification(){
     }
 }
 
-//Enviar formulario con email y password, para crear nuevo usuario 
-signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-  /* const name = document.querySelector(".name-signup").value; */
-    const email = document.querySelector(".email-signup").value;
-    const password = document.querySelector(".password-signup").value;
-    createUserEmailAndPassword( email,password, msjEmailVer);
-});
+
 
 //signup with google and login 
 registerWithGoogle.addEventListener("click", googleRegister);

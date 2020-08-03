@@ -1,9 +1,9 @@
-
 /*----- Creating user with email and password ----- */
-async function createUserEmailAndPassword (email,password){
+async function createUserEmailAndPassword(email,password){
     try{
         const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        return authentication
+        console.log(authentication);
+        return authentication;
     }
     catch(error) {
         // Handle Errors here.
@@ -18,7 +18,7 @@ async function createUserEmailAndPassword (email,password){
     };
 };
 
-console.log(createUserEmailAndPassword);
+console.log(createUserEmailAndPassword());
 
 /*----- Creating and login user with google account ----- */
 function registerGoogle (provider){
@@ -48,7 +48,5 @@ function logOutAccount(){
         // An error happened.
     });
 }
-
-
 
 export { createUserEmailAndPassword, registerGoogle, logOutAccount };

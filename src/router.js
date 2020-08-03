@@ -1,7 +1,7 @@
 //Aquí importamos el objeto que manipula los js de las vistas 
 import { myFunction } from "./lib/index.js"; myFunction();
-import signup from './signup.js';
-import signin from './signin.js';
+import signup from './lib/signup.js';
+import signin from './lib/signin.js';
 
 const pages = {
     signup: signup,
@@ -16,9 +16,9 @@ export const router = async (route) =>{
 
     switch(route) {
         case '':
-            return content.appendChild(pages.signup());
+            return content.appendChild(await pages.signup());
         case '#signin':
-            return content.appendChild(pages.signin());;
+            return content.appendChild( pages.signin());
         default:
           // code block
     }
