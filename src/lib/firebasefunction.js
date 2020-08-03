@@ -1,24 +1,22 @@
 
 /*----- Creating user with email and password ----- */
-
-
-//async and await 
-
-function createUserEmailAndPassword (email,password, msjEmailVer){
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+async function createUserEmailAndPassword (email,password){
+    try{
+        const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        return authentication
+    }
+    catch(error) {
         // Handle Errors here.
         let errorCode = error.code; //Nos muestra el tipo de error así: auth/email-already-in-use
         let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida
-        console.log(errorMessage); 
         if (errorCode == "auth/weak-password") {
             alert("The password is too weak.");
         } else {
-            msjEmailVer.textContent = errorMessage;
         //alert("Welcome, successfully registered user");
         }
-        console.log(error);
-    });
-}
+        return error
+    };
+};
 
 console.log(createUserEmailAndPassword);
 

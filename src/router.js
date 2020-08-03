@@ -1,10 +1,12 @@
-import {pages} from './lib/index.js';
-import indexHtml from '/index.html';
-import signup from './views/signup.html';
+//Aquí importamos el objeto que manipula los js de las vistas 
+import { myFunction } from "./lib/index.js"; myFunction();
+import signup from './signup.js';
+import signin from './signin.js';
 
-let root = document.getElementById("root");
-let sigupHtml = sigup;
-console.log(sigupHtml);
+const pages = {
+    signup: signup,
+    signin: signin,
+};
 
 export const router = async (route) =>{
     let content = document.getElementById("root");
@@ -15,13 +17,8 @@ export const router = async (route) =>{
     switch(route) {
         case '':
             return content.appendChild(pages.signup());
-            root.innerHTML = 'sigupHtml';
-        case "signin":
-            return  content.innerHTML = "<button>Hola</button>";
         case '#signin':
-            return content.innerHTML = "home";
-        case '#timeline':
-            return content.innerHTML = "otro";
+            return content.appendChild(pages.signin());;
         default:
           // code block
     }

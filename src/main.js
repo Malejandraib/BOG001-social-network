@@ -1,17 +1,15 @@
-// Este es el punto de entrada de tu aplicacion
-import { myFunction } from "./lib/index.js"; myFunction();
+// Este es el punto de entrada de tu aplicacion 
+// Aquí importamos la función de ruteo 
 import{router} from  "./router.js";
 
-const botoncito = document.querySelector(".signin-view");
-console.log(botoncito);
-
-console.log(window.location.hash);
-
-
 const init = () => {
+  const templateSignup = document.getElementById('template-signup');
+  let content = templateSignup.content;
+
   router(window.location.hash);
   window.addEventListener("hashchange", () => {
       router(window.location.hash);
+      
       console.log(window.location.hash);
   });
 };

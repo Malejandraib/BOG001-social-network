@@ -1,4 +1,3 @@
-console.log(view);
 import {createUserEmailAndPassword, registerGoogle,logOutAccount} from "./firebasefunction.js"
 
 const botoncito = document.querySelector(".signin-view");
@@ -18,9 +17,6 @@ export default () => {
 
   return divElement;
 }
-
-
-
 
 /* SIGNUP */
 //Variables de formulario signup y verificacion de contraseña
