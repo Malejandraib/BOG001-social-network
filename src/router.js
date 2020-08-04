@@ -8,17 +8,15 @@ const pages = {
     signin: signin,
 };
 
-export const router = async (route) =>{
-    let content = document.getElementById("root");
-    content.innerHTML = "";
-    console.log(content);
-    console.log(route);
-
+export const router = (route) =>{
+    let root = document.getElementById('root');
+    root.innerHTML = "";
+    
     switch(route) {
         case '':
-            return content.appendChild(pages.signup());
+            return pages.signup();
         case '#signin':
-            return content.appendChild(pages.signin());
+            return pages.signin();
         default:
           // code block
     }

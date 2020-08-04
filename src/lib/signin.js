@@ -1,14 +1,20 @@
 import {componentSignin} from '../views/componentSignin.js';
 import {signInEmailAndPassword, registerGoogle} from "./firebasefunction.js";
 
-const component = componentSignin;
+
+const template = document.querySelector("#template-signin");
+console.log(template);
+var clon = template.content.cloneNode(true);
 
 export default () =>{
-
     const root = document.getElementById("root");
-    root.innerHTML = component;
+    root.innerHTML =  "";
+    root.appendChild(clon);
+    
+
     /* const formSignIn = document.querySelector('.form-signin'); */
-    const btnSignin = document.querySelector('.btn-signup')
+    const btnSignin = document.querySelector('.btn-signup');
+    const registerWithGoogle = document.querySelector('.btn-signin-google');
     btnSignin.addEventListener('click', (e) => {
         e.preventDefault()
         const email = document.querySelector(".email-signin").value;
@@ -23,13 +29,13 @@ export default () =>{
         console.log(signinFromSignup);
     });
     
-registerWithGoogle.addEventListener("click", googleRegister);
-    function googleRegister(e) {
-        e.preventDefault();
-        //aqui va el change al otro html
-        const provider = new firebase.auth.GoogleAuthProvider();
-        registerGoogle(provider);
-    }
+    registerWithGoogle.addEventListener("click", googleRegister);
+        function googleRegister(e) {
+            e.preventDefault();
+            //aqui va el change al otro html
+            const provider = new firebase.auth.GoogleAuthProvider();
+            registerGoogle(provider);
+        }
     
     
 }
