@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css" />
     <title>Sign In</title>
 </head>
 <body>
-    <script src="/src/firebaseInit.js"></script>
+    <script src="../firebaseInit.js"></script>
     
     <div id="signin" class ="container-form hide">
         <form id ='container-form-signin'>
-            <img src="images/logo2.png" id="logo"/>
+            <img src="../images/logo2.png" id="logo"/>
             <p>Find events close to you and build music connections to share your passion</p>
             <label>Email<input type="email" class="email-signin" placeholder="example@gmail.com"/></label>
             <p id = "verification-email" class="style-wrong"></p>
@@ -24,11 +25,11 @@
         </div>
 
         <div class="container-musicians">
-            <img src="images/musicos.png" id="musicians" />
+            <img src="../images/musicos.png" id="musicians" />
         </div>
         <div><button class =  "btn-log-out">Log Out</button></div>
     </div>
-    <script type="module" src="../lib/sign.js"></script>
+    <script type="module" src="../lib/signin.js"></script>
 </body>
 <!-- <main id = "content">Content loading...</main> -->
 
