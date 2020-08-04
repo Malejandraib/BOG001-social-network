@@ -13,6 +13,7 @@ body {
   color: white;
 }
 
+
 #signup, #signin{
   box-sizing: border-box;
   display: flex;
@@ -92,25 +93,20 @@ span{
 
 @media only screen and (min-width:1025px){
 
-  
-
-  
   #signup, #signin{
+     box-sizing: border-box;
       flex-direction: row-reverse;
-      justify-content: space-around;
-      align-items: center;
-      width: 90%;
-      height: auto;
-      margin: 5% auto;
+      align-content: center;
+      justify-content: center;
+      text-align: center; 
   }
 
   #container-desktop{
-      justify-content: space-around;
+      box-sizing: border-box;
       background: white;
-      width: 50%;
       border-radius: 3%;
       color: black;
-      padding: 0 30px 30px 30px;
+      
   }   
 
   input::placeholder {
@@ -126,19 +122,17 @@ span{
 
   .container-musicians{
       width: 50%;
-      height: auto;
+      padding: 10% 0;
   }
 
   #musicians{
       width: 100%;
-      margin-left: auto;
-      margin-right: auto;
+      height: 90vh;
   }
 
   #logo{
       content: url(images/logo1.png);
       width: 100%;
-      max-width: 500px;
       height: auto;
   }
 
