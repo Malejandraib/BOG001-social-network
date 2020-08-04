@@ -94,7 +94,7 @@ span{
 @media only screen and (min-width:1025px){
 
   #signup, #signin{
-    box-sizing: border-box;
+     box-sizing: border-box;
       flex-direction: row-reverse;
       align-content: center;
       justify-content: center;
