@@ -1,7 +1,6 @@
 import {componentSignup} from '../views/componentSignUp.js';
-import {createUserEmailAndPassword} from "./firebasefunction.js"
-
-const template = componentSignup;
+import {createUserEmailAndPassword, registerGoogle} from "./firebasefunction.js"
+// import * as firebase from 'firebase';
 
 export default () =>{
     const root = document.getElementById("root");
@@ -12,6 +11,7 @@ export default () =>{
     const msjEmailVer = document.querySelector('#verification-email');
     const msjVerification= document.querySelector('#verification-password');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
+    
 
     //Verificacion de contraseña
     passwordValidation.addEventListener('blur', verification);

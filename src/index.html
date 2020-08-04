@@ -8,12 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    
+    <!-- <script type="module" src="firebaseInit.js"></script> -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script> -->
   </head>
   <body>
-    <script type="module" src="firebaseInit.js"></script>
-    
     <div id ="root"></div>
+    <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAU6GifzqwRQsDU0QHNKSc89fNAEWt_qiU",
+    authDomain: "musicmood-3ed5b.firebaseapp.com",
+    databaseURL: "https://musicmood-3ed5b.firebaseio.com",
+    projectId: "musicmood-3ed5b",
+    storageBucket: "musicmood-3ed5b.appspot.com",
+    messagingSenderId: "1065383111932",
+    appId: "1:1065383111932:web:da1841d91e809d1a287b79"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
     <script type="module" src="main.js"></script>
   </body>
 </html>

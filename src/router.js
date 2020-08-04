@@ -16,9 +16,9 @@ export const router = async (route) =>{
 
     switch(route) {
         case '':
-            return content.appendChild(await pages.signup());
+            return content.appendChild(pages.signup());
         case '#signin':
-            return content.appendChild( pages.signin());
+            return content.appendChild(pages.signin());
         default:
           // code block
     }
