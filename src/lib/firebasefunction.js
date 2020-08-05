@@ -4,20 +4,20 @@ export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailA
 async function createUserEmailAndPassword(email,password){
     try{
         const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        console.log("registrandose...");
         return authentication;
     }
     catch(error) {
         // Handle Errors here.
+        console.log(error);
         let errorCode = error.code; //Nos muestra el tipo de error así: auth/email-already-in-use
         let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida
         if (errorCode == "auth/weak-password") {
             alert("The password is too weak.");
         } else {
-        //alert("Welcome, successfully registered user");
-        console.log("jiji");
+        console.log(errorMessage);
         }
         return error;
-    };
 };
 
 /*----- Creating and login user with google account //try catch - quitar then ----- */

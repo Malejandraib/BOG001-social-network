@@ -1,17 +1,9 @@
 import {componentSignup} from '../views/componentSignUp.js';
 import {createUserEmailAndPassword, registerGoogle} from "./firebasefunction.js"
-// import * as firebase from 'firebase';
-
-const template = document.querySelector("#template-signup");
-console.log(template);
-var clon = template.content.cloneNode(true);
-
-
-/* root.innerHTML = template.content */
-
 
 export default () =>{
-    root.innerHTML = "";
+    const template = document.querySelector("#template-signup");
+    const clon = template.content.cloneNode(true);
     root.appendChild(clon);
     
     const signupForm = document.querySelector('#signup-form');
@@ -43,10 +35,12 @@ export default () =>{
         e.preventDefault();
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
-        console.log(email);
-        console.log(password);
-        console.log(createUserEmailAndPassword());
         createUserEmailAndPassword(email,password);
+
+        const temp = createUserEmailAndPassword(email,password);
+        msjEmailVer.innerHTML = temp.message;
+        
+        
     });
 
     //signup with google and login 

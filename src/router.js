@@ -9,8 +9,8 @@ const pages = {
 };
 
 export const router = (route) =>{
-    let root = document.getElementById('root');
-    root.innerHTML = "";
+    let content = document.getElementById('root');
+    content.innerHTML = "";
     
     switch(route) {
         case '':
