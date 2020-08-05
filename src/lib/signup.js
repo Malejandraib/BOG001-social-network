@@ -37,8 +37,8 @@ export default () =>{
         const password = document.querySelector(".password-signup").value;
         createUserEmailAndPassword(email,password);
 
-        const temp = createUserEmailAndPassword(email,password);
-        msjEmailVer.innerHTML = temp.message;
+        // const temp = createUserEmailAndPassword(email,password);
+        // msjEmailVer.innerHTML = temp.message;
         
         
     });

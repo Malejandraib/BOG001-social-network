@@ -18,6 +18,8 @@ async function createUserEmailAndPassword(email,password){
         console.log(errorMessage);
         }
         return error;
+        console.log(error)
+    };
 };
 
 /*----- Creating and login user with google account //try catch - quitar then ----- */
