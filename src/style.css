@@ -62,7 +62,7 @@ input::placeholder {
 .btn-signup, .btn-signin-google {
   padding: 0.7em;
   font-size: 1em;
-  margin: 20px 0px;
+  margin: 10px 0px;
   /*  padding: 10px 5px; */
   background-color: rgb(36, 33, 33, 0.5);
   border: none;

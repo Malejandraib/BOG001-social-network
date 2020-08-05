@@ -4,7 +4,7 @@ export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailA
 async function createUserEmailAndPassword(email,password){
     try{
         const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        console.log("registrandose...");
+        alert("registrandose...");
         return authentication;
     }
     catch(error) {
@@ -12,13 +12,14 @@ async function createUserEmailAndPassword(email,password){
         console.log(error);
         let errorCode = error.code; //Nos muestra el tipo de error así: auth/email-already-in-use
         let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida
-        if (errorCode == "auth/weak-password") {
-            alert("The password is too weak.");
+        let msjEmailVer = document.querySelector('#verification-email');
+        
+        if (errorCode == "auth/weak-password") {    
+            alert("the password is too weak");
         } else {
-        console.log(errorMessage);
+            msjEmailVer.innerHTML = errorMessage;
         }
         return error;
-        console.log(error)
     };
 };
 
@@ -65,15 +66,16 @@ async function signInEmailAndPassword(email,password){
     }
     catch(error) {
         // Handle Errors here.
+        let msjVerification = document.querySelector('#verification-password');
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
+            msjVerification.textContent = 'Wrong Password';
         } else {
-            alert(errorMessage);
+            msjVerification.innerHTML = errorMessage;
         }
         console.log(error);
-        // return error
+        return error
     };
 };
 

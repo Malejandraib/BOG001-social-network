@@ -1,4 +1,3 @@
-import {componentSignup} from '../views/componentSignUp.js';
 import {createUserEmailAndPassword, registerGoogle} from "./firebasefunction.js"
 
 export default () =>{
@@ -8,7 +7,6 @@ export default () =>{
     
     const signupForm = document.querySelector('#signup-form');
     const passwordValidation = document.querySelector('.password-signup');
-    console.log (passwordValidation)
     const msjEmailVer = document.querySelector('#verification-email');
     const msjVerification= document.querySelector('#verification-password');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
@@ -36,11 +34,8 @@ export default () =>{
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
         createUserEmailAndPassword(email,password);
-
         // const temp = createUserEmailAndPassword(email,password);
         // msjEmailVer.innerHTML = temp.message;
-        
-        
     });
 
     //signup with google and login 
