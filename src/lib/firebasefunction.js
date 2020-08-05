@@ -4,22 +4,11 @@ export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailA
 async function createUserEmailAndPassword(email,password){
     try{
         const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        alert("registrandose...");
         return authentication;
     }
     catch(error) {
-        // Handle Errors here.
-        console.log(error);
-        let errorCode = error.code; //Nos muestra el tipo de error así: auth/email-already-in-use
         let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida
-        let msjEmailVer = document.querySelector('#verification-email');
-        
-        if (errorCode == "auth/weak-password") {    
-            alert("the password is too weak");
-        } else {
-            msjEmailVer.innerHTML = errorMessage;
-        }
-        return error;
+        return errorMessage;
     };
 };
 
@@ -27,18 +16,11 @@ async function createUserEmailAndPassword(email,password){
 async function registerGoogle (provider){
     try {
         const registerTemp = await firebase.auth().signInWithPopup(provider);
-        let token = result.credential.accessToken;
-        let user = result.user;
-        let idcredential = result.credential.idToken;
-        let additional = result.additionalUserInfo.isNewUser;
-        console.log("Es un nuevo usuario?:" + additional);
         return registerTemp;       
     }
     catch(error) {
-        console.log(error.code, error.credential);
-        return error
+        return error;
     };
-    
 };
 
 
@@ -62,20 +44,23 @@ function logOutAccount(){
 async function signInEmailAndPassword(email,password){
     try{
         const signInUser = await firebase.auth().signInWithEmailAndPassword(email, password);
-        console.log(signInUser);
+        return signInUser;
     }
     catch(error) {
         // Handle Errors here.
-        let msjVerification = document.querySelector('#verification-password');
         var errorCode = error.code;
         var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
+/*         if (errorCode === 'auth/wrong-password') {
             msjVerification.textContent = 'Wrong Password';
         } else {
             msjVerification.innerHTML = errorMessage;
         }
+        console.log(error); */
+
         console.log(error);
-        return error
+        console.log(error.code);
+
+        return errorCode;
     };
 };
 
@@ -89,7 +74,11 @@ async function signInEmailAndPassword(email,password){
   if (user) {
     console.log(user);
     //Que vaya a timeline
+    
     btnLogOut.style.display = 'block';
+
+
+
     console.log(btnLogOut);
     const displayName = user.displayName;
     console.log(displayName);

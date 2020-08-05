@@ -5,35 +5,68 @@ export default () =>{
     var clon = template.content.cloneNode(true);
     root.appendChild(clon);
     
-
-    const formSignIn = document.querySelector('.form-signin');
-    const btnSignin = document.querySelector('.btn-signup');
+    //const formSignIn = document.querySelector('.form-signin');
+    const btnSignIn = document.querySelector ('.btn-signup');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
-    const msjVerification= document.querySelector('#verification-password');    
+    const msjVerification= document.querySelector('#verification-password');
+    const signinFromSignup= document.querySelector('.signup-view');
 
-    btnSignin.addEventListener('click', (e) => {
+    btnSignIn.addEventListener('click', async (e) => {
         e.preventDefault()
         const email = document.querySelector(".email-signin").value;
         const password = document.querySelector(".password-signin").value;
-        signInEmailAndPassword(email,password);
+        const signIn = await signInEmailAndPassword(email,password);
+        msjVerification.innerHTML = signIn;
     });
 
-    registerWithGoogle.addEventListener("click", googleRegister);
-    function googleRegister(e) {
+    //SignIn with google 
+    registerWithGoogle.addEventListener("click", async (e) => {
         e.preventDefault();
-        //aqui va el change al otro html
+        signupForm.reset();
         const provider = new firebase.auth.GoogleAuthProvider();
-        registerGoogle(provider);
-    } 
-
-    const signinFromSignup= document.querySelector('.signup-view');
-    
-    signinFromSignup.addEventListener('click',function(){
+        const signinGoogle = await registerGoogle(provider);
+    });
+    //Changing page to signUp
+    signinFromSignup.addEventListener('click', () => {
         window.location.hash = '';
         console.log(signinFromSignup);
     });
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
