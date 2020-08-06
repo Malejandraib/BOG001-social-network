@@ -1,35 +1,72 @@
-import {componentSignin} from '../views/componentSignin.js';
 import {signInEmailAndPassword, registerGoogle} from "./firebasefunction.js";
 
-const component = componentSignin;
-
 export default () =>{
+    const template = document.querySelector("#template-signin");
+    var clon = template.content.cloneNode(true);
+    root.appendChild(clon);
+    
+    //const formSignIn = document.querySelector('.form-signin');
+    const btnSignIn = document.querySelector ('.btn-signup');
+    const registerWithGoogle = document.querySelector('.btn-signin-google');
+    const msjVerification= document.querySelector('#verification-password');
+    const signinFromSignup= document.querySelector('.signup-view');
 
-    const root = document.getElementById("root");
-    root.innerHTML = component;
-    /* const formSignIn = document.querySelector('.form-signin'); */
-    const btnSignin = document.querySelector('.btn-signup')
-    btnSignin.addEventListener('click', (e) => {
+    btnSignIn.addEventListener('click', async (e) => {
         e.preventDefault()
         const email = document.querySelector(".email-signin").value;
         const password = document.querySelector(".password-signin").value;
-        signInEmailAndPassword(email,password);
+        const signIn = await signInEmailAndPassword(email,password);
+        msjVerification.innerHTML = signIn;
     });
 
-    const signinFromSignup= document.querySelector('.signup-view');
-    
-    signinFromSignup.addEventListener('click',function(){
+    //SignIn with google 
+    registerWithGoogle.addEventListener("click", async (e) => {
+        e.preventDefault();
+        signupForm.reset();
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const signinGoogle = await registerGoogle(provider);
+    });
+    //Changing page to signUp
+    signinFromSignup.addEventListener('click', () => {
         window.location.hash = '';
         console.log(signinFromSignup);
     });
     
-registerWithGoogle.addEventListener("click", googleRegister);
-    function googleRegister(e) {
-        e.preventDefault();
-        //aqui va el change al otro html
-        const provider = new firebase.auth.GoogleAuthProvider();
-        registerGoogle(provider);
-    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }

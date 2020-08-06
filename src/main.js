@@ -6,7 +6,6 @@ const init = () => {
   router(window.location.hash);
   window.addEventListener("hashchange", () => {
       router(window.location.hash);
-      console.log(window.location.hash);
   });
 };
 

@@ -1,18 +1,16 @@
-import {componentSignup} from '../views/componentSignUp.js';
 import {createUserEmailAndPassword, registerGoogle} from "./firebasefunction.js"
-// import * as firebase from 'firebase';
 
 export default () =>{
-    const root = document.getElementById("root");
-    root.innerHTML = componentSignup;
-
+    const template = document.querySelector("#template-signup");
+    const clon = template.content.cloneNode(true);
+    root.appendChild(clon);
+    
     const signupForm = document.querySelector('#signup-form');
     const passwordValidation = document.querySelector('.password-signup');
     const msjEmailVer = document.querySelector('#verification-email');
     const msjVerification= document.querySelector('#verification-password');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
     
-
     //Verificacion de contraseña
     passwordValidation.addEventListener('blur', verification);
     function verification(){
@@ -25,35 +23,30 @@ export default () =>{
             msjVerification.textContent = "Password must contain at least 6 characters, one number and one letter in uppercase.";
         }
         else{
-        msjVerification.classList.add('hide');
+        msjVerifcatiogn.classList.add('hide');
         }
     };
 
     //Enviar formulario con email y password, para crear nuevo usuario 
-    signupForm.addEventListener("submit", (e) => {
+    signupForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
-        console.log(email);
-        console.log(password);
-        console.log(createUserEmailAndPassword());
-        createUserEmailAndPassword(email,password);
+        const temp = await createUserEmailAndPassword(email,password);
+        msjEmailVer.innerHTML = temp;
     });
-
-    //signup with google and login 
-    registerWithGoogle.addEventListener("click", googleRegister);
-    function googleRegister(e) {
+    
+    //SignIn with google 
+    registerWithGoogle.addEventListener("click", async (e) => {
         e.preventDefault();
         signupForm.reset();
-        //aqui va el change al otro html
         const provider = new firebase.auth.GoogleAuthProvider();
-        registerGoogle(provider);
-    }
+        const signinGoogle = await registerGoogle(provider);
+    });
     
-
+        //Changing page to signIn
     const signinFromSignup= document.querySelector('.signin-view');
-    signinFromSignup.addEventListener('click',function(){
+    signinFromSignup.addEventListener('click',() => {
         window.location.hash = 'signin';
     });
-
 }
