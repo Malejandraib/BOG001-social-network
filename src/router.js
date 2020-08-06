@@ -17,6 +17,8 @@ export const router = (route) =>{
             return pages.signup();
         case '#signin':
             return pages.signin();
+        case '#timeline':
+            return content.innerHTML = "Bienvenido a Timeline";
         default:
           // code block
     }
