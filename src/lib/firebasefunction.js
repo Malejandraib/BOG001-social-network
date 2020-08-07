@@ -1,4 +1,4 @@
-export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword};
+export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword, changeState};
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email,password){
@@ -41,7 +41,17 @@ async function signInEmailAndPassword(email,password){
 
 /* -----------Cambio a timeline-----------  */
 
-
+function changeState (){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location.hash = 'timeline';
+            console.log(user.displayName);
+            console.log(user);
+        } else {
+            console.log("nope");
+        }
+    });
+}
 //async function authenticationState (user){
 // firebase.auth().onAuthStateChanged(function(user){
 //     if (user) {

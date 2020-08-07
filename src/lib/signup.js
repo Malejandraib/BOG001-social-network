@@ -1,4 +1,4 @@
-import {createUserEmailAndPassword, registerGoogle, logOutAccount} from "./firebasefunction.js"
+import {createUserEmailAndPassword, registerGoogle, logOutAccount, changeState} from "./firebasefunction.js"
 
 export default () =>{
     
@@ -35,6 +35,7 @@ export default () =>{
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
         const signUp = await createUserEmailAndPassword(email,password);
+        //changeState(signUp)
         
         msjEmailVer.innerHTML = signUp;
     });
@@ -45,10 +46,13 @@ export default () =>{
         signupForm.reset();
         const provider = new firebase.auth.GoogleAuthProvider();
         const signinGoogle = await registerGoogle(provider);
+        //changeState(signinGoogle)
     });
 
     //Entramos en timeline
-    firebase.auth().onAuthStateChanged(function(user) {
+    changeState()
+
+/*     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             window.location.hash = 'timeline';
             console.log(user.displayName);
@@ -56,7 +60,7 @@ export default () =>{
         } else {
             console.log("nope");
         }
-    });
+    }); */
 
         //Changing page to signIn
         const signinFromSignup= document.querySelector('.signin-view');
