@@ -1,4 +1,4 @@
-export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword };
+export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword, changeState};
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email,password){
@@ -12,7 +12,7 @@ async function createUserEmailAndPassword(email,password){
     };
 };
 
-/*----- Creating and login user with google account //try catch - quitar then ----- */
+/*---------- Creating and login user with google account ------------ */
 async function registerGoogle (provider){
     try {
         const registerTemp = await firebase.auth().signInWithPopup(provider);
@@ -23,8 +23,58 @@ async function registerGoogle (provider){
     };
 };
 
+/*-----------signInEmailAndPassword------------ */
+async function signInEmailAndPassword(email,password){
+    try{
+        const signInUser = await firebase.auth().signInWithEmailAndPassword(email, password);
+        return signInUser;
+    }
+    catch(error) {
+        var errorMessage = error.message;
+/*         // Handle Errors here.
+        var errorCode = error.code;
+        console.log(error);
+        console.log(error.code); */
+        return errorMessage;
+    };
+};
 
-/* ---Logingout account --- */
+/* -----------Cambio a timeline-----------  */
+
+function changeState (){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location.hash = 'timeline';
+            console.log(user.displayName);
+            console.log(user);
+        } else {
+            console.log("nope");
+        }
+    });
+}
+//async function authenticationState (user){
+// firebase.auth().onAuthStateChanged(function(user){
+//     if (user) {
+//         console.log(user);
+//         //Que vaya a timeline
+//         btnLogOut.style.display = 'block';
+//         console.log(btnLogOut);
+//         const displayName = user.displayName;
+//         console.log(displayName);
+//         const email = user.email;
+//         const emailVerified = user.emailVerified;
+//         const photoURL = user.photoURL;
+//     } else {
+//         console.log("nope");
+//     }; 
+// }); 
+/*     catch (error){
+        console.log('no hay usuario')
+        return error;
+    }; */
+
+
+/* --------- Logingout account ------------ */
 function logOutAccount(){
     var user = firebase.auth().currentUser;
     console.log(user);
@@ -34,68 +84,8 @@ function logOutAccount(){
         console.log("// Sign-out successful.");
         return signoutUser
         }
-        catch(error) {
-            // An error happened.
-            return error
-        };
-};
-
-/* ---signInEmailAndPassword--- */
-async function signInEmailAndPassword(email,password){
-    try{
-        const signInUser = await firebase.auth().signInWithEmailAndPassword(email, password);
-        return signInUser;
-    }
     catch(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-/*         if (errorCode === 'auth/wrong-password') {
-            msjVerification.textContent = 'Wrong Password';
-        } else {
-            msjVerification.innerHTML = errorMessage;
-        }
-        console.log(error); */
-
-        console.log(error);
-        console.log(error.code);
-
-        return errorCode;
+        // An error happened.
+        return error
     };
 };
-
-
-
-
-//************************************************* */
-//Cambio a timeline 
-    
-/* firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    console.log(user);
-    //Que vaya a timeline
-    
-    btnLogOut.style.display = 'block';
-
-
-
-    console.log(btnLogOut);
-    const displayName = user.displayName;
-    console.log(displayName);
-    const email = user.email;
-    const emailVerified = user.emailVerified;
-    const photoURL = user.photoURL;
-  } else {
-    console.log("nope");
-  }
-});  */
-
-/* //LogOut
-let btnLogOut = document.querySelector(".btn-log-out");
-btnLogOut.style.display = 'none';
-btnLogOut.addEventListener("click", logOut);
-
-function logOut(){
-  logOutAccount();
-  //Faltan los botones 
-} */

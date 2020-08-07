@@ -1,4 +1,4 @@
-import {signInEmailAndPassword, registerGoogle} from "./firebasefunction.js";
+import {signInEmailAndPassword, registerGoogle,logOutAccount} from "./firebasefunction.js";
 
 export default () =>{
     const template = document.querySelector("#template-signin");
@@ -22,51 +22,26 @@ export default () =>{
     //SignIn with google 
     registerWithGoogle.addEventListener("click", async (e) => {
         e.preventDefault();
-        signupForm.reset();
         const provider = new firebase.auth.GoogleAuthProvider();
         const signinGoogle = await registerGoogle(provider);
     });
+
     //Changing page to signUp
     signinFromSignup.addEventListener('click', () => {
         window.location.hash = '';
         console.log(signinFromSignup);
     });
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    //Entramos en timeline
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location.hash = 'timeline';
+            console.log(user.displayName);
+            console.log(user);
+        } else {
+            console.log("nope");
+        }
+    });
+
+    logOutAccount();
 }

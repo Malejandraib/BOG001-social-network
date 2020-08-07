@@ -1,6 +1,7 @@
-import {createUserEmailAndPassword, registerGoogle} from "./firebasefunction.js"
+import {createUserEmailAndPassword, registerGoogle, logOutAccount, changeState} from "./firebasefunction.js"
 
 export default () =>{
+    
     const template = document.querySelector("#template-signup");
     const clon = template.content.cloneNode(true);
     root.appendChild(clon);
@@ -10,7 +11,8 @@ export default () =>{
     const msjEmailVer = document.querySelector('#verification-email');
     const msjVerification= document.querySelector('#verification-password');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
-    
+
+
     //Verificacion de contraseña
     passwordValidation.addEventListener('blur', verification);
     function verification(){
@@ -32,8 +34,10 @@ export default () =>{
         e.preventDefault();
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
-        const temp = await createUserEmailAndPassword(email,password);
-        msjEmailVer.innerHTML = temp;
+        const signUp = await createUserEmailAndPassword(email,password);
+        //changeState(signUp)
+        
+        msjEmailVer.innerHTML = signUp;
     });
     
     //SignIn with google 
@@ -42,11 +46,29 @@ export default () =>{
         signupForm.reset();
         const provider = new firebase.auth.GoogleAuthProvider();
         const signinGoogle = await registerGoogle(provider);
+        //changeState(signinGoogle)
     });
-    
+
+    //Entramos en timeline
+    changeState()
+
+/*     firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location.hash = 'timeline';
+            console.log(user.displayName);
+            console.log(user);
+        } else {
+            console.log("nope");
+        }
+    }); */
+
         //Changing page to signIn
-    const signinFromSignup= document.querySelector('.signin-view');
-    signinFromSignup.addEventListener('click',() => {
-        window.location.hash = 'signin';
-    });
-}
+        const signinFromSignup= document.querySelector('.signin-view');
+        signinFromSignup.addEventListener('click',() => {
+            window.location.hash = 'signin';
+        });
+
+    logOutAccount();
+
+};
+
