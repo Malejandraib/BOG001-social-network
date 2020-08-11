@@ -8,7 +8,7 @@ body {
   font-family: "Cabin", sans-serif;
   background: #fc4a1a;   /*fallback for old browsers */
   background: -webkit-linear-gradient(to left, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-   background: linear-gradient(to left, #f7b733, #fc4a1a);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to left, #f7b733, #fc4a1a);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: #1d1d1d;
 }
 
@@ -83,9 +83,13 @@ span{
 
 /* Style en mobile timeline */
 
-  #root{
+  #template-timeline{
     background: white;
-    height: 100vh;
+    height: 10vh;
+  }
+
+  .nav-desktop {
+    display:none;
   }
 
 header {
@@ -97,10 +101,9 @@ header {
 }
 
 #logo-timeline{
-  width: 50%;
+  width: 30%;
   padding: 0.5em;
 }
-
 
 footer ul{
   background: #fc4a1a;  /* fallback for old browsers */
@@ -116,6 +119,11 @@ footer ul{
   padding: 0.5em;
 }
 
+
+.timeline{
+  background: white;
+  height: 100vh;
+}
 li{
 
   display: flex;
@@ -128,6 +136,10 @@ li{
 li .fa {
   font-size: 1.5em;
   color: white;
+}
+
+footer p {
+  display:none;
 }
 
 
@@ -183,11 +195,6 @@ li .fa {
     background-color: #ECD38F;
   }
 
- /*  #musicians{
-    width: 100%;
-    height: auto;
-  } */
-
   #logo{
       content: url(images/logo_temporal.png);
       width: 100%;
@@ -195,5 +202,48 @@ li .fa {
       height: auto;
   }
 
+  .nav-desktop{
+    display:block;
+    justify-content: space-between;
+    flex-basis: 50%;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type:none;
+  }
+
+
+  
+  #logo-timeline{
+    width: 10em;
+  }
+
+  header ul{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type:none;
+    flex-direction: row;
+  }
+
+  footer p {
+    display:block;
+  }
+
+  footer{
+    background: #fc4a1a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #f86f13, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #f86f13, #fc4a1a);
+    position:fixed;
+    height:5%;
+    bottom:0;
+    width:100%;
+  }
+  footer ul{
+    display:none;
+  }
 }   
 

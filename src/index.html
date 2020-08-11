@@ -66,8 +66,17 @@
   </template>
 
   <template id ="template-timeline">
+    <div class = "timeline">
     <header>
       <img src="../images/logo2.png" id="logo-timeline"/>
+      <nav class = "nav-desktop">
+        <ul>
+          <li class="active"> Home</li>
+          <li> Profile</li>
+          <li>Events</li>
+          <li class = "logout"> LogOut</li>
+        </ul>
+      </nav>
     </header>
       <main>
         <p>Bienvenido a Timeline</p>
@@ -78,10 +87,12 @@
           <li class="active"><i class="fa fa-fw fa-home"></i> Home</li>
           <li><i class="fa fa-fw fa-user-circle"></i> Profile</li>
           <li><i class="fa fa-fw fa-user-circle"></i>Events</li>
-          <li><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+          <li class = "logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
         </ul>
       </nav>
+      <p> Musicmood © 2020 ❤️ Made it by A2C </p>
     </footer>
+  </div>
   </template>
 
   <script>
