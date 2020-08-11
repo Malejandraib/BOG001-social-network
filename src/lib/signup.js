@@ -68,7 +68,7 @@ export default () =>{
             window.location.hash = 'signin';
         });
 
-    logOutAccount();
+    //logOutAccount();
 
 };
 
