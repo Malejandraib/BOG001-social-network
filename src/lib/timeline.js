@@ -6,10 +6,13 @@ export default () =>{
     const clon = template.content.cloneNode(true);
     root.appendChild(clon);
 
-    const btnLogOut = document.querySelector ('.logout');
-    btnLogOut.addEventListener('click', ()=>{
-        logOutAccount();
-        window.location.hash = '';
-        console.log(logOutAccount());
-    })
-}
+    const btnLogOut = document.querySelectorAll('.logout');
+    
+    btnLogOut.forEach (item => {
+        item.addEventListener('click', ()=>{
+            logOutAccount();
+            window.location.hash = '';
+            console.log(logOutAccount());
+        });
+    });
+};
