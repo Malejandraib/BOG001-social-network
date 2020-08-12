@@ -1,4 +1,4 @@
-import {createUserEmailAndPassword, registerGoogle, logOutAccount, changeState} from "./firebasefunction.js"
+import {createUserEmailAndPassword, registerGoogle, logOutAccount} from "./firebasefunction.js"
 
 export default () =>{
     
@@ -50,7 +50,7 @@ export default () =>{
     });
 
     //Entramos en timeline
-    changeState()
+    // changeState()
 
 /*     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
