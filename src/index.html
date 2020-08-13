@@ -67,32 +67,59 @@
 
   <template id ="template-timeline">
     <div class = "timeline">
-    <header>
-      <img src="../images/logo2.png" id="logo-timeline"/>
-      <nav class = "nav-desktop">
-        <ul>
-          <li class="active"> Home</li>
-          <li> Profile</li>
-          <li>Events</li>
-          <li class = "logout"> LogOut</li>
-        </ul>
-      </nav>
-    </header>
-      <main>
-        <p>Bienvenido a Timeline</p>
+      <header>
+        <img src="../images/logo2.png" id="logo-timeline"/>
+        <nav class = "nav-desktop">
+          <ul>
+            <li class="active"> Home</li>
+            <li> Profile</li>
+            <li>Events</li>
+            <li class = "logout"> LogOut</li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main class = "main">
+        <div class = "block-createpost">
+          <div class = "block-createpost__user">
+            <img class = "user-img" src = "../images/pic.jpg"> 
+            <p class ="user-name">Cami Yanez</p>
+          </div>
+          
+          <form class = "form-share">
+            <textarea class = "input-share" placeholder ="    Share your music ..."></textarea>
+            <div class = "share-options">
+              <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
+              <button class = "btn_share">Share</button>
+            </div>
+          </form>
+        </div>
+        
+        <div class ="container-all-post">
+          <div class ="container-post">
+            <p class = "post"></p></p>Aquí deberían ir los post escritos (?)</p>
+            <input Class= "comment" placeholder ="add comment">
+          </div>
+        </div>
+        
       </main>
-    <footer>
-      <nav class = "nav-mobile">
-        <ul>
-          <li class="active"><i class="fa fa-fw fa-home"></i> Home</li>
-          <li><i class="fa fa-fw fa-user-circle"></i> Profile</li>
-          <li><i class="fa fa-fw fa-user-circle"></i>Events</li>
-          <li class = "logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
-        </ul>
-      </nav>
-      <p> Musicmood © 2020 ❤️ Made it by A2C </p>
-    </footer>
-  </div>
+      
+      <footer>
+        <nav class = "nav-mobile">
+          <ul>
+            <li class="active"><i class="fa fa-fw fa-home"></i> Home</li>
+            <li><i class="fa fa-fw fa-user-circle"></i> Profile</li>
+            <li><i class="fas fa fa-address-book"></i>Events</li>
+            <li class = "logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+          </ul>
+        </nav>
+        <p> Musicmood © 2020 ❤️ Made it by A2C </p>
+      </footer>
+    </div>
+  </template>
+
+  <template id = "notfound">
+    <h1>upssss you got lost</h1>
   </template>
 
   <script>

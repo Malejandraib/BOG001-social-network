@@ -32,16 +32,16 @@ export default () =>{
         console.log(signinFromSignup);
     });
 
-    //Entramos en timeline
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            window.location.hash = 'timeline';
-            console.log(user.displayName);
-            console.log(user);
-        } else {
-            console.log("nope");
-        }
-    });
+    // //Entramos en timeline
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     if (user) {
+    //         window.location.hash = 'timeline';
+    //         console.log(user.displayName);
+    //         console.log(user);
+    //     } else {
+    //         console.log("nope");
+    //     }
+    // });
 
     logOutAccount();
 }

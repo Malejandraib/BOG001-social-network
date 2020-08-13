@@ -1,4 +1,4 @@
-export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword, changeState};
+export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword};
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email,password){
@@ -41,41 +41,37 @@ async function signInEmailAndPassword(email,password){
 
 /* -----------Cambio a timeline-----------  */
 
-function changeState (){
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
+/* function changeState (){
+    firebase.auth().onAuthStateChanged(async function(user) {
+        try {
+            const newUser= await user 
             window.location.hash = 'timeline';
-            console.log(user.displayName);
-            console.log(user);
-        } else {
-            console.log("nope");
+            console.log(newUser.displayName);
+            console.log(newUser);
+            return newUser
+            }
+        catch (error) {
+            window.location.hash = 'notfound';
+            return error
         }
     });
-}
-//async function authenticationState (user){
-// firebase.auth().onAuthStateChanged(function(user){
-//     if (user) {
-//         console.log(user);
-//         //Que vaya a timeline
-//         btnLogOut.style.display = 'block';
-//         console.log(btnLogOut);
-//         const displayName = user.displayName;
-//         console.log(displayName);
-//         const email = user.email;
-//         const emailVerified = user.emailVerified;
-//         const photoURL = user.photoURL;
-//     } else {
-//         console.log("nope");
-//     }; 
-// }); 
-/*     catch (error){
-        console.log('no hay usuario')
-        return error;
-    }; */
+    //return user;
+}; */
 
+// function changeState (){
+//     firebase.auth().onAuthStateChanged(function(user) {
+//         if (user) {
+//             console.log(user.displayName);
+//         } else {
+//             console.log("nope");
+//         }
+
+//         return user;
+//     });  
+// }
 
 /* --------- Logingout account ------------ */
-function logOutAccount(){
+async function logOutAccount(){
     var user = firebase.auth().currentUser;
     console.log(user);
 

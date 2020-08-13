@@ -57,7 +57,7 @@ input::placeholder {
   text-align: center;
 }
 
-.btn-signup, .btn-signin-google {
+.btn-signup, .btn-signin-google, .btn_share {
   padding: 0.7em;
   font-size: 1em;
   margin: 10px 0px;
@@ -81,7 +81,7 @@ span{
   display: none;
 }
 
-/* Style en mobile timeline */
+/* STYLE MOBILE TIMELINE */
 
   #template-timeline{
     background: white;
@@ -91,20 +91,95 @@ span{
   .nav-desktop {
     display:none;
   }
-
+ /* Header */
 header {
   background: #fc4a1a;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #f7b733, #fc4a1a); 
   display: flex;
   justify-content: center;
+  margin-bottom: 1em;
 }
 
 #logo-timeline{
-  width: 30%;
+  width: 50%;
   padding: 0.5em;
 }
+/* MAIN  */
+.timeline{
+  background: white;
+  height: 100vh;
+}
 
+.main{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+.block-createpost{
+  width: 95%;
+}
+
+.block-createpost__user{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.user-img{
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.user-name{
+  font-weight: bold;
+  padding: 0 1em;
+}
+
+.form-share{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top:1em;
+}
+
+.input-share{
+  width:100%;
+  height: 6em;
+  border-radius: 10px;
+  font-family: "Cabin", sans-serif;
+  background-color: #F2F2F2;
+  border: solid 1px rgb(0, 0, 0, 0.37);
+}
+
+.share-options{
+  text-align: right;
+  width: 100%;
+}
+
+.btn_share_img{
+  border:none;
+  text-decoration: none;
+  text-align:center;
+}
+
+.btn_share{
+  padding: 0.7em;
+  font-size: 1em;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: #F37335;
+  width: 50%;
+}
+/* Footer */
 footer ul{
   background: #fc4a1a;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #f86f13, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
@@ -119,11 +194,6 @@ footer ul{
   padding: 0.5em;
 }
 
-
-.timeline{
-  background: white;
-  height: 100vh;
-}
 li{
 
   display: flex;
@@ -141,7 +211,6 @@ li .fa {
 footer p {
   display:none;
 }
-
 
 /* INICIO DE MEDIA QUERYS  */
 
