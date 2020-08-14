@@ -1,4 +1,4 @@
-import {signInEmailAndPassword, registerGoogle,logOutAccount} from "./firebasefunction.js";
+import {signInEmailAndPassword, registerGoogle} from "./firebasefunction.js";
 
 export default () =>{
     const template = document.querySelector("#template-signin");
@@ -8,7 +8,7 @@ export default () =>{
     //const formSignIn = document.querySelector('.form-signin');
     const btnSignIn = document.querySelector ('.btn-signup');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
-    const msjVerification= document.querySelector('#verification-password');
+    const msjVerification = document.querySelector('#verification-password');
     const signinFromSignup= document.querySelector('.signup-view');
 
     btnSignIn.addEventListener('click', async (e) => {
@@ -16,6 +16,7 @@ export default () =>{
         const email = document.querySelector(".email-signin").value;
         const password = document.querySelector(".password-signin").value;
         const signIn = await signInEmailAndPassword(email,password);
+        window.location.hash = 'timeline';
         msjVerification.innerHTML = signIn;
     });
 
@@ -32,16 +33,15 @@ export default () =>{
         console.log(signinFromSignup);
     });
 
-    // //Entramos en timeline
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //     if (user) {
-    //         window.location.hash = 'timeline';
-    //         console.log(user.displayName);
-    //         console.log(user);
-    //     } else {
-    //         console.log("nope");
-    //     }
-    // });
+    //Entramos en timeline
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location.hash = 'timeline';
+            console.log(user.displayName);
+            console.log(user);
+        } else {
+            console.log("nope");
+        }
+    });
 
-    logOutAccount();
 }

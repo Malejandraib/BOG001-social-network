@@ -1,4 +1,4 @@
-import {createUserEmailAndPassword, registerGoogle, logOutAccount} from "./firebasefunction.js"
+import {createUserEmailAndPassword, registerGoogle, } from "./firebasefunction.js"
 
 export default () =>{
     
@@ -11,6 +11,9 @@ export default () =>{
     const msjEmailVer = document.querySelector('#verification-email');
     const msjVerification= document.querySelector('#verification-password');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
+
+    //let nameForm = "";
+
 
 
     //Verificacion de contraseña
@@ -25,7 +28,7 @@ export default () =>{
             msjVerification.textContent = "Password must contain at least 6 characters, one number and one letter in uppercase.";
         }
         else{
-        msjVerifcatiogn.classList.add('hide');
+        msjVerification.classList.add('hide');
         }
     };
 
@@ -34,10 +37,26 @@ export default () =>{
         e.preventDefault();
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
-        const signUp = await createUserEmailAndPassword(email,password);
-        //changeState(signUp)
+        const nameForm = document.querySelector('.name-signup').value;
+        console.log(nameForm);
         
+        const signUp = await createUserEmailAndPassword(email,password);
         msjEmailVer.innerHTML = signUp;
+
+        var user = firebase.auth().currentUser; //null u objeto
+        console.log(user);           //null u name
+    
+        console.log(nameForm);
+        
+        if (user != null) {
+            db.collection('users').doc(user.uid).set({
+                name: nameForm,
+                email:user.email,
+                photoURL:user.photoURL,
+                uid: user.uid,
+            });
+        };
+
     });
     
     //SignIn with google 
@@ -49,26 +68,28 @@ export default () =>{
         //changeState(signinGoogle)
     });
 
-    //Entramos en timeline
-    // changeState()
 
-/*     firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             window.location.hash = 'timeline';
             console.log(user.displayName);
-            console.log(user);
+            console.log(user.uid);
+
+            
         } else {
             console.log("nope");
         }
-    }); */
+    }); 
+
+    //manera más fácil
+
+
 
         //Changing page to signIn
         const signinFromSignup= document.querySelector('.signin-view');
         signinFromSignup.addEventListener('click',() => {
             window.location.hash = 'signin';
         });
-
-    //logOutAccount();
 
 };
 

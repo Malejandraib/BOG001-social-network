@@ -20,13 +20,14 @@ export const router = (route) =>{
     // console.log(createstate);
 
     let content = document.getElementById('root');
-    content.innerHTML = "";
-
             firebase.auth().onAuthStateChanged(function(user) {
+                content.innerHTML = "";
                 if (user) {
                     console.log(user.displayName);       
                     switch(route) {
                         case '':
+                            //puede hacer un redirect a timeline de una
+                            
                             return pages.signup();
                         case '#signin':
                             return pages.signin();
@@ -41,9 +42,9 @@ export const router = (route) =>{
                         case '':
                             return pages.signup();
                         case '#signin':
-                            return pages.signin();
+                            return pages.signin(); 
                         case '#timeline':
-                            return pages.notfound();   
+                            return pages.notfound();
                         default:
                             return pages.notfound();
                     }

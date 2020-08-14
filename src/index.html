@@ -12,7 +12,7 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
   </head>
   <body>
     <div id ="root"></div>
@@ -23,7 +23,7 @@
               <img src="../images/logo_basico.png" id="logo"/>
               <p>Find events close to you and build music connections to share your passion</p>
                   <form id="signup-form">
-                      <label>Name <input type="text" placeholder="Luke Skywalker" class="name-signup" /></label>
+                      <label>Name <input type="text" placeholder="Luke Skywalker" class="name-signup" value=""/></label>
                       <label>Email<input type="email" class="email-signup" placeholder="example@gmail.com"/></label>
                       <p id = "verification-email" class="style-wrong"></p>
                       <label>Password<input type="password" class="password-signup" placeholcer="password" /></label>
@@ -64,7 +64,7 @@
             
         </div>
   </template>
-
+o
   <template id ="template-timeline">
     <div class = "timeline">
       <header>
@@ -135,6 +135,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
   </script>
   <script type="module" src="main.js"></script>
   </body>
