@@ -1,4 +1,4 @@
-import {createUserEmailAndPassword, registerGoogle, } from "./firebasefunction.js"
+import {createUserEmailAndPassword, registerGoogle} from "./firebasefunction.js"
 
 export default () =>{
     
@@ -11,10 +11,6 @@ export default () =>{
     const msjEmailVer = document.querySelector('#verification-email');
     const msjVerification= document.querySelector('#verification-password');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
-
-    //let nameForm = "";
-
-
 
     //Verificacion de contraseña
     passwordValidation.addEventListener('blur', verification);
@@ -45,9 +41,7 @@ export default () =>{
 
         var user = firebase.auth().currentUser; //null u objeto
         console.log(user);           //null u name
-    
         console.log(nameForm);
-        
         if (user != null) {
             db.collection('users').doc(user.uid).set({
                 name: nameForm,
@@ -56,7 +50,6 @@ export default () =>{
                 uid: user.uid,
             });
         };
-
     });
     
     //SignIn with google 
@@ -65,31 +58,36 @@ export default () =>{
         signupForm.reset();
         const provider = new firebase.auth.GoogleAuthProvider();
         const signinGoogle = await registerGoogle(provider);
+        
+        var user = firebase.auth().currentUser; //null u objeto
+        console.log(user);           //null u name
+        
+        if (user != null) {
+            db.collection('users').doc(user.uid).set({
+                name: user.displayName,
+                email:user.email,
+                photoURL:user.photoURL,
+                uid: user.uid,
+            });
+        };
         //changeState(signinGoogle)
     });
 
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            window.location.hash = 'timeline';
-            console.log(user.displayName);
-            console.log(user.uid);
-
-            
-        } else {
-            console.log("nope");
-        }
-    }); 
-
-    //manera más fácil
-
-
-
-        //Changing page to signIn
-        const signinFromSignup= document.querySelector('.signin-view');
-        signinFromSignup.addEventListener('click',() => {
-            window.location.hash = 'signin';
-        });
+    //Entramos a timeline
+    let current = firebase.auth().currentUser;
+    if (current !== null) {
+        window.location.hash = 'timeline';
+        console.log(user.displayName);
+        console.log(user);
+    } else {
+        console.log("nope");
+    } 
+    
+    //Changing page to signIn
+    const signinFromSignup= document.querySelector('.signin-view');
+    signinFromSignup.addEventListener('click',() => {
+        window.location.hash = 'signin';
+    });
 
 };
 

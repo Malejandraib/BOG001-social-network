@@ -1,4 +1,4 @@
-export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword};
+export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword,gettingData,gettingData2,newPost};
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email,password){
@@ -31,13 +31,48 @@ async function signInEmailAndPassword(email,password){
     }
     catch(error) {
         var errorMessage = error.message;
-/*         // Handle Errors here.
-        var errorCode = error.code;
-        console.log(error);
-        console.log(error.code); */
         return errorMessage;
     };
 };
+
+/*-----------gettingData------------ */
+async function gettingData(uid) {
+    try{
+        const dataUser = await db.collection("users").doc(uid).get()
+        return dataUser.data()
+    }
+    catch(error){
+    return error.message
+    };
+};
+
+/*-----------gettingData------------ */
+async function gettingData2(collection, uid) {
+    try{
+        const dataUser = await db.collection(collection).doc(uid).get()
+        return dataUser.data()
+    }
+    catch(error){
+    return error.message
+    };
+};
+
+/*-----------newPost------------ */
+async function newPost (){
+    try{
+        const creatingPost = await db.collection("post").add({
+            uid: uid,
+            post:inputPost,
+            likesCounter: 0
+        })
+        return creatingPost
+    }
+    catch(error){
+        return error.message
+    }
+};
+
+
 
 /* -----------Cambio a timeline-----------  */
 

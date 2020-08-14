@@ -34,14 +34,23 @@ export default () =>{
     });
 
     //Entramos en timeline
-    firebase.auth().onAuthStateChanged(function(user) {
+    let current = firebase.auth().currentUser;
+    if (current !== null) {
+        window.location.hash = 'timeline';
+        console.log(current.displayName);
+        console.log(current);
+    } else {
+        console.log("nope");
+    } 
+
+/*     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             window.location.hash = 'timeline';
             console.log(user.displayName);
             console.log(user);
         } else {
             console.log("nope");
-        }
-    });
+        } 
+    });*/
 
 }
