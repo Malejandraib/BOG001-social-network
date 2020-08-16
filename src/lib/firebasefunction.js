@@ -49,7 +49,7 @@ async function gettingData(uid) {
 /*-----------gettingData------------ */
 async function gettingData2(collection, uid) {
     try{
-        const dataUser = await db.collection(collection).doc(uid).get()
+        const dataUser = await db.collection(collection).doc(uid).get();
         return dataUser.data()
     }
     catch(error){

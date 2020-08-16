@@ -12,6 +12,9 @@ body {
   color: #1d1d1d;
 }
 
+.recently-posted{
+  background-color: wheat;
+}
 
 #signup, #signin{
   display: flex;
@@ -108,7 +111,11 @@ header {
 /* MAIN  */
 .timeline{
   background: white;
-  height: 100vh;
+  /* height: 50vh; */
+}
+
+.container-all-posts, .container-post{
+  background-color: white;
 }
 
 .main{
@@ -116,6 +123,7 @@ header {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  background: white;
 }
 
 
