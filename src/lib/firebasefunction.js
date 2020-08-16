@@ -1,4 +1,4 @@
-export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword,gettingData,gettingData2,newPost};
+export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword,gettingData,gettingData2};
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email,password){
@@ -58,19 +58,7 @@ async function gettingData2(collection, uid) {
 };
 
 /*-----------newPost------------ */
-async function newPost (){
-    try{
-        const creatingPost = await db.collection("post").add({
-            uid: uid,
-            post:inputPost,
-            likesCounter: 0
-        })
-        return creatingPost
-    }
-    catch(error){
-        return error.message
-    }
-};
+
 
 
 

@@ -87,19 +87,27 @@
           </div>
           
           <form class = "form-share">
-            <input class = "input-share" placeholder ="    Share your music ..."> <!-- </textarea> -->
-            <div class = "share-options"></div>
+            <textarea class = "input-share" placeholder ="    Share your music ..."> </textarea>
+            <form action="/action_page.php">
+              <label for="img">Select image:</label>
+              <input type="file" id="img" name="img" accept="image/*">
               <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
+            </form>
+            <div class = "share-options"></div>
               <button class = "btn_share">Share</button>
             </div>
+            
           </form>
         </div>
         
         <div class ="container-all-post">
-          <div class ="container-post">
-            <p class = "post"></p></p>Aquí deberían ir los post escritos (?)</p>
-            <input Class= "comment" placeholder ="add comment">
-          </div>
+          <template class = 'template-container-post'>
+            <div class ="container-post">
+              <p class = "post"></p></p>Aquí deberían ir los post escritos (?)</p>
+              <button>Like</button>
+              <input Class= "comment" placeholder ="add comment">
+            </div>
+          </template>
         </div>
         
       </main>

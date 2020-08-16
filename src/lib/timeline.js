@@ -1,4 +1,4 @@
-import {logOutAccount, gettingData, gettingData2,newPost} from "./firebasefunction.js";
+import {logOutAccount, gettingData, gettingData2} from "./firebasefunction.js";
 
 
 export default () =>{
@@ -10,8 +10,9 @@ export default () =>{
     const photoUser = document.querySelector('.user-img');
     const nameTimeline = document.querySelector('.user-name');
     const btnLogOut = document.querySelectorAll('.logout');
-    const btnShare = document.querySelector('.btn_share');
-    let share = document.querySelector('.post');
+    const formShare = document.querySelector('.form-share');
+    const postContainer = document.querySelector('.container-all-post');
+    
 
 
     var user = firebase.auth().currentUser;
@@ -24,15 +25,35 @@ export default () =>{
         photoUser.src = doc.photoURL;
     });
 
-    btnShare.addEventListener('click',(e)=>{
+    formShare.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        e.reset()
         const inputPost = document.querySelector('.input-share').value;
+
+        async function newPost (){
+            try{
+                const creatingPost = await db.collection("post").add({
+                    uid: uid,
+                    post:inputPost,
+                    likesCounter: 0
+                })
+                return creatingPost
+            }
+            catch(error){
+                return error.message
+            }
+        };
 
         newPost().then((docRef) =>{
             console.log(docRef);
             gettingData2('post', docRef.id).then((doc)=>{
-                share.textContent = doc.post;
+                const templatePost = document.querySelector('.template-container-post');
+                const clonPost = templatePost.content.cloneNode(true);
+                postContainer.appendChild(clonPost)
+                const sharePost = document.querySelector('.post')
+                sharePost.textContent = doc.post;
                 console.log(doc.post);
-                console.log(share.textContent);
+                console.log(sharePost.textContent);
             });
         });
 
