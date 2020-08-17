@@ -106,15 +106,13 @@
             <div class = "recently-posted"></div>
             <div class ="container-post"></div> 
         <div>
-              <div>a</div>
-              <div>a</div>
-              <div>a</div>
-              <div>a</div>
+             
             </div>
         </div>
-    
       </main>
-   
+      
+
+      
       <footer>
         <nav class = "nav-mobile">
           <ul>
@@ -126,6 +124,23 @@
         </nav>
         <p> Musicmood © 2020 ❤️ Made it by A2C </p>
       </footer>
+    </div>
+  </template>
+
+  <template id = "modal-edit">
+    <div>
+      <div class = "modal-container">
+        <form class = "form-share">
+          <textarea class = "input-share" placeholder ="    Share your music ..."> </textarea>
+          <form action="/action_page.php">
+            <label for="img">Select image:</label>
+            <input type="file" id="img" name="img" accept="image/*">
+            <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
+          </form>
+          <button class = "close-modal"> &times;</button>
+        </div>
+        <button class = "close-modal"> &times;</button>
+        
     </div>
   </template>
 

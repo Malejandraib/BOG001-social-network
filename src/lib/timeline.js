@@ -13,9 +13,7 @@ export default () =>{
     const formShare = document.querySelector('.form-share');    
 
     var user = firebase.auth().currentUser;
-    console.log(user);
     var uid = user.uid;
-    console.log(uid);
 
     let name  = user.displayName;
     let photo = user.photoURL;
@@ -34,7 +32,7 @@ export default () =>{
         var dateTime = date+' '+time;
         
         const inputPost = document.querySelector('.input-share').value;
-        console.log(inputPost);
+       
 
         async function newPost (){
             try{
@@ -47,18 +45,16 @@ export default () =>{
                     likedBy: 0,
                     date: dateTime             
                 })
-                console.log(creatingPost);
+               
                 return creatingPost
             }
             catch(error){
                 return error.message
             }
         };
-
-
         
         newPost().then((docRef) =>{
-            console.log(docRef);
+            
             gettingData2('post', docRef.id).then((doc)=>{
 
                 const containerBox = document.getElementsByClassName("recently-posted")[0];
@@ -74,12 +70,15 @@ export default () =>{
 
                 const deletePost = document.createElement('i');
                 deletePost.classList.add("fa");
-                deletePost.classList.add("fa-edit");
+                deletePost.classList.add("fa-thrash");
                 const editPost = document.createElement('i');
                 editPost.classList.add("fa");
-                editPost.classList.add("fa-trash");
-                divUser.appendChild(deletePost);
+                editPost.classList.add("fa-edit");
+                editPost.addEventListener('click', editingPost);
+                
                 divUser.appendChild(editPost);
+                divUser.appendChild(deletePost);
+                
                 
                 photoShare.classList.add("user-img");
                 photoShare.src = doc.photo;
@@ -108,12 +107,16 @@ export default () =>{
                 if(uid == doc.data().uid){
                     const deletePost = document.createElement('i');
                     deletePost.classList.add("fa");
-                    deletePost.classList.add("fa-edit");
+                    deletePost.classList.add("fa-trash");
                     const editPost = document.createElement('i');
                     editPost.classList.add("fa");
-                    editPost.classList.add("fa-trash");
+                    editPost.classList.add("fa-edit");
+                    editPost.textContent = "edit";
+                    editPost.classList.add("edit-button");
                     containerBox.appendChild(deletePost);
                     containerBox.appendChild(editPost);
+
+                    editPost.addEventListener('click', editingPost);
                 }
 
                 const photoShare = document.createElement('img');
@@ -132,14 +135,16 @@ export default () =>{
                 containerBox.appendChild(dateShare);
                 containerBox.appendChild(postShare);
 
-                console.log("el uid scope es este: " + doc.data().uid);
-                console.log("el uid original es este: " + uid);
-
-
-                console.log(doc.id, " => ", doc.data().post);
+                
             });
     });
     
+    /* const edit = document.querySelector('.edit.button');
+    console.log(edit);
+    edit.addEventListener('click', ()=>{
+        alert ('Aqui debe ir el modal');
+    }) */
+
     //Función de solo DOM
 
     
@@ -165,30 +170,57 @@ export default () =>{
         item.addEventListener('click', ()=>{
             logOutAccount();
             window.location.hash = '';
-            console.log(logOutAccount());
         });
     });
 };
 
 
 
+const editingPost = () => {
+    const template = document.querySelector("#modal-edit");
+    var clon = template.content.cloneNode(true);
+    console.log(root);
+    root.appendChild(clon);
+
+    const modalContainer = document.getElementsByClassName("modal-container")[0];
+    console.log(modalContainer);
+    modalContainer.style.display = "block";
+
+    const closeModal = document.querySelector ('.close-modal');
+
+    closeModal.addEventListener('click', ()=>{
+        modalContainer.style.display = "none";
+    });
+    
+    modalContainer.addEventListener('click', () => {
+        if (event.target == modalContainer) {
+            modalContainer.style.display = "none";
+        }
+    });
+    
 
 
+}
 
-/*var washingtonRef = db.collection("instruments").doc("orquesta");
-console.log(washingtonRef);
-
-
- var docRef = db.collection("instruments").doc("orquesta");
-docRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("Document data:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+/* window.onclick = function(event) {
+    if (event.target == modalContainer) {
+        modalContaine.style.display = "none";
     }
-}).catch(function(error) {
-    console.log("Error getting document:", error);
+} */
+
+
+/*var washingtonRef = db.collection("cities").doc("DC");
+
+// Set the "capital" field of the city 'DC'
+return washingtonRef.update({
+    capital: true
+})
+.then(function() {
+    console.log("Document successfully updated!");
+})
+.catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
 }); */
 
 // Set the "capital" field of the city 'DC'
