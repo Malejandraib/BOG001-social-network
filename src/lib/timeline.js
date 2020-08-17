@@ -58,19 +58,22 @@ export default () =>{
             gettingData2('post', docRef.id).then((doc)=>{
 
                 const containerBox = document.getElementsByClassName("recently-posted")[0];
+                
 
                 const divUser = document.createElement('div');
+                const individualPost = document.createElement('div');
+                individualPost.classList.add("individual-post");
                 divUser.classList.add("block-createpost__user");
-                containerBox.appendChild(divUser);
-
+                containerBox.appendChild(individualPost);
+                
                 const photoShare = document.createElement('img');
-                const nameShare = document.createElement('h3');
-                const dateShare = document.createElement('p');
+                const nameShare = document.createElement('h4');
+                const dateShare = document.createElement('h5');
                 const postShare = document.createElement('p');
 
                 const deletePost = document.createElement('i');
                 deletePost.classList.add("fa");
-                deletePost.classList.add("fa-thrash");
+                deletePost.classList.add("fa-trash");
                 const editPost = document.createElement('i');
                 editPost.classList.add("fa");
                 editPost.classList.add("fa-edit");
@@ -79,49 +82,55 @@ export default () =>{
                 divUser.appendChild(editPost);
                 divUser.appendChild(deletePost);
                 
-                
                 photoShare.classList.add("user-img");
                 photoShare.src = doc.photo;
                 nameShare.textContent = doc.name;
                 dateShare.textContent = doc.date;
                 postShare.textContent = doc.post;
-
                 divUser.appendChild(photoShare);
                 divUser.appendChild(nameShare);
-                containerBox.appendChild(dateShare);
-                containerBox.appendChild(postShare);
+
+                individualPost.appendChild(divUser);  
+                individualPost.appendChild(postShare);
+                individualPost.appendChild(dateShare);
+
+                const likeButton = document.createElement('button');
+                const commentButton = document.createElement('button');
+                likeButton.textContent = "Like";
+                likeButton.classList.add = "button-post__style";
+                commentButton.textContent = "Comment";
+                commentButton.classList.add = "button-post__style";
+                individualPost.appendChild(likeButton);
+                individualPost.appendChild(commentButton);
+
+
             });
         });
 
         formShare.reset();
     });
 
+    // setTimeout(function() {
+    //     location.reload();
+    //   }, 30000);
 
     db.collection("post").orderBy("date", "desc").get().then(function(querySnapshot) {
 
             let containerBox = document.getElementsByClassName("container-post")[0];
+            
+            
             querySnapshot.forEach(function(doc) {
+                const divUser = document.createElement('div');
+            const individualPost = document.createElement('div');
 
-                
+            individualPost.classList.add("individual-post");
+            divUser.classList.add("block-createpost__user");
 
-                if(uid == doc.data().uid){
-                    const deletePost = document.createElement('i');
-                    deletePost.classList.add("fa");
-                    deletePost.classList.add("fa-trash");
-                    const editPost = document.createElement('i');
-                    editPost.classList.add("fa");
-                    editPost.classList.add("fa-edit");
-                    editPost.textContent = "edit";
-                    editPost.classList.add("edit-button");
-                    containerBox.appendChild(deletePost);
-                    containerBox.appendChild(editPost);
-
-                    editPost.addEventListener('click', editingPost);
-                }
-
+            containerBox.appendChild(individualPost);
                 const photoShare = document.createElement('img');
-                const nameShare = document.createElement('h2');
-                const dateShare = document.createElement('p');
+                const nameShare = document.createElement('p');
+                nameShare.classList.add("user-name");
+                const dateShare = document.createElement('h5');
                 const postShare = document.createElement('p');
                 
                 photoShare.classList.add("user-img");
@@ -129,11 +138,45 @@ export default () =>{
                 nameShare.textContent = doc.data().name;
                 dateShare.textContent = doc.data().date;
                 postShare.textContent = doc.data().post;
+                postShare.classList.add("post-text");
                 
-                containerBox.appendChild(photoShare);
-                containerBox.appendChild(nameShare);
-                containerBox.appendChild(dateShare);
-                containerBox.appendChild(postShare);
+                divUser.appendChild(photoShare);
+                divUser.appendChild(nameShare);
+                
+                if(uid == doc.data().uid){
+                    const deletePost = document.createElement('i');
+                    deletePost.classList.add("fa");
+                    deletePost.classList.add("fa-trash");
+                    // deletePost.textContent = "delete";
+                    const editPost = document.createElement('i');
+                    editPost.classList.add("fa");
+                    editPost.classList.add("fa-edit");
+                    // editPost.textContent = "edit";
+                    editPost.classList.add("edit-button");
+                    divUser.appendChild(deletePost);
+                    divUser.appendChild(editPost);
+
+                    editPost.addEventListener('click', editingPost); //Open Modal
+                }
+
+                individualPost.appendChild(divUser);          
+                individualPost.appendChild(postShare);
+                individualPost.appendChild(dateShare);
+
+                
+                
+                const likeButton = document.createElement('button');
+                const commentButton = document.createElement('button');
+                const buttonPostContainer = document.createElement('div');
+                buttonPostContainer.classList.add("button-post__container");
+
+                likeButton.textContent = "Like";
+                likeButton.classList.add("button-post__style");
+                commentButton.textContent = "Comment";
+                commentButton.classList.add("button-post__style");
+                buttonPostContainer.appendChild(likeButton);
+                buttonPostContainer.appendChild(commentButton);
+                individualPost.appendChild(buttonPostContainer);
 
                 
             });
@@ -197,9 +240,6 @@ const editingPost = () => {
             modalContainer.style.display = "none";
         }
     });
-    
-
-
 }
 
 /* window.onclick = function(event) {
