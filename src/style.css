@@ -108,7 +108,7 @@ header {
 /* MAIN  */
 .timeline{
   background: white;
-  padding-bottom: 10em;
+  padding-bottom: 5em;
   /* height: 50vh; */
 }
 
@@ -139,7 +139,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
 
 }
 
@@ -242,7 +242,12 @@ footer p {
 
 /* Para destacar los post recién hechos */
 .recently-posted .individual-post{
-  background-color: rgb(255, 153, 94);
+  background-color: rgba(255, 230, 0, 0.383);
+}
+
+
+.individual-post span{
+  color: black;
 }
 
 /* Fecha y hora del post  */
@@ -270,24 +275,38 @@ footer p {
 }
 
 /* Botones de like y comentar */
-.button-post__style{
+.input-comment__style{
   background-color: #bdbdbd;
   padding: 3%;
-  width: 49%;
+  width: 80%;
   border: none;
+  border-radius: 10px;
 }
 
-.button-post__style:hover{
-  background-color: #F37335;
+.input-comment__style:hover{
+  background-color: #da8f6a;
 }
 
-.button-post__container{
+
+/* Este quedó como el container de el textarea y el boton de enviar */
+.button-post__container{ 
   display: flex;
   justify-content: space-between;
+  width: 100%;
   
 }
 
+/* iconos de like y comentar con texto */
+.lc-container{
+  display: flex;
+  justify-content: center;
+}
 
+.lc-text__style{
+  width: 50%;
+  padding: 3% 0;
+  text-align: center;
+}
 
 
 /* MODAL STYLE  ################################ */
@@ -313,13 +332,26 @@ footer p {
   flex-direction: column;
 }
 
-.close-modal{
+.close-modal__style{
   width: 30px;
   height: 30px;
   background-color:#F37335;
   color: black;
   border: none;
   font-size: 25px;
+}
+
+.btn-modal__style{
+  padding: 0.7em;
+  font-size: 1em;
+  margin: 2px 2px;
+  background-color:#F37335;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  color: white;
+  width: 50%;
 }
 
 

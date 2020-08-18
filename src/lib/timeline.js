@@ -1,4 +1,4 @@
-import {logOutAccount, gettingData, gettingData2} from "./firebasefunction.js";
+import {logOutAccount, gettingData, gettingData2, newPost} from "./firebasefunction.js";
 
 
 export default () =>{
@@ -14,7 +14,6 @@ export default () =>{
 
     var user = firebase.auth().currentUser;
     var uid = user.uid;
-
     let name  = user.displayName;
     let photo = user.photoURL;
 
@@ -26,87 +25,81 @@ export default () =>{
     formShare.addEventListener('submit',(e)=>{
         e.preventDefault();
 
-        var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
-        
         const inputPost = document.querySelector('.input-share').value;
-       
-
-        async function newPost (){
-            try{
-                const creatingPost = await db.collection("post").add({
-                    uid: uid,
-                    post: inputPost,
-                    likesCounter: 0, //likedby.lenght
-                    name: name,
-                    photo: photo,
-                    likedBy: 0,
-                    date: dateTime             
-                })
-               
-                return creatingPost
-            }
-            catch(error){
-                return error.message
-            }
-        };
         
-        newPost().then((docRef) =>{
+        if(inputPost !== ' '){
+
+            let today = new Date();
+            let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            let dateTime = date+' '+time;
+
+            let user = firebase.auth().currentUser;
+
+            const userGeneral = {
+                uid: user.uid,
+                name: user.displayName,
+                photo: user.photoURL,
+                inputPost: inputPost,
+                date: dateTime  
+            }
+            newPost(userGeneral).then((docRef) =>{
             
-            gettingData2('post', docRef.id).then((doc)=>{
+                gettingData2('post', docRef.id).then((doc)=>{
+    
+                    const containerBox = document.getElementsByClassName("recently-posted")[0];
+    
+                    const divUser = document.createElement('div');
+                    const individualPost = document.createElement('div');
+                    individualPost.classList.add("individual-post");
+                    divUser.classList.add("block-createpost__user");
+                    containerBox.appendChild(individualPost);
+                    
+                    const photoShare = document.createElement('img');
+                    const nameShare = document.createElement('h4');
+                    nameShare.classList.add("user-name");
+                    const dateShare = document.createElement('h5');
+                    const postShare = document.createElement('p');
+                    postShare.classList.add("post-text");
+    
+                    const deletePost = document.createElement('i');
+                    deletePost.classList.add("fa", "fa-trash");
+                    const editPost = document.createElement('i');
+                    editPost.classList.add("fa", "fa-edit", "edit-button");
+                    editPost.addEventListener('click', editingPost);
+    
+                    photoShare.classList.add("user-img");
+                    photoShare.src = doc.photo;
+                    nameShare.textContent = doc.name;
+                    dateShare.textContent = doc.date;
+                    postShare.textContent = doc.post;
 
-                const containerBox = document.getElementsByClassName("recently-posted")[0];
-                
+                    divUser.appendChild(photoShare);
+                    divUser.appendChild(nameShare);
+                    divUser.appendChild(editPost);
+                    divUser.appendChild(deletePost);
+                    individualPost.appendChild(divUser);  
+                    individualPost.appendChild(postShare);
+                    individualPost.appendChild(dateShare);
+    
+                    const commentButton = document.createElement('textarea');
+                    const buttonPostContainer = document.createElement('div');
+                    buttonPostContainer.classList.add("button-post__container");
+    
+                    commentButton.setAttribute("placeholder", "Comment here!");
+                    commentButton.classList.add("input-comment__style");
 
-                const divUser = document.createElement('div');
-                const individualPost = document.createElement('div');
-                individualPost.classList.add("individual-post");
-                divUser.classList.add("block-createpost__user");
-                containerBox.appendChild(individualPost);
-                
-                const photoShare = document.createElement('img');
-                const nameShare = document.createElement('h4');
-                const dateShare = document.createElement('h5');
-                const postShare = document.createElement('p');
-
-                const deletePost = document.createElement('i');
-                deletePost.classList.add("fa");
-                deletePost.classList.add("fa-trash");
-                const editPost = document.createElement('i');
-                editPost.classList.add("fa");
-                editPost.classList.add("fa-edit");
-                editPost.addEventListener('click', editingPost);
-                
-                divUser.appendChild(editPost);
-                divUser.appendChild(deletePost);
-                
-                photoShare.classList.add("user-img");
-                photoShare.src = doc.photo;
-                nameShare.textContent = doc.name;
-                dateShare.textContent = doc.date;
-                postShare.textContent = doc.post;
-                divUser.appendChild(photoShare);
-                divUser.appendChild(nameShare);
-
-                individualPost.appendChild(divUser);  
-                individualPost.appendChild(postShare);
-                individualPost.appendChild(dateShare);
-
-                const likeButton = document.createElement('button');
-                const commentButton = document.createElement('button');
-                likeButton.textContent = "Like";
-                likeButton.classList.add = "button-post__style";
-                commentButton.textContent = "Comment";
-                commentButton.classList.add = "button-post__style";
-                individualPost.appendChild(likeButton);
-                individualPost.appendChild(commentButton);
-
-
+                    buttonPostContainer.appendChild(commentButton);
+                    individualPost.appendChild(buttonPostContainer); 
+                    
+                    const buttonSendPost = document.createElement('button');
+                    buttonSendPost.textContent = "Comment";
+                });
             });
-        });
-
+        }else {
+            return alert('please enter newpost')
+        }
+        
         formShare.reset();
     });
 
@@ -116,23 +109,29 @@ export default () =>{
 
     db.collection("post").orderBy("date", "desc").get().then(function(querySnapshot) {
 
+
+
             let containerBox = document.getElementsByClassName("container-post")[0];
-            
-            
+
             querySnapshot.forEach(function(doc) {
+                console.log(doc.ua.path);
+                
                 const divUser = document.createElement('div');
-            const individualPost = document.createElement('div');
+                const individualPost = document.createElement('div');
 
-            individualPost.classList.add("individual-post");
-            divUser.classList.add("block-createpost__user");
+                individualPost.classList.add("individual-post");
+                divUser.classList.add("block-createpost__user");
 
-            containerBox.appendChild(individualPost);
+                containerBox.appendChild(individualPost);
+
                 const photoShare = document.createElement('img');
                 const nameShare = document.createElement('p');
                 nameShare.classList.add("user-name");
                 const dateShare = document.createElement('h5');
                 const postShare = document.createElement('p');
+
                 
+
                 photoShare.classList.add("user-img");
                 photoShare.src = doc.data().photo; 
                 nameShare.textContent = doc.data().name;
@@ -157,57 +156,28 @@ export default () =>{
                     divUser.appendChild(editPost);
 
                     editPost.addEventListener('click', editingPost); //Open Modal
+                    //deletePost.addEventListener('click', deletingPost);
                 }
 
                 individualPost.appendChild(divUser);          
                 individualPost.appendChild(postShare);
                 individualPost.appendChild(dateShare);
-
                 
                 
-                const likeButton = document.createElement('button');
-                const commentButton = document.createElement('button');
+                const commentButton = document.createElement('textarea');
                 const buttonPostContainer = document.createElement('div');
                 buttonPostContainer.classList.add("button-post__container");
-
-                likeButton.textContent = "Like";
-                likeButton.classList.add("button-post__style");
-                commentButton.textContent = "Comment";
-                commentButton.classList.add("button-post__style");
-                buttonPostContainer.appendChild(likeButton);
+            
+                commentButton.setAttribute("placeholder", "Comment here!");
+                commentButton.classList.add("input-comment__style");
+                
                 buttonPostContainer.appendChild(commentButton);
                 individualPost.appendChild(buttonPostContainer);
 
                 
             });
-    });
-    
-    /* const edit = document.querySelector('.edit.button');
-    console.log(edit);
-    edit.addEventListener('click', ()=>{
-        alert ('Aqui debe ir el modal');
-    }) */
+        });
 
-    //Función de solo DOM
-
-    
-
-
-        // db.collection("post").add({
-        //     uid: uid,
-        //     post:inputPost,
-        //     likesCounter: 0
-        // })
-        // .then(function(docRef) {
-        //     console.log("Document written with ID: ", docRef.id);
-        //     gettingData2("post", docRef.id).then((doc)=>{
-        //         share.textContent = doc.post;
-        //         console.log(doc.post);
-        //         console.log(share.textContent);
-        // })
-        // .catch(function(error) {
-        //     console.error("Error adding document: ", error);
-        // });
 
     btnLogOut.forEach (item => {
         item.addEventListener('click', ()=>{
@@ -218,7 +188,7 @@ export default () =>{
 };
 
 
-
+//Puede ir a otro .js
 const editingPost = () => {
     const template = document.querySelector("#modal-edit");
     var clon = template.content.cloneNode(true);
@@ -240,7 +210,53 @@ const editingPost = () => {
             modalContainer.style.display = "none";
         }
     });
+
+    const submitEdit = document.querySelector('.btn-modal__style')
+    submitEdit.addEventListener('submit', (e)=>{
+        e.preventDefault()
+
+
+        /*var editPost = db.collection("post").doc("docRef.id");
+
+// Set the "capital" field of the city 'DC'
+return washingtonRef.update({
+    capital: true
+})
+.then(function() {
+    console.log("Document successfully updated!");
+})
+.catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+}); */
+    })
+
 }
+
+// const deletingPost = () => {
+//     const template = document.querySelector("#modal-delete");
+//     var clon = template.content.cloneNode(true);
+//     console.log(root);
+//     root.appendChild(clon);
+
+//     const modalContainerDelete = document.getElementsByClassName("modal-delete-container")[0];
+//     console.log(modalContainerDelete);
+//     modalContainerDelete.style.display = "block";
+
+//     const closeModal = document.querySelectorAll('.close-modal');
+
+//     closeModal.forEach(function(e){
+//         e.addEventListener('click', ()=>{
+//             modalContainerDelete.style.display = "none";
+//         });
+//     });
+    
+//     modalContainerDelete.addEventListener('click', () => {
+//         if (event.target == modalContainerDelete) {
+//             modalContainerDelete.style.display = "none";
+//         }
+//     });
+// }
 
 /* window.onclick = function(event) {
     if (event.target == modalContainer) {
@@ -275,14 +291,34 @@ return washingtonRef.update({
 //     console.error("Error updating document: ", error);
 // });
 
-//Podría existir como en el boton de share y en signup para crear la coleccion de usarios 
-/* db.collection("post").add({
-    uid: uid,
-    post: document.querySelector('')
-})
-.then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
-}); */
+
+
+
+
+
+
+/* const likeCommentContainer = document.createElement('div');
+                likeCommentContainer.classList.add("lc-container");
+
+                const commentsText = document.createElement('p');
+                const commentsNumber = document.createElement('span');
+                commentsNumber.textContent = "See All Comments";
+                commentsText.classList.add("lc-text__style", "fa", "fa-comment");
+                commentsText.appendChild(commentsNumber);
+                
+                const likesText = document.createElement('p');
+                const likesButton = document.createElement ('button');
+                const likes = document.createElement('div');
+        
+                likesText.textContent = "2";
+                likesButton.textContent = 'like';
+                likesButton.classList.add("fa", "fa-heart", "lc-text__style");
+                likes.appendChild(likesText);
+                likesButton.appendChild(likes);
+
+                
+                likeCommentContainer.appendChild(commentsText);
+                likeCommentContainer.appendChild(likes);
+                individualPost.appendChild(likes);
+                individualPost.appendChild(likeCommentContainer);
+                 */

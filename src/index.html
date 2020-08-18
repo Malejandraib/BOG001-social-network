@@ -115,7 +115,7 @@
       <footer>
         <nav class = "nav-mobile">
           <ul>
-            <li class="active"><i class="fa fa-fw fa-home"></i> Home</li>
+            <li class="active"><i class="fa fa-fw fa-home"></i>Home</li>
             <li><i class="fa fa-fw fa-user-circle"></i> Profile</li>
             <li><i class="fas fa fa-address-book"></i>Events</li>
             <li class = "logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
@@ -129,7 +129,7 @@
   <template id = "modal-edit">
       <div class = "modal-container">
         <div class = "modal-input">
-          <h2>Editing Post <i class= "fa fa-edit"></i></h2> <button class = "close-modal"> &times;</button>
+          <h2>Editing Post <i class= "fa fa-edit"></i></h2> <button class = "close-modal close-modal__style"> &times;</button>
           <form class = "form-share">
             <textarea class = "input-share" placeholder ="    Share your music ..."> </textarea>
             <form action="/action_page.php">
@@ -137,11 +137,24 @@
               <input type="file" id="img" name="img" accept="image/*">
               <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
             </form>
-            <button class = "btn_share">Save</button>
+            <button class = "btn-modal__style">Save</button>
         </div>
       </div>
         <!-- <button class = "close-modal"> &times;</button> -->
   </template>
+
+  <template id = "modal-delete">
+    <div class = "modal-delete-container">
+      <div class = "modal-input">
+        <h2>Deleting Post <i class= "fa fa-trash"></i></h2> 
+        <button class = "close-modal close-modal__style"> &times;</button>
+          <p>Are you sure you want to delete the publication?</p>
+          <button class = "btn-modal__style close-modal">Cancel</button>
+          <button class = "btn-modal__style">Confirm</button>
+      </div>
+    </div>
+      <!-- <button class = "close-modal"> &times;</button> -->
+</template>
 
   <template id = "notfound">
     <h1>upssss you got lost</h1>
