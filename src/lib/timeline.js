@@ -44,13 +44,21 @@ export default () =>{
                 date: dateTime  
             }
             newPost(userGeneral).then((docRef) =>{
+                console.log(docRef.ua.path.segments[1]);
+                const specificCollectionId = docRef.ua.path.segments[1];
             
                 gettingData2('post', docRef.id).then((doc)=>{
+
+                    console.log(doc);
+                    //console.log(doc.ua.path.segments[6]);
     
                     const containerBox = document.getElementsByClassName("recently-posted")[0];
     
                     const divUser = document.createElement('div');
                     const individualPost = document.createElement('div');
+                    
+                    
+                    
                     individualPost.classList.add("individual-post");
                     divUser.classList.add("block-createpost__user");
                     containerBox.appendChild(individualPost);
@@ -64,10 +72,11 @@ export default () =>{
     
                     const deletePost = document.createElement('i');
                     deletePost.classList.add("fa", "fa-trash");
-                    const editPost = document.createElement('i');
-                    editPost.classList.add("fa", "fa-edit", "edit-button");
-                    editPost.addEventListener('click', editingPost);
-    
+                    const buttonEdit = document.createElement('button');
+                    buttonEdit.setAttribute("data-idcollection", specificCollectionId);
+                    buttonEdit.classList.add("fa", "fa-edit", "edit-button");
+                    buttonEdit.addEventListener('click', editingPost);
+                    
                     photoShare.classList.add("user-img");
                     photoShare.src = doc.photo;
                     nameShare.textContent = doc.name;
@@ -76,7 +85,7 @@ export default () =>{
 
                     divUser.appendChild(photoShare);
                     divUser.appendChild(nameShare);
-                    divUser.appendChild(editPost);
+                    divUser.appendChild(buttonEdit);
                     divUser.appendChild(deletePost);
                     individualPost.appendChild(divUser);  
                     individualPost.appendChild(postShare);
@@ -114,7 +123,8 @@ export default () =>{
             let containerBox = document.getElementsByClassName("container-post")[0];
 
             querySnapshot.forEach(function(doc) {
-                console.log(doc.ua.path);
+               // console.log();
+                let specificCollectionId = doc.ua.path.segments[6];
                 
                 const divUser = document.createElement('div');
                 const individualPost = document.createElement('div');
@@ -147,15 +157,14 @@ export default () =>{
                     deletePost.classList.add("fa");
                     deletePost.classList.add("fa-trash");
                     // deletePost.textContent = "delete";
-                    const editPost = document.createElement('i');
-                    editPost.classList.add("fa");
-                    editPost.classList.add("fa-edit");
-                    // editPost.textContent = "edit";
-                    editPost.classList.add("edit-button");
+                    const buttonEdit = document.createElement('button');
+                    buttonEdit.setAttribute("data-idcollection", specificCollectionId);
+                    buttonEdit.classList.add("fa", "fa-edit", "edit-button");
+                    
                     divUser.appendChild(deletePost);
-                    divUser.appendChild(editPost);
+                    divUser.appendChild(buttonEdit);
 
-                    editPost.addEventListener('click', editingPost); //Open Modal
+                    buttonEdit.addEventListener('click', editingPost); //Open Modal
                     //deletePost.addEventListener('click', deletingPost);
                 }
 
@@ -190,6 +199,11 @@ export default () =>{
 
 //Puede ir a otro .js
 const editingPost = () => {
+    let referenceIdPost = event.target;
+    let referenceIdPost2 = event.currentTarget.dataset.idcollection;
+    console.log(referenceIdPost);
+    console.log(referenceIdPost2);
+    
     const template = document.querySelector("#modal-edit");
     var clon = template.content.cloneNode(true);
     console.log(root);
@@ -214,9 +228,10 @@ const editingPost = () => {
     const submitEdit = document.querySelector('.btn-modal__style')
     submitEdit.addEventListener('submit', (e)=>{
         e.preventDefault()
+        
 
 
-        /*var editPost = db.collection("post").doc("docRef.id");
+        /*var editPost = db.collection("post").doc("referenceIdPost");
 
 // Set the "capital" field of the city 'DC'
 return washingtonRef.update({
