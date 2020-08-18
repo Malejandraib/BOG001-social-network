@@ -14,8 +14,6 @@ export default () =>{
 
     var user = firebase.auth().currentUser;
     var uid = user.uid;
-    let name  = user.displayName;
-    let photo = user.photoURL;
 
     gettingData(uid).then((doc)=>{
         nameTimeline.textContent = doc.name;
@@ -112,13 +110,7 @@ export default () =>{
         formShare.reset();
     });
 
-    // setTimeout(function() {
-    //     location.reload();
-    //   }, 30000);
-
     db.collection("post").orderBy("date", "desc").get().then(function(querySnapshot) {
-
-
 
             let containerBox = document.getElementsByClassName("container-post")[0];
 
@@ -187,7 +179,6 @@ export default () =>{
             });
         });
 
-
     btnLogOut.forEach (item => {
         item.addEventListener('click', ()=>{
             logOutAccount();
@@ -197,12 +188,10 @@ export default () =>{
 };
 
 
-//Puede ir a otro .js
 const editingPost = () => {
-    let referenceIdPost = event.target;
-    let referenceIdPost2 = event.currentTarget.dataset.idcollection;
+    
+    let referenceIdPost = event.currentTarget.dataset.idcollection; //ES ESTE EL ID <3 yes buena idea
     console.log(referenceIdPost);
-    console.log(referenceIdPost2);
     
     const template = document.querySelector("#modal-edit");
     var clon = template.content.cloneNode(true);
@@ -213,8 +202,32 @@ const editingPost = () => {
     console.log(modalContainer);
     modalContainer.style.display = "block";
 
-    const closeModal = document.querySelector ('.close-modal');
+    const submitEdit = document.querySelector('#btn-edit');
 
+    submitEdit.addEventListener('click', (e)=>{
+        e.preventDefault()
+        
+        const updatePost = document.querySelector('.input-share-modal').value;
+        console.log(updatePost);
+
+        async function editingPost(updatePost){
+            try{
+                var editPost = await db.collection("post").doc(referenceIdPost); 
+                const postEditado = editPost.update({
+                    post: updatePost
+                });
+                location.reload();
+                console.log("Document successfully updated!");
+                return postEditado
+            }
+            catch(error){
+            console.error("Error updating document: ", error);
+            };
+        };
+        editingPost(updatePost)
+    });
+
+    const closeModal = document.querySelector ('.close-modal');
     closeModal.addEventListener('click', ()=>{
         modalContainer.style.display = "none";
     });
@@ -224,27 +237,6 @@ const editingPost = () => {
             modalContainer.style.display = "none";
         }
     });
-
-    const submitEdit = document.querySelector('.btn-modal__style')
-    submitEdit.addEventListener('submit', (e)=>{
-        e.preventDefault()
-        
-
-
-        /*var editPost = db.collection("post").doc("referenceIdPost");
-
-// Set the "capital" field of the city 'DC'
-return washingtonRef.update({
-    capital: true
-})
-.then(function() {
-    console.log("Document successfully updated!");
-})
-.catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-}); */
-    })
 
 }
 
@@ -278,33 +270,6 @@ return washingtonRef.update({
         modalContaine.style.display = "none";
     }
 } */
-
-
-/*var washingtonRef = db.collection("cities").doc("DC");
-
-// Set the "capital" field of the city 'DC'
-return washingtonRef.update({
-    capital: true
-})
-.then(function() {
-    console.log("Document successfully updated!");
-})
-.catch(function(error) {
-    // The document probably doesn't exist.
-    console.error("Error updating document: ", error);
-}); */
-
-// Set the "capital" field of the city 'DC'
-// return washingtonRef.update({
-//     name: "guitarra"
-// })
-// .then(function() {
-//     console.log("Document successfully updated!");
-// })
-// .catch(function(error) {
-//     // The document probably doesn't exist.
-//     console.error("Error updating document: ", error);
-// });
 
 
 
