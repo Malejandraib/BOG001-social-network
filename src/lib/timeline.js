@@ -42,12 +42,9 @@ export default () =>{
                 date: dateTime  
             }
             newPost(userGeneral).then((docRef) =>{
-                console.log(docRef.ua.path.segments[1]);
                 const specificCollectionId = docRef.ua.path.segments[1];
             
                 gettingData2('post', docRef.id).then((doc)=>{
-
-                    console.log(doc);
                     //console.log(doc.ua.path.segments[6]);
     
                     const containerBox = document.getElementsByClassName("recently-posted")[0];
@@ -71,9 +68,9 @@ export default () =>{
                     const deletePost = document.createElement('i');
                     deletePost.classList.add("fa", "fa-trash");
                     const buttonEdit = document.createElement('button');
-                    buttonEdit.setAttribute("data-idcollection", specificCollectionId);
+                    //buttonEdit.setAttribute("data-idcollection", specificCollectionId);
                     buttonEdit.classList.add("fa", "fa-edit", "edit-button");
-                    buttonEdit.addEventListener('click', editingPost);
+                    buttonEdit.addEventListener('click', () => {openModal(specificCollectionId)});
                     
                     photoShare.classList.add("user-img");
                     photoShare.src = doc.photo;
@@ -156,7 +153,7 @@ export default () =>{
                     divUser.appendChild(deletePost);
                     divUser.appendChild(buttonEdit);
 
-                    buttonEdit.addEventListener('click', editingPost); //Open Modal
+                    buttonEdit.addEventListener('click', () => {openModal(specificCollectionId)});
                     //deletePost.addEventListener('click', deletingPost);
                 }
 
@@ -173,9 +170,7 @@ export default () =>{
                 commentButton.classList.add("input-comment__style");
                 
                 buttonPostContainer.appendChild(commentButton);
-                individualPost.appendChild(buttonPostContainer);
-
-                
+                individualPost.appendChild(buttonPostContainer);               
             });
         });
 
@@ -187,36 +182,55 @@ export default () =>{
     });
 };
 
+const openModal = (id) => {
 
-const editingPost = () => {
-    
-    let referenceIdPost = event.currentTarget.dataset.idcollection; //ES ESTE EL ID <3 yes buena idea
-    console.log(referenceIdPost);
-    
+    console.log(id);
+
     const template = document.querySelector("#modal-edit");
     var clon = template.content.cloneNode(true);
-    console.log(root);
     root.appendChild(clon);
 
     const modalContainer = document.getElementsByClassName("modal-container")[0];
-    console.log(modalContainer);
     modalContainer.style.display = "block";
-
     const submitEdit = document.querySelector('#btn-edit');
+    
+    
 
-    submitEdit.addEventListener('click', (e)=>{
+    //submitEdit.addEventListener('click', editingPost(id, updatePost));
+
+    submitEdit.addEventListener('click', (e) =>{
         e.preventDefault()
-        
         const updatePost = document.querySelector('.input-share-modal').value;
         console.log(updatePost);
+        editingPost(id, updatePost);
+    });
 
-        async function editingPost(updatePost){
+    const closeModal = document.querySelector ('.close-modal');
+    closeModal.addEventListener('click', ()=>{
+        modalContainer.style.display = "none";
+        root.removeChild(modalContainer);
+    });
+    
+    modalContainer.addEventListener('click', () => {
+        if (event.target == modalContainer) {
+            modalContainer.style.display = "none";
+            
+        }
+    });
+    
+}
+
+const editingPost = (referenceIdPost, updatePost) => {
+    
+
+    console.log(referenceIdPost);
+    
+        async function editingPostAFirebase(referenceIdPost,updatePost){
             try{
-                var editPost = await db.collection("post").doc(referenceIdPost); 
+                let editPost = await db.collection("post").doc(referenceIdPost); 
                 const postEditado = editPost.update({
                     post: updatePost
-                });
-                location.reload();
+                });           
                 console.log("Document successfully updated!");
                 return postEditado
             }
@@ -224,20 +238,8 @@ const editingPost = () => {
             console.error("Error updating document: ", error);
             };
         };
-        editingPost(updatePost)
-    });
-
-    const closeModal = document.querySelector ('.close-modal');
-    closeModal.addEventListener('click', ()=>{
-        modalContainer.style.display = "none";
-    });
-    
-    modalContainer.addEventListener('click', () => {
-        if (event.target == modalContainer) {
-            modalContainer.style.display = "none";
-        }
-    });
-
+        
+        editingPostAFirebase(referenceIdPost, updatePost);   
 }
 
 // const deletingPost = () => {
