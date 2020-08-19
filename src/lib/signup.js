@@ -34,19 +34,20 @@ export default () =>{
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
         const nameForm = document.querySelector('.name-signup').value;
-        console.log(nameForm);
-        
         const signUp = await createUserEmailAndPassword(email,password);
-        msjEmailVer.innerHTML = signUp;
 
-        var user = firebase.auth().currentUser; //null u objeto
-        console.log(user);           //null u name
-        console.log(nameForm);
+        msjEmailVer.innerHTML = signUp; //ese objeto grande que viene de firebase
+
+        var user = firebase.auth().currentUser; //null u objeto // identifoicar persona activo 
+
+        console.log(user);  
+
         if (user != null) {
+
             db.collection('users').doc(user.uid).set({
                 name: nameForm,
                 email:user.email,
-                photoURL:user.photoURL,
+                photoURL: "../images/pic.jpg", //foto por default 
                 uid: user.uid,
             });
         };
@@ -75,6 +76,7 @@ export default () =>{
 
     //Entramos a timeline
     let current = firebase.auth().currentUser;
+    
     if (current !== null) {
         window.location.hash = 'timeline';
         console.log(user.displayName);

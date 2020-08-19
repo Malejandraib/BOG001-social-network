@@ -4,7 +4,7 @@ export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAn
 async function createUserEmailAndPassword(email,password){
     try{
         const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        return authentication;
+        return authentication; //objeto que trae mucas cosas 
     }
     catch(error) {
         let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida

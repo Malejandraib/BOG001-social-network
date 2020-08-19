@@ -16,7 +16,7 @@ export default () =>{
         const email = document.querySelector(".email-signin").value;
         const password = document.querySelector(".password-signin").value;
         const signIn = await signInEmailAndPassword(email,password);
-        window.location.hash = 'timeline';
+        //window.location.hash = 'timeline';
         msjVerification.innerHTML = signIn;
     });
 
@@ -42,15 +42,5 @@ export default () =>{
     } else {
         console.log("nope");
     } 
-
-/*     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            window.location.hash = 'timeline';
-            console.log(user.displayName);
-            console.log(user);
-        } else {
-            console.log("nope");
-        } 
-    });*/
 
 }

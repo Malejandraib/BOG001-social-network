@@ -15,10 +15,6 @@ const pages = {
 
 export const router = (route) =>{
 
-    // changeState();
-    // const createstate = changeState();
-    // console.log(createstate);
-
     let content = document.getElementById('root');
             firebase.auth().onAuthStateChanged(function(user) {
                 content.innerHTML = "";
@@ -32,7 +28,7 @@ export const router = (route) =>{
                         case '#signin':
                             return pages.signin();
                         case '#timeline':
-                            return pages.timeline();   
+                            return pages.timeline(); //acción que dce hash = timeline  
                         default:
                             return pages.notfound();
                     }
