@@ -34,24 +34,27 @@ export default () =>{
         const email = document.querySelector(".email-signup").value;
         const password = document.querySelector(".password-signup").value;
         const nameForm = document.querySelector('.name-signup').value;
-        const signUp = await createUserEmailAndPassword(email,password);
+        const signUp = await createUserEmailAndPassword(email,password); //aquí nació porque fue el return si no, salen los errores
 
-        msjEmailVer.innerHTML = signUp; //ese objeto grande que viene de firebase
+        msjEmailVer.innerHTML = signUp; //ese objeto grande que viene de firebase, acá los imprimios
 
         var user = firebase.auth().currentUser; //null u objeto // identifoicar persona activo 
 
-        console.log(user);  
+        console.log(user); 
 
         if (user != null) {
 
             db.collection('users').doc(user.uid).set({
                 name: nameForm,
-                email:user.email,
-                photoURL: "../images/pic.jpg", //foto por default 
-                uid: user.uid,
+                email: user.email,
+                photoURL: "../images/pic2.jpg", //foto por default 
+                uid: user.uid
             });
+
+
         };
     });
+
     
     //SignIn with google 
     registerWithGoogle.addEventListener("click", async (e) => {
@@ -61,28 +64,32 @@ export default () =>{
         const signinGoogle = await registerGoogle(provider);
         
         var user = firebase.auth().currentUser; //null u objeto
+
         console.log(user);           //null u name
         
         if (user != null) {
+            
             db.collection('users').doc(user.uid).set({
                 name: user.displayName,
                 email:user.email,
                 photoURL:user.photoURL,
                 uid: user.uid,
+
             });
+
         };
         //changeState(signinGoogle)
     });
 
     //Entramos a timeline
-    let current = firebase.auth().currentUser;
+    let current = firebase.auth().currentUser; //fue okay
     
     if (current !== null) {
         window.location.hash = 'timeline';
         console.log(user.displayName);
         console.log(user);
     } else {
-        console.log("nope");
+        console.log("No hay nadie logueado");
     } 
     
     //Changing page to signIn

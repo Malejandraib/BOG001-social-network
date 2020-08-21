@@ -1,4 +1,4 @@
-export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword,gettingData,gettingData2, newPost};
+export {createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword,gettingData, newPost};
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email,password){
@@ -36,18 +36,7 @@ async function signInEmailAndPassword(email,password){
 };
 
 /*-----------gettingData------------ */
-async function gettingData(uid) {
-    try{
-        const dataUser = await db.collection("users").doc(uid).get()
-        return dataUser.data()
-    }
-    catch(error){
-    return error.message
-    };
-};
-
-/*-----------gettingData------------ */
-async function gettingData2(collection, uid) {
+async function gettingData(collection, uid) {
     try{
         const dataUser = await db.collection(collection).doc(uid).get();
         return dataUser.data()
@@ -58,18 +47,16 @@ async function gettingData2(collection, uid) {
 };
 
 /*-----------newPost------------ */
-async function newPost (userGeneral){
+async function newPost(userGeneral){ 
                 
     try{
         const creatingPost = await db.collection("post").add({
             uid: userGeneral.uid,
-            post: userGeneral.inputPost,
-            likesCounter: 0, //likedby.lenght
+            post: userGeneral.post, //Es que acá había puesto dizque inputPost y era solo post
             name: userGeneral.name,
-            photo: userGeneral.photo,
-            likedBy: 0,
-            date: userGeneral.date             
-        })
+            photo: userGeneral.photo,  
+            date: userGeneral.date           
+        });
         return creatingPost
     }
     catch(error){

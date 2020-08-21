@@ -15,6 +15,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
   </head>
   <body>
+    
     <div id ="root"></div>
     
     <template id = 'template-signup'>
@@ -38,7 +39,7 @@
           <div class="container-musicians">
               <img src="../images/musicos.png" id="musicians" />
           </div>
-        </div>s
+        </div>
     </template>
 
   <template id = 'template-signin'>
@@ -65,6 +66,8 @@
         </div>
   </template>
 
+
+  
   <template id ="template-timeline">
     <div class = "timeline">
       
@@ -89,29 +92,26 @@
           
           <form class = "form-share">
             <textarea class = "input-share" placeholder ="    Share your music ..."> </textarea>
-            <form action="/action_page.php">
+
+            <!-- <form action="/action_page.php">
               <label for="img">Select image:</label>
               <input type="file" id="img" name="img" accept="image/*">
               <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
-            </form>
+            </form> -->
             
             <div class = "share-options">
               <button class = "btn_share">Share</button>
-            </div>
-            
+            </div>           
           </form>
+          
         </div>
         
-        <div class ="container-all-post">
-            <div class = "recently-posted"></div>
-            <div class ="container-post"></div> 
-        <div>           
-            </div>
-        </div>
+        <div class ="container-all-post"> 
+        </div>           
+            
+        
       </main>
-      
 
-      
       <footer>
         <nav class = "nav-mobile">
           <ul>
@@ -126,17 +126,25 @@
     </div>
   </template>
 
+
+
   <template id = "modal-edit">
       <div class = "modal-container">
         <div class = "modal-input">
-          <h2>Editing Post <i class= "fa fa-edit"></i></h2> <button class = "close-modal close-modal__style"> &times;</button>
+          
+          <div class = "editing-post-title">
+            <h2>Editing Post <i class= "fa fa-edit"></i></h2> 
+            <button class = "close-modal close-modal__style"> &times;</button>
+          </div>
+
+
           <form class = "form-share">
             <textarea class = "input-share-modal" placeholder ="    Share your music ..."> </textarea>
-            <form action="/action_page.php">
+            <!-- <form action="/action_page.php">
               <label for="img">Select image:</label>
               <input type="file" id="img" name="img" accept="image/*">
               <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
-            </form>
+            </form> -->
             <button id = "btn-edit" class = " btn-modal__style">Save</button>
         </div>
       </div>

@@ -29,7 +29,12 @@ export const router = (route) =>{
                             return pages.signin();
                         case '#timeline':
                             return pages.timeline(); //acción que dce hash = timeline  
-                        default:
+                        case '#majo':
+                            return content.innerHTML = "<p>Esto es html :p Holi, perdón en serio esto es complicado jajajajaj Hola a todas</p>";
+                        case '#help':
+                            return content.innerHTML = "<p>Help</p>";
+    
+                            default:
                             return pages.notfound();
                     }
                 } else {
