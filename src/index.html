@@ -100,6 +100,7 @@
             </form> -->
             
             <div class = "share-options">
+              <button class = "btn_share">Choose file</button>
               <button class = "btn_share">Share</button>
             </div>           
           </form>
@@ -165,7 +166,13 @@
 </template>
 
   <template id = "notfound">
-    <h1>upssss you got lost</h1>
+    <div class = "notfound-container">
+      <h1>Upssss...! you got lost</h1>
+      <img src = "./images/panda.png">
+      <p>The page you are trying to access does not exist or you do not have enough permissions to see it.</p>
+      <br>
+      <button class = "home-page">Take me to a safe place!</button>
+    </div>
   </template>
 
   <script>

@@ -1,4 +1,4 @@
-export const postStructure = (doc) => {
+export const postStructure = (doc, uid) => {
     //la idea es poder hacer esto más fácil
 
     const divPost = document.createElement('div');
@@ -13,7 +13,6 @@ export const postStructure = (doc) => {
     const buttonEdit = document.createElement('button');
     buttonEdit.textContent = "Edit";
     buttonEdit.classList.add("edit-post");
-
     const buttonDelete = document.createElement('button');
     buttonDelete.textContent = "Delete";
 
@@ -27,17 +26,20 @@ export const postStructure = (doc) => {
 
     const sendComment = document.createElement('button');
     sendComment.textContent = "Send";
-     
+
     //orden de los elementos
     divPost.appendChild(userImg);
     divPost.appendChild(pNombre);
-    divPost.appendChild(buttonEdit);
-    divPost.appendChild(buttonDelete);
+
+    if(uid == doc.data().uid){
+        divPost.appendChild(buttonEdit);
+        divPost.appendChild(buttonDelete);
+    }
+
     divPost.appendChild(likes);
     divPost.appendChild(pPost);
     divPost.appendChild(comment);
     divPost.appendChild(sendComment);
-    
 
     return divPost; 
 }

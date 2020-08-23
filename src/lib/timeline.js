@@ -54,18 +54,19 @@ export default () =>{
         const specificContainer = document.querySelector('.container-all-post');
         specificContainer.innerHTML = `<div class = "loader"></div>`;
 
-        db.collection("post").orderBy("date", "desc").get().then(function(doc){
-        specificContainer.innerHTML = "";
-        doc.forEach(function(doc){
-            specificContainer.appendChild(postStructure(doc));     //Aquí es donde se hace la estructura
+        db.collection("post").orderBy("date", "desc").get().then(function(doc){ 
+            
+            specificContainer.innerHTML = "";
+            doc.forEach(function(doc){
+            const postId = doc.id; //Id específico para cada post
+
+            specificContainer.appendChild(postStructure(doc, uid));     //Aquí es donde se hace la estructura
         });
         
         const editingPost = document.querySelectorAll('.edit-post');
-        console.log(editingPost);
 
         editingPost.forEach(item => {
-            item.addEventListener('click', ()=>{
-                console.log('Aqui entra a edit');
+            item.addEventListener('click', ()=>{ 
                 //const openModal = () => {
                     const template = document.querySelector("#modal-edit");
                     var clon = template.content.cloneNode(true);
@@ -73,13 +74,9 @@ export default () =>{
 
                     const modalContainer = document.getElementsByClassName("modal-container")[0];
                     modalContainer.style.display = "block";
-
-                    
-    
                // }
             });
         });
-
     });
     });
 
@@ -90,9 +87,6 @@ export default () =>{
             window.location.hash = '';
         });
     });
-    
-
-
 }
 
 
