@@ -24,7 +24,11 @@ export const postStructure = (doc, uid) => {
 
     const likeButton = document.createElement('button');
     likeButton.classList.add("likes-button");
-    likeButton.textContent = "20 Likes";
+    likeButton.textContent = "Likes";
+    likeButton.dataset.idpost = doc.id;
+
+    const likesNum = document.createElement('p');
+    likesNum.textContent = doc.data().likes.length;
 
     const comment = document.createElement('textarea');
 
@@ -40,6 +44,7 @@ export const postStructure = (doc, uid) => {
         divPost.appendChild(buttonDelete);
     }
 
+    divPost.appendChild(likesNum);
     divPost.appendChild(likeButton);
     divPost.appendChild(pPost);
     divPost.appendChild(comment);

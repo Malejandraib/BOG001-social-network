@@ -1,4 +1,4 @@
-export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword, gettingData, newPost, gettingDataOrdered, editingPostDocument, deletingPostModal };
+export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword, gettingData, newPost, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes };
 
 /*----- Creating user with email and password ----- */
 async function createUserEmailAndPassword(email, password) {
@@ -67,8 +67,7 @@ async function newPost(userGeneral) {
             name: userGeneral.name,
             photo: userGeneral.photo,
             date: userGeneral.date,
-            editPost: false,
-            likes: []
+            editPost: false
 
         });
         return creatingPost
@@ -94,6 +93,23 @@ async function editingPostDocument(idPost, inputModal) {
         console.error("Error updating document: ", error);
     };
 };
+
+/*-----------updateLikes------------ */
+async function updateLikes(idPost, uidArray) {
+    try {
+        let editPost = await db.collection("post").doc(idPost);
+        const update = editPost.update({
+            likes: uidArray
+        });
+        console.log("Document successfully updated!");
+        return update
+    }
+    catch (error) {
+        console.error("Error updating document: ", error);
+    };
+};
+
+
 
 /*-----------Delete post------------ */
 async function deletingPostModal(idPost) {

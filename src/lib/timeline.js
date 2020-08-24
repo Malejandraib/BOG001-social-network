@@ -1,4 +1,4 @@
-import { gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal } from "./firebasefunction.js";
+import { gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes } from "./firebasefunction.js";
 import { postStructure } from "./domStructures.js";
 
 export default () => {
@@ -53,6 +53,7 @@ export default () => {
         specificContainer.innerHTML = `<div class = "loader"></div>`;
 
         gettingDataOrdered('post', 'date', 'desc').then(function (doc) {
+
             specificContainer.innerHTML = "";
             doc.forEach(function (doc) {
                 const postId = doc.id; //Id específico para cada post
@@ -151,8 +152,29 @@ export default () => {
             const likeButton = document.querySelectorAll('.likes-button');
 
             likeButton.forEach(item => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', (e) => {
                     console.log('A ver si esta entrando');
+
+                    let likesCont = 0; //nos va a traer la lista de todos los uid que si le dieron like
+                    likesCont = likesCont + 1;
+                    console.log(likesCont);
+
+                    const idPost = e.currentTarget.dataset.idpost;
+                    console.log(idPost);
+
+
+
+                    gettingData('post', idPost).then((e) => {
+                        let abc = [];
+                        abc.push(e.likes)
+                        console.log(abc);
+                        
+                        abc.push(uid);
+                        console.log(abc);
+
+                        updateLikes(idPost, abc);
+                    });
+
                 })
             })
 
@@ -174,3 +196,13 @@ export default () => {
         });
     });
 }
+
+
+
+// let likesCont = doc.likes.length;
+// console.log(likesCont);
+
+//Esto si sirve pero para otra cosa
+// let likesCont = []; //nos va a traer la lista de todos los uid que si le dieron like
+// likesCont.push(doc.likes);
+// console.log(likesCont, likesCont.length);
