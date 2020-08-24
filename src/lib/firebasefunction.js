@@ -67,7 +67,8 @@ async function newPost(userGeneral) {
             name: userGeneral.name,
             photo: userGeneral.photo,
             date: userGeneral.date,
-            editPost: false
+            editPost: false,
+            likes: []
 
         });
         return creatingPost

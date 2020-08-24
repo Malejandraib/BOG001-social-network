@@ -4,12 +4,14 @@ import signup from './lib/signup.js';
 import signin from './lib/signin.js';
 import timeline from './lib/timeline.js';
 import notfound from './lib/notfound.js';
+import profile from './lib/profile.js';
 //import {changeState} from './lib/firebasefunction.js';
 
 const pages = {
     signup,
     signin,
     timeline,
+    profile,
     notfound
 };
 
@@ -21,15 +23,14 @@ export const router = (route) =>{
                 if (user) {      
                     switch(route) {
                         case '':
-                            //puede hacer un redirect a timeline de una
-                            
+                            //puede hacer un redirect a timeline de una                            
                             return pages.signup();
                         case '#signin':
                             return pages.signin();
                         case '#timeline':
                             return pages.timeline(); //acción que dce hash = timeline  
-                        case '#majo':
-                            return content.innerHTML = "<p>Esto es html :p Holi, perdón en serio esto es complicado jajajajaj Hola a todas</p>";
+                        case '#profile':
+                            return pages.profile();
                         case '#help':
                             return content.innerHTML = "<p>Help</p>";
     
@@ -42,8 +43,6 @@ export const router = (route) =>{
                             return pages.signup();
                         case '#signin':
                             return pages.signin(); 
-                        case '#timeline':
-                            return pages.notfound();
                         default:
                             return pages.notfound();
                     }

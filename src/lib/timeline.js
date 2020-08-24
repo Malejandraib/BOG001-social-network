@@ -162,30 +162,22 @@ export default () => {
                     const idPost = e.currentTarget.dataset.idpost;
                     console.log(idPost);
 
-
-
                     gettingData('post', idPost).then((e) => {
-                        let abc = [];
-                        abc.push(e.likes)
-                        console.log(abc);
-                        
-                        abc.push(uid);
-                        console.log(abc);
 
-                        updateLikes(idPost, abc);
+
+                        e.likes.push(uid);
+                        console.log(e.likes);
+
+                        updateLikes(idPost, e.likes);
                     });
 
                 })
             })
-
-
-
-
             //Acá terminan los likes
 
 
         }); //GettingDataDETimeline
-    }); //Snapchot
+    }); //Snapshot
 
     //
     //Para hacer logout
@@ -193,6 +185,14 @@ export default () => {
         item.addEventListener('click', () => {
             logOutAccount();
             window.location.hash = '';
+        });
+    });
+
+    const menuProfile = document.querySelectorAll(".menu-profile");
+
+    menuProfile.forEach(item => {
+        item.addEventListener('click', () => {
+        window.location.hash = 'profile';
         });
     });
 }
