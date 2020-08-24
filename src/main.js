@@ -3,11 +3,9 @@
 import{router} from  "./router.js";
 
 const init = () => {
-  console.log(window.location.hash); //""
   router(window.location.hash);
   
   window.addEventListener("hashchange", () => {
-    console.log(window.location.hash);
       router(window.location.hash);
   });
 };

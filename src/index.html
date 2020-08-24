@@ -1,125 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Musicmood</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <!-- <script type="module" src="firebaseInit.js"></script> -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Musicmood</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="module" src="firebaseInit.js"></script> -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
-  </head>
-  <body>
-    
-    <div id ="root"></div>
-    
-    <template id = 'template-signup'>
-      <div id="signup">
-          <div id = "container-desktop">
-              <img src="../images/logo_basico.png" id="logo"/>
-              <p>Find events close to you and build music connections to share your passion</p>
-                  <form id="signup-form">
-                      <label>Name <input type="text" placeholder="Luke Skywalker" class="name-signup" value=""/></label>
-                      <label>Email<input type="email" class="email-signup" placeholder="example@gmail.com"/></label>
-                      <p id = "verification-email" class="style-wrong"></p>
-                      <label>Password<input type="password" class="password-signup" placeholcer="password" /></label>
-                      <p id="verification-password" class="hide style-wrong"></p>
-                      <button class="btn-signup">SIGN UP</button>
-                  </form>
-              <div class ="container-btn-google">
-                  <button class="btn-signin-google"><i class="fa fa-google"></i> SIGN IN WITH GOOGLE</button>
-                  <p id="alreadyAccount">Already have an account? <span class="signin-view">Sign in</span></p>
-              </div>
-          </div>
-          <div class="container-musicians">
-              <img src="../images/musicos.png" id="musicians" />
-          </div>
-        </div>
-    </template>
+</head>
 
-  <template id = 'template-signin'>
+<body>
+
+  <div id="root"></div>
+
+  <template id='template-signup'>
+    <div id="signup">
+      <div id="container-desktop">
+        <img src="../images/logo_basico.png" id="logo" />
+        <p>Find events close to you and build music connections to share your passion</p>
+        <form id="signup-form">
+          <label>Name <input type="text" placeholder="Luke Skywalker" class="name-signup" value="" /></label>
+          <label>Email<input type="email" class="email-signup" placeholder="example@gmail.com" /></label>
+          <p id="verification-email" class="style-wrong"></p>
+          <label>Password<input type="password" class="password-signup" placeholcer="password" /></label>
+          <p id="verification-password" class="hide style-wrong"></p>
+          <button class="btn-signup">SIGN UP</button>
+        </form>
+        <div class="container-btn-google">
+          <button class="btn-signin-google"><i class="fa fa-google"></i> SIGN IN WITH GOOGLE</button>
+          <p id="alreadyAccount">Already have an account? <span class="signin-view">Sign in</span></p>
+        </div>
+      </div>
+      <div class="container-musicians">
+        <img src="../images/musicos.png" id="musicians" />
+      </div>
+    </div>
+  </template>
+
+  <template id='template-signin'>
     <div id="signin">
-        <div id = "container-desktop">
-            <img src="../images/logo2.png" id="logo"/>
-            <p>Find events close to you and build music connections to share your passion</p>
-            <form id ='form-signin'>
-                <label>Email<input type="email" class="email-signin" placeholder="example@gmail.com"/></label>
-                <p id = "verification-email" class="style-wrong"></p>
-                <label>Password<input type="password" class="password-signin" placeholcer="password" /></label>
-                <p id="verification-password" class="style-wrong"></p>
-                <button class="btn-signup">SIGN IN</button>
-            </form>
-            <div class ="container-btn-google">
-                <button class="btn-signin-google"><i class="fa fa-google"></i> SIGN IN WITH GOOGLE</button>
-                <p id="dont-have-account"> Don’t have an account? <span class="signup-view">Sign Up</span></p>
-            </div>
+      <div id="container-desktop">
+        <img src="../images/logo2.png" id="logo" />
+        <p>Find events close to you and build music connections to share your passion</p>
+        <form id='form-signin'>
+          <label>Email<input type="email" class="email-signin" placeholder="example@gmail.com" /></label>
+          <p id="verification-email" class="style-wrong"></p>
+          <label>Password<input type="password" class="password-signin" placeholcer="password" /></label>
+          <p id="verification-password" class="style-wrong"></p>
+          <button class="btn-signup">SIGN IN</button>
+        </form>
+        <div class="container-btn-google">
+          <button class="btn-signin-google"><i class="fa fa-google"></i> SIGN IN WITH GOOGLE</button>
+          <p id="dont-have-account"> Don’t have an account? <span class="signup-view">Sign Up</span></p>
         </div>
-        <div class="container-musicians">
-            <img src="../images/musicos.png" id="musicians" />
-        </div>
-            
-        </div>
+      </div>
+      <div class="container-musicians">
+        <img src="../images/musicos.png" id="musicians" />
+      </div>
+
+    </div>
   </template>
 
 
-  
-  <template id ="template-timeline">
-    <div class = "timeline">
-      
+
+  <template id="template-timeline">
+    <div class="timeline">
+
       <header>
-        <img src="../images/logo2.png" id="logo-timeline"/>
-        <nav class = "nav-desktop">
+        <img src="../images/logo2.png" id="logo-timeline" />
+        <nav class="nav-desktop">
           <ul>
             <li class="active"> Home</li>
             <li> Profile</li>
             <li>Events</li>
-            <li class = "logout"> LogOut</li>
+            <li class="logout"> LogOut</li>
           </ul>
         </nav>
       </header>
-      
-      <main class = "main">
-        <div class = "block-createpost">
-          <div class = "block-createpost__user">
-            <img class = "user-img" src = "../images/pic.jpg">
-            <p class ="user-name">Luke Skywalker</p>
+
+      <main class="main">
+        <div class="block-createpost">
+          <div class="block-createpost__user">
+            <img class="user-img" src="../images/pic.jpg">
+            <p class="user-name">Luke Skywalker</p>
           </div>
-          
-          <form class = "form-share">
-            <textarea class = "input-share" placeholder ="    Share your music ..."> </textarea>
+
+          <form class="form-share">
+            <textarea class="input-share" placeholder="    Share your music ..."> </textarea>
 
             <!-- <form action="/action_page.php">
               <label for="img">Select image:</label>
               <input type="file" id="img" name="img" accept="image/*">
               <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
             </form> -->
-            
-            <div class = "share-options">
-              <button class = "btn_share">Choose file</button>
-              <button class = "btn_share">Share</button>
-            </div>           
+
+            <div class="share-options">
+              <button class="btn_share">Choose file</button>
+              <button class="btn_share">Share</button>
+            </div>
           </form>
-          
+
         </div>
-        
-        <div class ="container-all-post"> 
-        </div>           
-            
-        
+
+        <div class="container-all-post">
+        </div>
+
+
       </main>
 
       <footer>
-        <nav class = "nav-mobile">
+        <nav class="nav-mobile">
           <ul>
             <li class="active"><i class="fa fa-fw fa-home"></i>Home</li>
             <li><i class="fa fa-fw fa-user-circle"></i> Profile</li>
             <li><i class="fas fa fa-address-book"></i>Events</li>
-            <li class = "logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+            <li class="logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
           </ul>
         </nav>
         <p> Musicmood © 2020 ❤️ Made it by A2C </p>
@@ -129,68 +132,68 @@
 
 
 
-  <template id = "modal-edit">
-      <div class = "modal-container">
-        <div class = "modal-input">
-          
-          <div class = "editing-post-title">
-            <h2>Editing Post <i class= "fa fa-edit"></i></h2> 
-            <button class = "close-modal close-modal__style"> &times;</button>
-          </div>
+  <template id="modal-edit">
+    <div class="modal-container">
+      <div class="modal-input">
 
-
-          <form class = "form-share">
-            <textarea class = "input-share-modal" placeholder ="    Share your music ..."> </textarea>
-            <!-- <form action="/action_page.php">
+        <div class="editing-post-title">
+          <h2>Editing Post <i class="fa fa-edit"></i></h2>
+          <button class="close-modal close-modal__style"> &times;</button>
+        </div>
+        <form class="form-edit-modal">
+          <textarea class="input-share-modal" placeholder="    Share your music ..."> </textarea>
+          <!-- <form action="/action_page.php">
               <label for="img">Select image:</label>
               <input type="file" id="img" name="img" accept="image/*">
               <button class = "btn_share_img"><i class="fas fa fa-camera"></i>  Add Image</button>
             </form> -->
-            <button id = "btn-edit" class = " btn-modal__style">Save</button>
-        </div>
-      </div>
-        <!-- <button class = "close-modal"> &times;</button> -->
-  </template>
-
-  <template id = "modal-delete">
-    <div class = "modal-delete-container">
-      <div class = "modal-input">
-        <h2>Deleting Post <i class= "fa fa-trash"></i></h2> 
-        <button class = "close-modal close-modal__style"> &times;</button>
-          <p>Are you sure you want to delete the publication?</p>
-          <button class = "btn-modal__style close-modal">Cancel</button>
-          <button class = "btn-modal__style">Confirm</button>
+          <button id="btn-edit" class=" btn-modal__style">Save</button>
       </div>
     </div>
-      <!-- <button class = "close-modal"> &times;</button> -->
-</template>
+    <!-- <button class = "close-modal"> &times;</button> -->
+  </template>
 
-  <template id = "notfound">
-    <div class = "notfound-container">
+  <template id="modal-delete">
+    <div class="modal-container-delete">
+      <div class="modal-input">
+        <h2>Deleting Post <i class="fa fa-trash"></i></h2>
+        <!-- <button class = "close-modal close-modal__style"> &times;</button> -->
+        <p>Are you sure you want to delete this post?</p>
+        <button class="btn-modal__style close-modal">Cancel</button>
+        <button class="btn-modal__style btn-delete">Confirm</button>
+      </div>
+    </div>
+    <!-- <button class = "close-modal"> &times;</button> -->
+  </template>
+
+  <template id="notfound">
+    <div class="notfound-container">
       <h1>Upssss...! you got lost</h1>
-      <img src = "./images/panda.png">
+      <img src="./images/panda.png">
       <p>The page you are trying to access does not exist or you do not have enough permissions to see it.</p>
       <br>
-      <button class = "home-page">Take me to a safe place!</button>
+      <button data-dates="Nacidos en septiembre" data-nombrecualquiera="no name" data-names="Alejandra"
+        class="home-page">Take me to a safe place!</button>
     </div>
   </template>
 
   <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAU6GifzqwRQsDU0QHNKSc89fNAEWt_qiU",
-    authDomain: "musicmood-3ed5b.firebaseapp.com",
-    databaseURL: "https://musicmood-3ed5b.firebaseio.com",
-    projectId: "musicmood-3ed5b",
-    storageBucket: "musicmood-3ed5b.appspot.com",
-    messagingSenderId: "1065383111932",
-    appId: "1:1065383111932:web:da1841d91e809d1a287b79"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  var db = firebase.firestore();
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAU6GifzqwRQsDU0QHNKSc89fNAEWt_qiU",
+      authDomain: "musicmood-3ed5b.firebaseapp.com",
+      databaseURL: "https://musicmood-3ed5b.firebaseio.com",
+      projectId: "musicmood-3ed5b",
+      storageBucket: "musicmood-3ed5b.appspot.com",
+      messagingSenderId: "1065383111932",
+      appId: "1:1065383111932:web:da1841d91e809d1a287b79"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
   </script>
-  
+
   <script type="module" src="main.js"></script>
-  </body>
+</body>
+
 </html>

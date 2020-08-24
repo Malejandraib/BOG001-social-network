@@ -40,8 +40,6 @@ export default () =>{
 
         var user = firebase.auth().currentUser; //null u objeto // identifoicar persona activo 
 
-        console.log(user); 
-
         if (user != null) {
 
             db.collection('users').doc(user.uid).set({
@@ -64,8 +62,6 @@ export default () =>{
         const signinGoogle = await registerGoogle(provider);
         
         var user = firebase.auth().currentUser; //null u objeto
-
-        console.log(user);           //null u name
         
         if (user != null) {
             
@@ -86,10 +82,6 @@ export default () =>{
     
     if (current !== null) {
         window.location.hash = 'timeline';
-        console.log(user.displayName);
-        console.log(user);
-    } else {
-        console.log("No hay nadie logueado");
     } 
     
     //Changing page to signIn

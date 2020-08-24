@@ -30,17 +30,12 @@ export default () =>{
     //Changing page to signUp
     signinFromSignup.addEventListener('click', () => {
         window.location.hash = '';
-        console.log(signinFromSignup);
     });
 
     //Entramos en timeline
     let current = firebase.auth().currentUser;
     if (current !== null) {
-        window.location.hash = 'timeline';
-        console.log(current.displayName);
-        console.log(current);
-    } else {
-        console.log("nope");
-    } 
+        window.location.hash = 'timeline';   
+    }  
 
 }

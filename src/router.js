@@ -18,8 +18,7 @@ export const router = (route) =>{
     let content = document.getElementById('root');
             firebase.auth().onAuthStateChanged(function(user) {
                 content.innerHTML = "";
-                if (user) {
-                    console.log(user.displayName);       
+                if (user) {      
                     switch(route) {
                         case '':
                             //puede hacer un redirect a timeline de una
@@ -38,7 +37,6 @@ export const router = (route) =>{
                             return pages.notfound();
                     }
                 } else {
-                    console.log("nope");
                     switch(route) {
                         case '':
                             return pages.signup();
