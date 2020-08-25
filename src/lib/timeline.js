@@ -153,19 +153,28 @@ export default () => {
 
             likeButton.forEach(item => {
                 item.addEventListener('click', (e) => {
-                    console.log('A ver si esta entrando');
 
-                    let likesCont = 0; //nos va a traer la lista de todos los uid que si le dieron like
-                    likesCont = likesCont + 1;
-                    console.log(likesCont);
-
+                    
                     const idPost = e.currentTarget.dataset.idpost;
-                    console.log(idPost);
 
                     gettingData('post', idPost).then((e) => {
-                        e.likes.push(uid);
-                        console.log(e.likes);
-                        updateLikes(idPost, e.likes);
+                        
+                        if (e.likes.includes(uid)){
+                            const index = e.likes.indexOf(uid)
+                            console.log(e.likes.indexOf(uid))
+
+                            const variable = e.likes.splice(index, 1);
+                            console.log("Esta es la variable de splice: " + variable);
+                            console.log(e.likes)
+                            updateLikes(idPost, e.likes);
+
+                        }else {
+                            e.likes.push(uid);
+                            console.log(uid);
+                            
+                            console.log("Aquí va el e.likes, debe ser un array: " + e.likes);
+                            updateLikes(idPost, e.likes);
+                        }
                     });
                 });
             });

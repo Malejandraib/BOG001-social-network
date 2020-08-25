@@ -154,8 +154,8 @@ header {
 
 .user-img{
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 .user-name{
@@ -291,7 +291,7 @@ footer p {
   
 }
 .div-post2 p{
-  font-size: 2em;
+  font-size: 1.5em;
   padding: 5%;
   text-align: center; 
 }
@@ -327,6 +327,7 @@ footer p {
 .likes-button:hover{
   font-weight: bold;
 }
+
 
 /* MODAL STYLE  ################################ */
 

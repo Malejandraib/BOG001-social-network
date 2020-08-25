@@ -4,7 +4,6 @@ export default () =>{
     root.appendChild(clon);
 
     const homePage = document.querySelector(".home-page");
-    console.log(homePage);
 
     homePage.addEventListener('click', () => {
         window.location.hash = '';

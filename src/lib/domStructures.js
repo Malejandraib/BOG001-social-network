@@ -27,24 +27,41 @@ export const postStructure = (doc, uid) => {
     buttonEdit.classList.add("edit-post");
     /* const iconEdit = document.createElement('i');
     iconEdit.classList.add("far", "fa-edit"); */
-    buttonEdit.textContent = "📝 Edit";
+    buttonEdit.textContent = "📝";
     //buttonEdit.appendChild(iconEdit)
     buttonEdit.dataset.idpost = doc.id;
     const buttonDelete = document.createElement('button');
-    buttonDelete.textContent = "🗑️ Delete";
+    buttonDelete.textContent = "🗑️";
     buttonDelete.classList.add("delete-post");
     buttonDelete.dataset.idpost = doc.id;
+
+/*     const datePost = document.querySelector('p');
+    datePost.textContent = doc.data().date; */
 
     const pPost = document.createElement('p');
     pPost.textContent = doc.data().post;
 
+
+
     const likeButton = document.createElement('button');
     likeButton.classList.add("likes-button");
-    likeButton.textContent = "🧡 Like";
+    likeButton.textContent = "🤍";
     likeButton.dataset.idpost = doc.id;
 
     const likesNum = document.createElement('p');
     likesNum.textContent = doc.data().likes.length;
+
+    if(doc.data().likes.length == 0){
+        likesNum.textContent = "";
+    }
+
+
+
+    if (doc.data().likes.includes(uid)){
+        //likeButton.style.backgroundColor ='#e68757e5'
+        
+        likeButton.textContent = "🧡";
+    }
 
     const comment = document.createElement('textarea');
     comment.placeholder = "Write a comment here!";
