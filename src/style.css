@@ -273,6 +273,16 @@ footer p {
 .edit-post, .delete-post{
   width: 45px;
   height: 35px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #e68757e5;
+  width: 25%;
+  margin: 1%;
+  padding: 1%;
+  color: rgb(248, 248, 248);
+
 }
 .div-post1 p{
   padding: 0 4%;
@@ -303,6 +313,8 @@ footer p {
   width: 20%;
   height: 35px;
 }
+
+
 
 /* Botón de likes */
 

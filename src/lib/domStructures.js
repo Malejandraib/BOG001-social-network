@@ -24,11 +24,14 @@ export const postStructure = (doc, uid) => {
     pNombre.textContent = doc.data().name;
 
     const buttonEdit = document.createElement('button');
-    buttonEdit.textContent = "Edit";
     buttonEdit.classList.add("edit-post");
+    /* const iconEdit = document.createElement('i');
+    iconEdit.classList.add("far", "fa-edit"); */
+    buttonEdit.textContent = "📝 Edit";
+    //buttonEdit.appendChild(iconEdit)
     buttonEdit.dataset.idpost = doc.id;
     const buttonDelete = document.createElement('button');
-    buttonDelete.textContent = "Delete";
+    buttonDelete.textContent = "🗑️ Delete";
     buttonDelete.classList.add("delete-post");
     buttonDelete.dataset.idpost = doc.id;
 
@@ -70,8 +73,6 @@ export const postStructure = (doc, uid) => {
     divPost.appendChild(divPost2);
     divPost.appendChild(divPost3);
     divPost.appendChild(divPost4);
-
-    
 
     return divPost;
 }

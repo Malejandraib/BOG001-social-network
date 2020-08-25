@@ -163,16 +163,12 @@ export default () => {
                     console.log(idPost);
 
                     gettingData('post', idPost).then((e) => {
-
-
                         e.likes.push(uid);
                         console.log(e.likes);
-
                         updateLikes(idPost, e.likes);
                     });
-
-                })
-            })
+                });
+            });
             //Acá terminan los likes
 
 
