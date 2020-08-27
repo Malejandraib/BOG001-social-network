@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const postStructure = (doc, uid) => {
     //la idea es poder hacer esto más fácil
 

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {signInEmailAndPassword, registerGoogle} from "./firebasefunction.js";
 
 export default () =>{
@@ -5,7 +7,7 @@ export default () =>{
     var clon = template.content.cloneNode(true);
     root.appendChild(clon);
     
-    //const formSignIn = document.querySelector('.form-signin');
+    //  const formSignIn = document.querySelector('.form-signin');
     const btnSignIn = document.querySelector ('.btn-signup');
     const registerWithGoogle = document.querySelector('.btn-signin-google');
     const msjVerification = document.querySelector('#verification-password');

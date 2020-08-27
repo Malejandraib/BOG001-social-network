@@ -1,138 +1,124 @@
-export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword, gettingData, newPost, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes };
-
-/*----- Creating user with email and password ----- */
+/* eslint-disable */
+//  ----- Creating user with email and password -----
 async function createUserEmailAndPassword(email, password) {
-    try {
-        const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        return authentication; //objeto que trae mucas cosas 
-    }
-    catch (error) {
-        let errorMessage = error.message; //Error message nos muestra una string los errores que no permiten la autenticación: email en uso o contraseña no válida
-        return errorMessage;
-    };
-};
+	try {
+		const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
+		return authentication; //   objeto que trae mucas cosas
+	} catch (error) {
+		let errorMessage = error.message;
+		return errorMessage;
+	}
+}
 
-/*---------- Creating and login user with google account ------------ */
+//  ---------- Creating and login user with google account ------------
 async function registerGoogle(provider) {
-    try {
-        const registerTemp = await firebase.auth().signInWithPopup(provider);
-        return registerTemp;
-    }
-    catch (error) {
-        return error;
-    };
-};
+	try {
+		const registerTemp = await firebase.auth().signInWithPopup(provider);
+		return registerTemp;
+	} catch (error) {
+		return error;
+	}
+}
 
-/*-----------signInEmailAndPassword------------ */
+//  -----------signInEmailAndPassword------------
 async function signInEmailAndPassword(email, password) {
-    try {
-        const signInUser = await firebase.auth().signInWithEmailAndPassword(email, password);
-        return signInUser;
-    }
-    catch (error) {
-        var errorMessage = error.message;
-        return errorMessage;
-    };
-};
+	try {
+		const signInUser = await firebase.auth().signInWithEmailAndPassword(email, password);
+		return signInUser;
+	} catch (error) {
+		var errorMessage = error.message;
+		return errorMessage;
+	}
+}
 
-/*-----------gettingData------------ */
+//  -----------gettingData------------
 async function gettingData(collection, uid) {
-    try {
-        const dataUser = await db.collection(collection).doc(uid).get();
-        return dataUser.data()
-    }
-    catch (error) {
-        return error.message
-    };
-};
+	try {
+		const dataUser = await db.collection(collection).doc(uid).get();
+		return dataUser.data();
+	} catch (error) {
+		return error.message;
+	}
+}
 
-/*-----------gettingDataOrderByCondition------------ */
+//  -----------gettingDataOrderByCondition------------
 async function gettingDataOrdered(collection, param, asds) {
-    try {
-        const dataPost = await db.collection(collection).orderBy(param, asds).get();
-        return dataPost
-    }
-    catch (error) {
-        return error.message
-    };
-};
+	try {
+		const dataPost = await db.collection(collection).orderBy(param, asds).get();
+		return dataPost;
+	} catch (error) {
+		return error.message;
+	}
+}
 
-/*-----------newPost------------ */
+//  -----------newPost------------
 async function newPost(userGeneral) {
+	try {
+		const creatingPost = await db.collection('post').add({
+			uid: userGeneral.uid,
+			post: userGeneral.post, //Es que acá había puesto dizque inputPost y era solo post
+			name: userGeneral.name,
+			photo: userGeneral.photo,
+			date: userGeneral.date,
+			editPost: false,
+			likes: [],
+		});
+		return creatingPost;
+	} catch (error) {
+		return error.message;
+	}
+}
 
-    try {
-        const creatingPost = await db.collection("post").add({
-            uid: userGeneral.uid,
-            post: userGeneral.post, //Es que acá había puesto dizque inputPost y era solo post
-            name: userGeneral.name,
-            photo: userGeneral.photo,
-            date: userGeneral.date,
-            editPost: false,
-            likes: []
-
-        });
-        return creatingPost
-    }
-    catch (error) {
-
-        return error.message
-    }
-};
-
-/*-----------Edit post------------ */
+//  -----------Edit post------------
 async function editingPostDocument(idPost, inputModal) {
-    try {
-        let editPost = await db.collection("post").doc(idPost);
-        const postEditado = editPost.update({
-            post: inputModal,
-            editState: true
-        });
-        console.log("Document successfully updated!");
-        return postEditado
-    }
-    catch (error) {
-        console.error("Error updating document: ", error);
-    };
-};
+	try {
+		let editPost = await db.collection('post').doc(idPost);
+		const postEditado = editPost.update({
+			post: inputModal,
+			editState: true,
+		});
 
-/*-----------updateLikes------------ */
+		return postEditado;
+	} catch (error) {
+		return error;
+	}
+}
+
+//  -----------updateLikes------------
 async function updateLikes(idPost, uidArray) {
-    try {
-        let editPost = await db.collection("post").doc(idPost);
-        const update = editPost.update({
-            likes: uidArray
-        });
-        console.log("Document successfully updated!");
-        return update
-    }
-    catch (error) {
-        console.error("Error updating document: ", error);
-    };
-};
+	try {
+		let editPost = await db.collection('post').doc(idPost);
+		const update = editPost.update({
+			likes: uidArray,
+		});
 
+		return update;
+	} catch (error) {
+		return error;
+	}
+}
 
-
-/*-----------Delete post------------ */
+//  -----------Delete post------------
 async function deletingPostModal(idPost) {
-    try {
-        let selectPost = await db.collection("post").doc(idPost)
-        const deletingPost = selectPost.delete()
-        console.log("Document successfully deleted!");
-        return deletingPost
-    }
-    catch (error) {
-        console.error("Error removing document: ", error);
-    };
-};
+	try {
+		let selectPost = await db.collection('post').doc(idPost);
+		const deletingPost = selectPost.delete();
+		return deletingPost;
+	} catch (error) {
+		return error;
+	}
+}
 
-/* --------- Logingout account ------------ */
+//  --------- Logingout account ------------
 async function logOutAccount() {
-    var user = firebase.auth().currentUser;
-    try {
-        const signoutUser = firebase.auth().signOut()
-        return signoutUser
-    }
-    catch (error) {
-        return error
-    };
-};
+	var user = firebase.auth().currentUser;
+	try {
+		const signoutUser = firebase.auth().signOut();
+		return signoutUser;
+	} catch (error) {
+		return error;
+	}
+}
+
+export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword };
+export { gettingData, newPost, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes };
