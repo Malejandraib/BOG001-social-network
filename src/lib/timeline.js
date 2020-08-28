@@ -1,13 +1,5 @@
 /* eslint-disable */
-import {
-	gettingData,
-	newPost,
-	logOutAccount,
-	gettingDataOrdered,
-	editingPostDocument,
-	deletingPostModal,
-	updateLikes,
-} from './firebasefunction.js';
+import {gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes} from './firebasefunction.js';
 
 import { postStructure } from './domStructures.js';
 

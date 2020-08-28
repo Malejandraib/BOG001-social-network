@@ -3,7 +3,7 @@
 import { myFunction } from "../src/lib/index";
 
 describe('myFunction', () => {
-  it.skip('debería ser una función', () => {
+  it('debería ser una función', () => {
     expect(typeof myFunction).toBe('function');
   });
 });

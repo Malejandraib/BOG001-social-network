@@ -140,7 +140,6 @@
           
       </div>
     </div>
-    <!-- <button class = "close-modal"> &times;</button> -->
   </template>
 
   <template id="modal-delete">
@@ -161,7 +160,6 @@
         
       </div>
     </div>
-    <!-- <button class = "close-modal"> &times;</button> -->
   </template>
 
   <template id="notfound">
@@ -174,6 +172,109 @@
         class="home-page">Take me to a safe place!</button>
     </div>
   </template>
+
+  <template id="template-profile">
+    <div class="timeline">
+
+      <header>
+        <img src="../images/logo2.png" id="logo-timeline" />
+        <nav class="nav-desktop">
+          <ul>
+            <li class="active menu-timeline"> Home</li>
+            <li class = "menu-profile"> Profile</li>
+            <li>Events</li>
+            <li class="logout"> LogOut</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main">
+        <div class="block-createpost">
+          <div class="block-createpost__user">
+            <img class="user-img" src="../images/pic.jpg">
+            <p class="user-name">Luke Skywalker</p>
+          </div>
+
+          <form class="form-share">
+            <textarea class="input-share" placeholder="    Share your music ..."> </textarea>
+
+            <div class="share-options">
+              <button class="btn_file">Choose file</button>
+              <button class="btn_share">Share</button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="container-all-post">
+        </div>
+      </main>
+
+      <footer>
+        <nav class="nav-mobile">
+          <ul>
+            <li class="active"><i class="fa fa-fw fa-home menu-timeline"></i>Home</li>
+            <li><i class="fa fa-fw fa-user-circle menu-profile"></i> Profile</li>
+            <li><i class="fas fa fa-address-book"></i>Events</li>
+            <li class="logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+          </ul>
+        </nav>
+        <p> Musicmood © 2020 ❤️ Made it by A2C </p>
+      </footer>
+    </div>
+  </template>
+
+  <template id="template-events">
+    <div class="timeline">
+
+      <header>
+        <img src="../images/logo2.png" id="logo-timeline" />
+        <nav class="nav-desktop">
+          <ul>
+            <li class="active"> Home</li>
+            <li> Profile</li>
+            <li>Events</li>
+            <li class="logout"> LogOut</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main">
+        <div class="block-createpost">
+          <div class="block-createpost__user">
+            <img class="user-img" src="../images/pic.jpg">
+            <p class="user-name">Luke Skywalker</p>
+          </div>
+
+          <form class="form-share">
+            <textarea class="input-share" placeholder="    Share your music ..."> </textarea>
+
+            <div class="share-options">
+              <button class="btn_file">Choose file</button>
+              <button class="btn_share">Share</button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="container-all-post">
+        </div>
+      </main>
+
+      <footer>
+        <nav class="nav-mobile">
+          <ul>
+            <li class="active"><i class="fa fa-fw fa-home menu-timeline"></i>Home</li>
+            <li><i class="fa fa-fw fa-user-circle menu-profile"></i> Profile</li>
+            <li><i class="fas fa fa-address-book"></i>Events</li>
+            <li class="logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+          </ul>
+        </nav>
+        <p> Musicmood © 2020 ❤️ Made it by A2C </p>
+      </footer>
+    </div>
+  </template>
+
 
   <script>
     // Your web app's Firebase configuration
