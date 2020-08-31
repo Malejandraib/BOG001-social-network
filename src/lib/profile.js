@@ -7,10 +7,7 @@ export default () => {
 	const clon = template.content.cloneNode(true);
 	root.appendChild(clon);
 
-	const menuTimeline = document.querySelectorAll('.menu-timeline');
-
 	const container = document.querySelector('.container-all-post');
-
 	container.textContent = 'My posts & hosted events!';
 
 	const user = firebase.auth().currentUser;
@@ -26,20 +23,16 @@ export default () => {
 		nameTimeline.textContent = doc.name;
 	});
 
-
-
 	//let refpost = db.collection('post');
 
-	db.collection('post').where('uid', '==', uid).orderBy('date').get().then((doc)=>{
-	doc.forEach(function(doc2){
-		console.log(doc2.id, " =>" , doc2.data());
-		container.appendChild(postStructure(doc2, uid));
-		});	
+	db.collection('post').where('uid', '==', uid).orderBy('date').get().then((doc) => {
+		doc.forEach(function (doc2) {
+			console.log(doc2.id, ' =>', doc2.data());
+			container.appendChild(postStructure(doc2, uid));
+		});
 	});
 
-	db.collection('post').orderBy('date', 'desc').get()
-
-
+	db.collection('post').orderBy('date', 'desc').get();
 
 	// db.collection('post').orderBy('date', 'desc').get().then((doc) =>{
 	// 	doc.where('uid', '==', uid).get().then((doc)=>{
@@ -47,20 +40,30 @@ export default () => {
 	// 			console.log(doc2.id, " =>" , doc2.data());
 	// 			container.appendChild(postStructure(doc2, uid));
 	// 		});
-				
+
 	// 		});
-		
+
 	// });
 
-	db.collection('post').orderBy('date', 'desc').get().then((doc) =>{
+	/* 	db.collection('post').orderBy('date', 'desc').get().then((doc) =>{
 
-	}
+	} */
 
+	const btnLogOut = document.querySelectorAll('.logout');
 
+	btnLogOut.forEach((item) => {
+		item.addEventListener('click', () => {
+			logOutAccount();
+			window.location.hash = '';
+		});
+	});
+
+	const menuTimeline = document.querySelectorAll('.menu-timeline');
 
 	menuTimeline.forEach((item) => {
 		item.addEventListener('click', () => {
 			window.location.hash = 'timeline';
 		});
 	});
+
 };

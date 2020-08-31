@@ -1,6 +1,5 @@
 /* eslint-disable */
 import {gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes} from './firebasefunction.js';
-
 import { postStructure } from './domStructures.js';
 
 export default () => {
@@ -183,11 +182,3 @@ export default () => {
 		});
 	});
 };
-
-// let likesCont = doc.likes.length;
-// console.log(likesCont);
-
-//Esto si sirve pero para otra cosa
-// let likesCont = []; //nos va a traer la lista de todos los uid que si le dieron like
-// likesCont.push(doc.likes);
-// console.log(likesCont, likesCont.length);
