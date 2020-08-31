@@ -250,7 +250,7 @@ footer p {
 /*Style para todos los post */
 
 /* Aquí van todo los posts */
-.container-all-post {
+.container-all-post, .container-my-post {
 	width: 100%;
 	padding: 5%;
 	display: flex;
