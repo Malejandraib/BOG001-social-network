@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes} from './firebasefunction.js';
+import { gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes } from './firebasefunction.js';
 import { postStructure } from './domStructures.js';
 
 export default () => {
@@ -179,6 +179,14 @@ export default () => {
 	menuProfile.forEach((item) => {
 		item.addEventListener('click', () => {
 			window.location.hash = 'profile';
+		});
+	});
+
+	const menuEvents = document.querySelectorAll('.menu-events');
+
+	menuEvents.forEach((item) => {
+		item.addEventListener('click', () => {
+			window.location.hash = 'events';
 		});
 	});
 };

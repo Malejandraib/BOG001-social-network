@@ -71,6 +71,29 @@ async function newPost(userGeneral) {
 	}
 }
 
+// --------NewPost Event ------------
+async function newPostEvent (userGeneral) {
+	try {
+		const creatingPost = await db.collection('events').add({
+			uid: userGeneral.uid,
+			event:userGeneral.event,
+			city:userGeneral.city,
+			date:userGeneral.date,
+			place:userGeneral.place,
+			hour: userGeneral.hour,
+			name: userGeneral.name,
+			photo: userGeneral.photo,
+			date: userGeneral.date,
+			editPost: false,
+			likes: [],
+		});
+		console.log(creatingPost);
+		return creatingPost;
+	} catch (error) {
+		return error.message;
+	}
+}
+
 //  -----------Edit post------------
 async function editingPostDocument(idPost, inputModal) {
 	try {
@@ -124,3 +147,4 @@ async function logOutAccount() {
 
 export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword };
 export { gettingData, newPost, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes };
+export { newPostEvent};
