@@ -41,10 +41,11 @@ export default () => {
 		}
 	}); //termina nuevo post
 
+	const specificContainer = document.querySelector('.container-all-post');
 	//OnSnapshot, aún no sabemos bien cómo usarlo
 	db.collection('post').onSnapshot(function (doc) {
-		const specificContainer = document.querySelector('.container-all-post');
-		specificContainer.innerHTML = `<div class = 'loader'></div>`;
+		
+
 
 		gettingDataOrdered('post', 'date', 'desc').then(function (doc) {
 			specificContainer.innerHTML = '';
@@ -55,9 +56,6 @@ export default () => {
 			deleteAnyPost();
 			editAnyPost();
 			likeAnyPost(uid);
-
-			var unsubscribe = db.collection("post").onSnapshot(function () { });
-			unsubscribe();
 
 		}); //GettingDataDETimeline
 	}); //Snapshot
