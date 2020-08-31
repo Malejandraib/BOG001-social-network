@@ -54,6 +54,10 @@ export default () => {
         alert("please enter all the inputs")
         }   
     });
+
+    //onSnapshot observador de los nuevos post 
+
+
         const btnLogOut = document.querySelectorAll('.logout');
 
         btnLogOut.forEach((item) => {

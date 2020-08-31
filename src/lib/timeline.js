@@ -1,6 +1,8 @@
 /* eslint-disable */
-import { gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes } from './firebasefunction.js';
+//import { gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes } from './firebasefunction.js';
+import { gettingData, newPost, logOutAccount, gettingDataOrdered, updateLikes } from './firebasefunction.js';
 import { postStructure } from './domStructures.js';
+import {editAnyPost, deleteAnyPost} from './postFunctions.js';
 
 export default () => {
 	const template = document.querySelector('#template-timeline');
@@ -51,89 +53,92 @@ export default () => {
 				specificContainer.appendChild(postStructure(doc, uid)); //Aquí es donde se hace la estructura
 			});
 
-			//Aquí inicia editar
-			const editingPost = document.querySelectorAll('.edit-post');
+			deleteAnyPost();
+			editAnyPost();
 
-			editingPost.forEach((item) => {
-				item.addEventListener('click', (e) => {
-					const idPost = e.currentTarget.dataset.idpost;
+			// //Aquí inicia editar
+			// const editingPost = document.querySelectorAll('.edit-post');
 
-					//const openModal = () => {
-					const template = document.querySelector('#modal-edit');
-					var clon = template.content.cloneNode(true);
-					root.appendChild(clon);
+			// editingPost.forEach((item) => {
+			// 	item.addEventListener('click', (e) => {
+			// 		const idPost = e.currentTarget.dataset.idpost;
 
-					//que aparezca previsualizado el post anterior
-					const modalContainer = document.getElementsByClassName('modal-container')[0];
-					modalContainer.style.display = 'block';
+			// 		//const openModal = () => {
+			// 		const template = document.querySelector('#modal-edit');
+			// 		var clon = template.content.cloneNode(true);
+			// 		root.appendChild(clon);
 
-					const closeModal = document.querySelector('.close-modal');
+			// 		//que aparezca previsualizado el post anterior
+			// 		const modalContainer = document.getElementsByClassName('modal-container')[0];
+			// 		modalContainer.style.display = 'block';
 
-					gettingData('post', idPost).then((e) => {
-						let inputModal = document.querySelector('.input-share-modal');
-						console.log(e.post);
-						inputModal.value = e.post;
-						const formEditModal = document.querySelector('.form-edit-modal');
+			// 		const closeModal = document.querySelector('.close-modal');
 
-						formEditModal.addEventListener('submit', (e) => {
-							e.preventDefault();
-							let inputModal = document.querySelector('.input-share-modal').value;
-							editingPostDocument(idPost, inputModal);
-							modalContainer.style.display = 'none';
-						});
-					});
+			// 		gettingData('post', idPost).then((e) => {
+			// 			let inputModal = document.querySelector('.input-share-modal');
+			// 			console.log(e.post);
+			// 			inputModal.value = e.post;
+			// 			const formEditModal = document.querySelector('.form-edit-modal');
 
-					closeModal.addEventListener('click', () => {
-						modalContainer.style.display = 'none';
-						root.removeChild(modalContainer);
-					});
+			// 			formEditModal.addEventListener('submit', (e) => {
+			// 				e.preventDefault();
+			// 				let inputModal = document.querySelector('.input-share-modal').value;
+			// 				editingPostDocument(idPost, inputModal);
+			// 				modalContainer.style.display = 'none';
+			// 			});
+			// 		});
 
-					modalContainer.addEventListener('click', () => {
-						if (event.target == modalContainer) {
-							modalContainer.style.display = 'none';
-							root.removeChild(modalContainer);
-						}
-					});
-				});
-			}); //Acá finaliza editar
+			// 		closeModal.addEventListener('click', () => {
+			// 			modalContainer.style.display = 'none';
+			// 			root.removeChild(modalContainer);
+			// 		});
 
-			const deletePost = document.querySelectorAll('.delete-post');
+			// 		modalContainer.addEventListener('click', () => {
+			// 			if (event.target == modalContainer) {
+			// 				modalContainer.style.display = 'none';
+			// 				root.removeChild(modalContainer);
+			// 			}
+			// 		});
+			// 	});
+			// }); //Acá finaliza editar
 
-			deletePost.forEach((item) => {
-				item.addEventListener('click', (e) => {
-					const idPost = e.currentTarget.dataset.idpost;
+			// const deletePost = document.querySelectorAll('.delete-post');
 
-					const template = document.querySelector('#modal-delete');
-					console.log(template);
-					var clon = template.content.cloneNode(true);
-					root.appendChild(clon);
+			// deletePost.forEach((item) => {
+			// 	item.addEventListener('click', (e) => {
+			// 		const idPost = e.currentTarget.dataset.idpost;
 
-					const modalContainer = document.getElementsByClassName('modal-container-delete')[0];
-					console.log(modalContainer);
-					modalContainer.style.display = 'block';
+			// 		const template = document.querySelector('#modal-delete');
+			// 		console.log(template);
+			// 		var clon = template.content.cloneNode(true);
+			// 		root.appendChild(clon);
 
-					const closeModal = document.querySelector('.close-modal');
+			// 		const modalContainer = document.getElementsByClassName('modal-container-delete')[0];
+			// 		console.log(modalContainer);
+			// 		modalContainer.style.display = 'block';
 
-					closeModal.addEventListener('click', () => {
-						root.removeChild(modalContainer);
-						modalContainer.style.display = 'none';
-					});
+			// 		const closeModal = document.querySelector('.close-modal');
 
-					modalContainer.addEventListener('click', () => {
-						if (event.target == modalContainer) {
-							modalContainer.style.display = 'none';
-							root.removeChild(modalContainer);
-						}
-					});
+			// 		closeModal.addEventListener('click', () => {
+			// 			root.removeChild(modalContainer);
+			// 			modalContainer.style.display = 'none';
+			// 		});
 
-					const btnDelete = document.querySelector('.btn-delete');
-					btnDelete.addEventListener('click', () => {
-						deletingPostModal(idPost);
-						modalContainer.style.display = 'none';
-						root.removeChild(modalContainer);
-					});
-				});
-			}); //Acá termina borrar
+			// 		modalContainer.addEventListener('click', () => {
+			// 			if (event.target == modalContainer) {
+			// 				modalContainer.style.display = 'none';
+			// 				root.removeChild(modalContainer);
+			// 			}
+			// 		});
+
+			// 		const btnDelete = document.querySelector('.btn-delete');
+			// 		btnDelete.addEventListener('click', () => {
+			// 			deletingPostModal(idPost);
+			// 			modalContainer.style.display = 'none';
+			// 			root.removeChild(modalContainer);
+			// 		});
+			// 	});
+			// }); //Acá termina borrar
 
 			//Acá empiezan los likes
 			const likeButton = document.querySelectorAll('.likes-button');

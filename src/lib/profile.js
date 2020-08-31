@@ -21,7 +21,7 @@ export default () => {
 		photoUser.src = doc.photoURL;
 		nameTimeline.textContent = doc.name;
 	});
-   
+
     db.collection('post').where('uid', '==', uid).get().then((doc) => {
 		doc.forEach(function (doc2) {
 			console.log(doc2.id, ' =>', doc2.data());
@@ -61,9 +61,6 @@ export default () => {
             }
         });
     }
-
-
-
 
     const btnLogOut = document.querySelectorAll('.logout');
 
