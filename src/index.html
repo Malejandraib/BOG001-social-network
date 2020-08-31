@@ -201,14 +201,35 @@
       </header>
 
       <main class="main">
-        <div class="block-createpost">
-          <div class="block-createpost__user">
-            <img class="user-img" src="../images/pic.jpg">
-            <p class="user-name">Luke Skywalker</p>
-          </div>
 
+        <div class = "profile-block">
+          <div class = "profile-top">
+            <img class = "user-img user-img-profile" src="../images/pic.jpg">
+          <p class="user-name">Luke Skywalker</p>
+          <button class = "edit-profile"> Edit Profile <i class="fa fa-edit"></i></button>
+          </br>
+          <p><strong>Bio: </strong> <span class = "bio-profile">Tell us more about you, edit your bio :)</span></p>
+          </div>
+          
+          <div class = "other-data-profile">
+            <div>
+              <p><strong>Artists</strong></p>
+              <p class = "favorite-artists">Null</p>
+            </div>
+            <div>
+              <p><strong>Genres</strong></p>
+              <p class = "genres">Alternative</p>
+            </div>
+            <div>
+              <p><strong>Location</strong></p>
+              <p class = "location">Bogotá</p>
+            </div>
+          </div>
+        </div>
+      </br>
+        <div class="block-createpost">
           <form class="form-share">
-            <textarea class="input-share" placeholder="    Share your music ..."> </textarea>
+            <textarea class="input-share" placeholder="Share your music ..."> </textarea>
 
             <div class="share-options">
               <button class="btn_file">Choose file</button>
@@ -233,6 +254,33 @@
         </nav>
         <p> Musicmood © 2020 ❤️ Made it by A2C </p>
       </footer>
+    </div>
+  </template>
+
+  <template id="modal-edit-profile">
+    <div class="modal-container-editprofile">
+      
+      
+      <div class="modal-input">
+        <div class="editing-post-title">
+          <h2>Update Profile <i class="fa fa-edit"></i></h2>
+          <button class="close-modal close-modal__style"> &times;</button>
+        </div>
+
+        <form action="">
+          <label for="bio">Bio:</label><br>
+          <input type="text" id="uidbio" name="bio" value="Hi! I'm Luke and this is Star Wars"><br>
+          <label for="lname">Current location:</label><br>
+          <input type="text" id="uidlocation" name="lname" value="Bogotá DC"><br>
+          <label for="fname">Favorite Artist:</label><br>
+          <input type="text" id="uidartists" name="fname" value="The Beatles"><br>
+          <label for="fname">Favorite Genre:</label><br>
+          <input type="text" id="uidgenre" name="fname" value="Blues"><br><br>
+          <button type="submit" value="Submit">Update profile</button>
+        </form>
+        
+      </div>
+      
     </div>
   </template>
 
