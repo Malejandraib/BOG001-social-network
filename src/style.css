@@ -343,7 +343,8 @@ footer p {
 /* MODAL STYLE  ################################ */
 
 .modal-container,
-.modal-container-delete {
+.modal-container-delete,
+.modal-container-editprofile{
 	display: none;
 	position: fixed;
 	padding: 100px 0;
@@ -456,6 +457,78 @@ footer p {
 
 .home-page:hover {
 	background-color: #ff3e03;
+}
+
+
+/* PROFILE */
+
+.bio-profile{
+	color: black;
+}
+
+.profile-block{
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: -5%;
+}
+
+.profile-top{
+	background: linear-gradient(to left, #f7b733, #fc4a1a);
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	padding: 5% 10% 20% 10%;
+	align-content: center;
+	align-items: center;
+}
+
+.profile-top p, .profile-top button, .profile-top span{
+	color: white;
+	text-align: center;
+}
+
+.profile-block .user-img-profile{
+	border: solid 3px  #ff822e;
+	width: 85px;
+	height: 85px;
+	text-align: center;
+}
+
+.profile-block .user-name{
+	text-align: center;
+}
+
+.edit-profile{
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
+	width: 35%;
+}
+
+.other-data-profile{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+	padding: 5% 2%;
+	background-color: whitesmoke;
+	border-radius: 10px;
+	margin: -15% 0 -5% 0 ;
+	width: 90%;
+	border: solid 3px #ff822e;
+
+}
+
+.favorite-artists, .genres, .location{
+	width: 30%;
+}
+
+.input-share::placeholder{
+	color: black;
 }
 
 /* INICIO DE MEDIA QUERYS  */

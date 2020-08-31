@@ -8,7 +8,6 @@ export default () => {
 	root.appendChild(clon);
 
 	const container = document.querySelector('.container-all-post');
-	container.textContent = 'My posts & hosted events!';
 
 	const user = firebase.auth().currentUser;
 	const uid = user.uid;
@@ -17,39 +16,56 @@ export default () => {
 	const nameTimeline = document.querySelector('.user-name');
 	const formShare = document.querySelector('.form-share');
 
-	//Traer nombre y foto correctamente
+	//Traer nombre y foto correctamente y todos los datos de la biografía
 	gettingData('users', uid).then((doc) => {
 		photoUser.src = doc.photoURL;
 		nameTimeline.textContent = doc.name;
 	});
-
-	//let refpost = db.collection('post');
-
-	db.collection('post').where('uid', '==', uid).orderBy('date').get().then((doc) => {
+   
+    db.collection('post').where('uid', '==', uid).get().then((doc) => {
 		doc.forEach(function (doc2) {
 			console.log(doc2.id, ' =>', doc2.data());
 			container.appendChild(postStructure(doc2, uid));
 		});
 	});
 
-	db.collection('post').orderBy('date', 'desc').get();
+    const editProfile = document.querySelector('.edit-profile');
+    console.log(editProfile);
+    
+    editProfile.addEventListener('click', (e) =>{
+        editProfileModal(uid);
+    });
+    
+    const editProfileModal = (uid) =>{
+        console.log('Aquí se abre el modal');
+        const template = document.querySelector('#modal-edit-profile');
+		console.log(template);
+		var clon = template.content.cloneNode(true);
+        root.appendChild(clon);
+        
+        const modalContainer = document.getElementsByClassName('modal-container-editprofile')[0];
+		console.log(modalContainer);
+        modalContainer.style.display = 'block';
+        
+        const closeModal = document.querySelector('.close-modal');
 
-	// db.collection('post').orderBy('date', 'desc').get().then((doc) =>{
-	// 	doc.where('uid', '==', uid).get().then((doc)=>{
-	// 		doc.forEach(function(doc2){
-	// 			console.log(doc2.id, " =>" , doc2.data());
-	// 			container.appendChild(postStructure(doc2, uid));
-	// 		});
+        closeModal.addEventListener('click', () => {
+            root.removeChild(modalContainer);
+            modalContainer.style.display = 'none';
+        });
 
-	// 		});
+        modalContainer.addEventListener('click', () => {
+            if (event.target == modalContainer) {
+                modalContainer.style.display = 'none';
+                root.removeChild(modalContainer);
+            }
+        });
+    }
 
-	// });
 
-	/* 	db.collection('post').orderBy('date', 'desc').get().then((doc) =>{
 
-	} */
 
-	const btnLogOut = document.querySelectorAll('.logout');
+    const btnLogOut = document.querySelectorAll('.logout');
 
 	btnLogOut.forEach((item) => {
 		item.addEventListener('click', () => {
