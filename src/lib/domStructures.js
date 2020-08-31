@@ -36,8 +36,8 @@ export const postStructure = (doc, uid) => {
     buttonDelete.classList.add("delete-post");
     buttonDelete.dataset.idpost = doc.id;
 
-/*     const datePost = document.querySelector('p');
-    datePost.textContent = doc.data().date; */
+    /*     const datePost = document.querySelector('p');
+        datePost.textContent = doc.data().date; */
 
     const pPost = document.createElement('p');
     pPost.textContent = doc.data().post;
@@ -52,15 +52,15 @@ export const postStructure = (doc, uid) => {
     const likesNum = document.createElement('p');
     likesNum.textContent = doc.data().likes.length;
 
-    if(doc.data().likes.length == 0){
+    if (doc.data().likes.length == 0) {
         likesNum.textContent = "";
     }
 
 
 
-    if (doc.data().likes.includes(uid)){
+    if (doc.data().likes.includes(uid)) {
         //likeButton.style.backgroundColor ='#e68757e5'
-        
+
         likeButton.textContent = "🧡";
     }
 
@@ -80,10 +80,10 @@ export const postStructure = (doc, uid) => {
     }
 
     divPost2.appendChild(pPost);
-    
+
     divPost3.appendChild(likesNum);
     divPost3.appendChild(likeButton);
-    
+
     divPost4.appendChild(comment);
     divPost4.appendChild(sendComment);
 
@@ -95,7 +95,81 @@ export const postStructure = (doc, uid) => {
     return divPost;
 }
 
-export const eventsStructure = (doc, uid) => {
-    
+export const eventStructure = (doc, uid) => {
+    const divPost = document.createElement('div');
+    divPost.classList.add("div-event");
+
+    const divPost1 = document.createElement('div');
+    divPost1.classList.add("div-post1");
+
+    const divPost2 = document.createElement('div');
+    divPost2.classList.add("div-post2");
+
+    const divPost3 = document.createElement('div');
+    divPost3.classList.add("div-post3");
+
+
+    const userImg = document.createElement('img');
+    userImg.src = doc.data().photo;
+    userImg.classList.add("user-img");
+
+    const pNombre = document.createElement('p');
+    pNombre.textContent = doc.data().name;
+
+    const buttonEdit = document.createElement('button');
+    buttonEdit.classList.add("edit-post");
+
+    buttonEdit.textContent = "📝";
+    buttonEdit.dataset.idpost = doc.id;
+
+    const buttonDelete = document.createElement('button');
+    buttonDelete.textContent = "🗑️";
+    buttonDelete.classList.add("delete-post");
+    buttonDelete.dataset.idpost = doc.id;
+
+    const pEvent = document.createElement('p');
+    pEvent.textContent = doc.data().event;
+
+    const pDate = document.createElement('p');
+    let timestamp = doc.data().date
+    const date = new Date(timestamp * 1000);
+    const datevalues = [
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes(),
+        date.getSeconds(),
+    ];
+    pDate.textContent = datevalues;
+
+    const pPlace = document.createElement('p');
+    pPlace.textContent = doc.data().place;
+
+    const pCity = document.createElement('p');
+    pCity.textContent = doc.data().city;
+
+    const pHour = document.createElement('p');
+    pHour.textContent = doc.data().hour;
+
+    divPost1.appendChild(userImg);
+    divPost1.appendChild(pNombre);
+    if (uid == doc.data().uid) {
+        divPost1.appendChild(buttonEdit);
+        divPost1.appendChild(buttonDelete);
+    }
+
+    divPost2.appendChild(pEvent);
+
+    divPost3.appendChild(pCity);
+    divPost3.appendChild(pDate);
+    divPost3.appendChild(pPlace);
+    divPost3.appendChild(pHour);
+
+    divPost.appendChild(divPost1);
+    divPost.appendChild(divPost2);
+    divPost.appendChild(divPost3);
+
+    return divPost;
 }
 

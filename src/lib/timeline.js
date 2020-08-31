@@ -1,8 +1,8 @@
 /* eslint-disable */
 //import { gettingData, newPost, logOutAccount, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes } from './firebasefunction.js';
-import { gettingData, newPost, logOutAccount, gettingDataOrdered, updateLikes } from './firebasefunction.js';
-import { postStructure } from './domStructures.js';
-import {editAnyPost, deleteAnyPost} from './postFunctions.js';
+import { gettingData, newPost, logOutAccount, gettingDataOrdered } from './firebasefunction.js';
+import { postStructure, eventStructure } from './domStructures.js';
+import { editAnyPost, deleteAnyPost, likeAnyPost } from './postFunctions.js';
 
 export default () => {
 	const template = document.querySelector('#template-timeline');
@@ -49,127 +49,35 @@ export default () => {
 		gettingDataOrdered('post', 'date', 'desc').then(function (doc) {
 			specificContainer.innerHTML = '';
 			doc.forEach(function (doc) {
-				const postId = doc.id; //Id específico para cada post
 				specificContainer.appendChild(postStructure(doc, uid)); //Aquí es donde se hace la estructura
 			});
 
 			deleteAnyPost();
 			editAnyPost();
+			likeAnyPost(uid);
 
-			// //Aquí inicia editar
-			// const editingPost = document.querySelectorAll('.edit-post');
+			var unsubscribe = db.collection("post").onSnapshot(function () { });
+			unsubscribe();
 
-			// editingPost.forEach((item) => {
-			// 	item.addEventListener('click', (e) => {
-			// 		const idPost = e.currentTarget.dataset.idpost;
-
-			// 		//const openModal = () => {
-			// 		const template = document.querySelector('#modal-edit');
-			// 		var clon = template.content.cloneNode(true);
-			// 		root.appendChild(clon);
-
-			// 		//que aparezca previsualizado el post anterior
-			// 		const modalContainer = document.getElementsByClassName('modal-container')[0];
-			// 		modalContainer.style.display = 'block';
-
-			// 		const closeModal = document.querySelector('.close-modal');
-
-			// 		gettingData('post', idPost).then((e) => {
-			// 			let inputModal = document.querySelector('.input-share-modal');
-			// 			console.log(e.post);
-			// 			inputModal.value = e.post;
-			// 			const formEditModal = document.querySelector('.form-edit-modal');
-
-			// 			formEditModal.addEventListener('submit', (e) => {
-			// 				e.preventDefault();
-			// 				let inputModal = document.querySelector('.input-share-modal').value;
-			// 				editingPostDocument(idPost, inputModal);
-			// 				modalContainer.style.display = 'none';
-			// 			});
-			// 		});
-
-			// 		closeModal.addEventListener('click', () => {
-			// 			modalContainer.style.display = 'none';
-			// 			root.removeChild(modalContainer);
-			// 		});
-
-			// 		modalContainer.addEventListener('click', () => {
-			// 			if (event.target == modalContainer) {
-			// 				modalContainer.style.display = 'none';
-			// 				root.removeChild(modalContainer);
-			// 			}
-			// 		});
-			// 	});
-			// }); //Acá finaliza editar
-
-			// const deletePost = document.querySelectorAll('.delete-post');
-
-			// deletePost.forEach((item) => {
-			// 	item.addEventListener('click', (e) => {
-			// 		const idPost = e.currentTarget.dataset.idpost;
-
-			// 		const template = document.querySelector('#modal-delete');
-			// 		console.log(template);
-			// 		var clon = template.content.cloneNode(true);
-			// 		root.appendChild(clon);
-
-			// 		const modalContainer = document.getElementsByClassName('modal-container-delete')[0];
-			// 		console.log(modalContainer);
-			// 		modalContainer.style.display = 'block';
-
-			// 		const closeModal = document.querySelector('.close-modal');
-
-			// 		closeModal.addEventListener('click', () => {
-			// 			root.removeChild(modalContainer);
-			// 			modalContainer.style.display = 'none';
-			// 		});
-
-			// 		modalContainer.addEventListener('click', () => {
-			// 			if (event.target == modalContainer) {
-			// 				modalContainer.style.display = 'none';
-			// 				root.removeChild(modalContainer);
-			// 			}
-			// 		});
-
-			// 		const btnDelete = document.querySelector('.btn-delete');
-			// 		btnDelete.addEventListener('click', () => {
-			// 			deletingPostModal(idPost);
-			// 			modalContainer.style.display = 'none';
-			// 			root.removeChild(modalContainer);
-			// 		});
-			// 	});
-			// }); //Acá termina borrar
-
-			//Acá empiezan los likes
-			const likeButton = document.querySelectorAll('.likes-button');
-
-			likeButton.forEach((item) => {
-				item.addEventListener('click', (e) => {
-					const idPost = e.currentTarget.dataset.idpost;
-
-					gettingData('post', idPost).then((e) => {
-						if (e.likes.includes(uid)) {
-							const index = e.likes.indexOf(uid);
-							console.log(e.likes.indexOf(uid));
-
-							const variable = e.likes.splice(index, 1);
-							console.log('Esta es la variable de splice: ' + variable);
-							console.log(e.likes);
-							updateLikes(idPost, e.likes);
-						} else {
-							e.likes.push(uid);
-							console.log(uid);
-
-							console.log('Aquí va el e.likes, debe ser un array: ' + e.likes);
-							updateLikes(idPost, e.likes);
-						}
-					});
-				});
-			});
-			//Acá terminan los likes
 		}); //GettingDataDETimeline
 	}); //Snapshot
 
+	/* db.collection('events').onSnapshot(function (doc) {
+		const specificContainer = document.querySelector('.container-all-post');
+		specificContainer.innerHTML = `<div class = 'loader'></div>`;
+
+		gettingDataOrdered('events', 'date', 'desc').then(function (doc) {
+			specificContainer.innerHTML = '';
+			doc.forEach(function (doc) {
+				specificContainer.appendChild(eventStructure(doc, uid)); //Aquí es donde se hace la estructura
+			});
+
+			var unsubscribe = db.collection("post").onSnapshot(function () { });
+			unsubscribe();
+
+		}); //GettingDataDETimeline
+	}); //Snapshot
+ */
 	//
 	//Para hacer logout
 	btnLogOut.forEach((item) => {
@@ -194,4 +102,6 @@ export default () => {
 			window.location.hash = 'events';
 		});
 	});
+
+
 };

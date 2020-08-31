@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { gettingData } from './firebasefunction.js';
 import { postStructure } from './domStructures.js';
+import {editAnyPost, deleteAnyPost, likeAnyPost} from './postFunctions.js';
 
 export default () => {
 	const template = document.querySelector('#template-profile');
@@ -26,6 +27,10 @@ export default () => {
 		doc.forEach(function (doc2) {
 			console.log(doc2.id, ' =>', doc2.data());
 			container.appendChild(postStructure(doc2, uid));
+			
+			deleteAnyPost();
+			editAnyPost();
+			likeAnyPost(uid);
 		});
 	});
 
@@ -39,12 +44,12 @@ export default () => {
     const editProfileModal = (uid) =>{
         console.log('Aquí se abre el modal');
         const template = document.querySelector('#modal-edit-profile');
-		console.log(template);
-		var clon = template.content.cloneNode(true);
+				console.log(template);
+				var clon = template.content.cloneNode(true);
         root.appendChild(clon);
         
         const modalContainer = document.getElementsByClassName('modal-container-editprofile')[0];
-		console.log(modalContainer);
+				console.log(modalContainer);
         modalContainer.style.display = 'block';
         
         const closeModal = document.querySelector('.close-modal');
@@ -52,7 +57,9 @@ export default () => {
         closeModal.addEventListener('click', () => {
             root.removeChild(modalContainer);
             modalContainer.style.display = 'none';
-        });
+				});
+				
+				console.log("Edit profile for: ", uid);
 
         modalContainer.addEventListener('click', () => {
             if (event.target == modalContainer) {
@@ -62,7 +69,9 @@ export default () => {
         });
     }
 
-    const btnLogOut = document.querySelectorAll('.logout');
+	
+	
+		const btnLogOut = document.querySelectorAll('.logout');
 
 	btnLogOut.forEach((item) => {
 		item.addEventListener('click', () => {

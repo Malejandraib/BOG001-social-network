@@ -259,7 +259,7 @@ footer p {
 	height: auto;
 }
 
-.div-post {
+.div-post, .div-event{
 	width: 100%;
 	display: flex;
 	flex-direction: column;

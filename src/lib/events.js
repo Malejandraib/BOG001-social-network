@@ -1,4 +1,5 @@
-import { gettingData, newPostEvent } from './firebasefunction.js';
+import { gettingData, newPostEvent, gettingDataOrdered } from './firebasefunction.js';
+import { eventStructure } from './domStructures.js';
 
 export default () => {
     const template = document.querySelector('#template-events');
@@ -56,8 +57,19 @@ export default () => {
     });
 
     //onSnapshot observador de los nuevos post 
+    db.collection('events').onSnapshot(function (doc) {
+		const specificContainer = document.querySelector('.container-all-post');
+		specificContainer.innerHTML = `<div class = 'loader'></div>`;
 
-
+		gettingDataOrdered('events', 'date', 'desc').then(function (doc) {
+			specificContainer.innerHTML = '';
+			doc.forEach(function (doc) {
+				const event = doc.id; //Id específico para cada post
+				specificContainer.appendChild(eventStructure(doc, uid)); //Aquí es donde se hace la estructura
+		    });
+        });
+    });
+        
         const btnLogOut = document.querySelectorAll('.logout');
 
         btnLogOut.forEach((item) => {
