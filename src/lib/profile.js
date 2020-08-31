@@ -8,7 +8,7 @@ export default () => {
 	const clon = template.content.cloneNode(true);
 	root.appendChild(clon);
 
-	const container = document.querySelector('.container-all-post');
+	const container = document.querySelector('.container-my-post');
 
 	const user = firebase.auth().currentUser;
 	const uid = user.uid;
@@ -23,23 +23,28 @@ export default () => {
 		nameTimeline.textContent = doc.name;
 	});
 
-    db.collection('post').where('uid', '==', uid).get().then((doc) => {
-		doc.forEach(function (doc2) {
-			console.log(doc2.id, ' =>', doc2.data());
-			container.appendChild(postStructure(doc2, uid));
-			
-			deleteAnyPost();
-			editAnyPost();
-			likeAnyPost(uid);
-		});
-	});
+	
 
-    const editProfile = document.querySelector('.edit-profile');
-    console.log(editProfile);
-    
-    editProfile.addEventListener('click', (e) =>{
-        editProfileModal(uid);
+		
+	
+		db.collection("post").onSnapshot(function(doc) {
+				console.log("Current data: ", doc);
+				db.collection('post').where('uid', '==', uid).get().then((doc) => {
+					container.innerHTML = '';
+					console.log(doc);
+					doc.forEach(function (doc) {
+						container.appendChild(postStructure(doc, uid));
+					});
+						deleteAnyPost();
+						editAnyPost();
+						likeAnyPost(uid);
+		
+						
+				});
     });
+
+
+    
     
     const editProfileModal = (uid) =>{
         console.log('Aquí se abre el modal');
