@@ -48,23 +48,23 @@ export default () => {
 				var clon = template.content.cloneNode(true);
         root.appendChild(clon);
         
-        const modalContainer = document.getElementsByClassName('modal-container-editprofile')[0];
-				console.log(modalContainer);
-        modalContainer.style.display = 'block';
+        const modalContainerEditProfile = document.getElementsByClassName('modal-container-editprofile')[0];
+				console.log(modalContainerEditProfile);
+        modalContainerEditProfile.style.display = 'block';
         
         const closeModal = document.querySelector('.close-modal');
 
         closeModal.addEventListener('click', () => {
-            root.removeChild(modalContainer);
-            modalContainer.style.display = 'none';
+            root.removeChild(modalContainerEditProfile);
+            modalContainerEditProfile.style.display = 'none';
 				});
 				
 				console.log("Edit profile for: ", uid);
 
-        modalContainer.addEventListener('click', () => {
-            if (event.target == modalContainer) {
-                modalContainer.style.display = 'none';
-                root.removeChild(modalContainer);
+        modalContainerEditProfile.addEventListener('click', () => {
+            if (event.target == modalContainerEditProfile) {
+                modalContainerEditProfile.style.display = 'none';
+                root.removeChild(modalContainerEditProfile);
             }
         });
     }

@@ -108,6 +108,8 @@ export const eventStructure = (doc, uid) => {
     const divPost3 = document.createElement('div');
     divPost3.classList.add("div-post3");
 
+    const divPost4 = document.createElement('div');
+    divPost4.classList.add("div-post4");
 
     const userImg = document.createElement('img');
     userImg.src = doc.data().photo;
@@ -152,6 +154,23 @@ export const eventStructure = (doc, uid) => {
     const pHour = document.createElement('p');
     pHour.textContent = doc.data().hour;
 
+    const likeButton = document.createElement('button');
+    likeButton.classList.add("likes-button");
+    likeButton.textContent = "🤍";
+    likeButton.dataset.idpost = doc.id;
+
+    const likesNum = document.createElement('p');
+    likesNum.textContent = doc.data().likes.length;
+
+    if (doc.data().likes.length == 0) {
+        likesNum.textContent = "";
+    }
+
+    if (doc.data().likes.includes(uid)) {
+        likeButton.textContent = "🧡";
+    }
+
+
     divPost1.appendChild(userImg);
     divPost1.appendChild(pNombre);
     if (uid == doc.data().uid) {
@@ -166,9 +185,13 @@ export const eventStructure = (doc, uid) => {
     divPost3.appendChild(pPlace);
     divPost3.appendChild(pHour);
 
+    divPost4.appendChild(likesNum);
+    divPost4.appendChild(likeButton);
+
     divPost.appendChild(divPost1);
     divPost.appendChild(divPost2);
     divPost.appendChild(divPost3);
+    divPost.appendChild(divPost4);
 
     return divPost;
 }
