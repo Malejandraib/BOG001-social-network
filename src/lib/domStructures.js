@@ -95,3 +95,7 @@ export const postStructure = (doc, uid) => {
     return divPost;
 }
 
+export const eventsStructure = (doc, uid) => {
+    
+}
+

@@ -194,7 +194,7 @@
           <ul>
             <li class="menu-timeline"> Home</li>
             <li class="active"> Profile</li>
-            <li>Events</li>
+            <li class="menu-events">Events</li>
             <li class="logout"> LogOut</li>
           </ul>
         </nav>
@@ -285,7 +285,7 @@
   </template>
 
   <template id="template-events">
-    <div class="timeline">
+    <div class="events">
 
       <header>
         <img src="../images/logo2.png" id="logo-timeline" />
@@ -306,9 +306,12 @@
             <p class="user-name">Luke Skywalker</p>
           </div>
 
-          <form class="form-share">
-            <textarea class="input-share" placeholder="    Share your music ..."> </textarea>
-
+          <form class="form-share form-events">
+            <label for="Event">Event<input type="text" class="input-event"></label>
+            <label for="City">City</label><input type="text" class="input-city"></label>
+            <label for="Date">Date<input type="date" class="input-date"></label>
+            <label for="Place">Place</label><input type="text" class="input-place"></label>
+            <label for="Hour">Hour<input type="time" class="input-hour"></label>
             <div class="share-options">
               <button class="btn_file">Choose file</button>
               <button class="btn_share">Share</button>

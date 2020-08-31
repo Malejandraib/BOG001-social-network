@@ -82,4 +82,12 @@ export default () => {
 		});
 	});
 
+	const menuEvents = document.querySelectorAll('.menu-events');
+
+	menuEvents.forEach((item) => {
+		item.addEventListener('click', () => {
+			window.location.hash = 'events';
+		});
+	});
+
 };

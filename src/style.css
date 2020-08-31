@@ -531,6 +531,15 @@ footer p {
 	color: black;
 }
 
+/*EVENTOS*/
+.input-city, .input-date, .input-place, .input-hour, .input-event{
+	border-radius: 5px;
+	display: flex;
+	width: 100%;
+}
+
+
+
 /* INICIO DE MEDIA QUERYS  */
 
 @media only screen and (min-width: 1025px) {
