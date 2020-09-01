@@ -139,16 +139,16 @@ export const eventStructure = (doc, uid) => {
     pEvent.textContent = '🎉 Event: ' + doc.data().event;
 
     const pDate = document.createElement('p');
-    pDate.textContent = '📅  Date: '+ doc.data().date;
+    pDate.textContent = '📅  Date:  ' + doc.data().date;
 
     const pPlace = document.createElement('p');
-    pPlace.textContent = '🎤  Place: ' + doc.data().place;
+    pPlace.textContent = '🎤  Place:  ' + doc.data().place;
 
     const pCity = document.createElement('p');
     pCity.textContent = '🌇  City: ' + doc.data().city;
 
     const pHour = document.createElement('p');
-    pHour.textContent = '🕓  Hour: ' + doc.data().hour;
+    pHour.textContent = '🕓  Hour:  ' + doc.data().hour;
 
     const likeButton = document.createElement('button');
     likeButton.classList.add("likes-button");
@@ -176,22 +176,22 @@ export const eventStructure = (doc, uid) => {
 
     divPost2.appendChild(pEvent);
 
-    divPost3.appendChild(pCity);
-    divPost3.appendChild(pPlace);
+    divPost5.appendChild(pCity);
+    divPost5.appendChild(pPlace);
 
     divPost4.appendChild(pDate);
     divPost4.appendChild(pHour);
 
-    info.appendChild(divPost3)
+    info.appendChild(divPost5)
     info.appendChild(divPost4)
 
-    divPost5.appendChild(likesNum);
-    divPost5.appendChild(likeButton);
+    divPost3.appendChild(likesNum);
+    divPost3.appendChild(likeButton);
 
     divPost.appendChild(divPost1);
     divPost.appendChild(divPost2);
     divPost.appendChild(info);
-    divPost.appendChild(divPost5);
+    divPost.appendChild(divPost3);
 
     return divPost;
 }

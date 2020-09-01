@@ -42,9 +42,7 @@ const editAnyEvent = () => {
                     let inputHour = document.querySelector('.input-hour-modal').value;
                     let inputCity = document.querySelector('.input-city-modal').value;
 
-                    console.log(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour);
-                    editingEventDocument(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour).then((e) => { console.log(e) });
-                    modalContainer.style.display = 'none';
+                    editingEventDocument(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour);
                     root.removeChild(modalContainer);
                 });
             });
@@ -72,12 +70,10 @@ const deleteAnyEvent = () => {
             const idPost = e.currentTarget.dataset.idpost;
 
             const template = document.querySelector('#modal-delete');
-            console.log(template);
             var clon = template.content.cloneNode(true);
             root.appendChild(clon);
 
             const modalContainer = document.getElementsByClassName('modal-container-delete')[0];
-            console.log(modalContainer);
             modalContainer.style.display = 'block';
 
             const closeModal = document.querySelector('.close-modal');
@@ -115,17 +111,11 @@ const likeAnyEvent = (uid) => {
             gettingData('events', idPost).then((e) => {
                 if (e.likes.includes(uid)) {
                     const index = e.likes.indexOf(uid);
-                    console.log(e.likes.indexOf(uid));
 
                     const variable = e.likes.splice(index, 1);
-                    console.log('Esta es la variable de splice: ' + variable);
-                    console.log(e.likes);
                     updateLikesEvents(idPost, e.likes);
                 } else {
                     e.likes.push(uid);
-                    console.log(uid);
-
-                    console.log('Aquí va el e.likes, debe ser un array: ' + e.likes);
                     updateLikesEvents(idPost, e.likes);
                 }
             });

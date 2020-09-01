@@ -540,13 +540,27 @@ footer p {
 	font-size: 1em;
 	padding: 1%;
 }
-.div-event .info{
+.info{
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	font-size: 0.9em;
+	
 	align-items: center;
 	align-content: flex-start;
+	justify-content: space-around;
+}
+
+.info .div-post5, .info .div-post4{
+	display: flex;
+	justify-content: space-between;
+	align-content: space-around;
+	margin: 1%;
+}
+
+.info .div-post5 p, .info .div-post4 p {
+	font-size: 0.98em;
+	width: 50%;
+	justify-content: space-between;
 }
 
 /* INICIO DE MEDIA QUERYS  */
@@ -621,6 +635,7 @@ footer p {
 		justify-content: space-between;
 		align-items: center;
 		list-style-type: none;
+		z-index: 100;
 	}
 
 	#logo-timeline {
@@ -638,19 +653,21 @@ footer p {
 	/* Escritorio timeline */
 
 	.container-all-post{
-		width: 50%;
+		width: 40%;
 		max-width: 800px;
 		display: flex;
-		margin: 0 1%;
-		padding: 1%;
+		margin: 0 0 0 10%;
 	}
 
 	.block-createpost{
-		width: 40%;
-		max-width: 500px;
+		width: 30%;
 		position: fixed;
-		left: 10px;
-		
+		height: 110vh;
+		background-color: rgba(253, 200, 48, 0.2);
+		left: 1px;
+		margin-top: -6%;
+		z-index: 200;
+		padding-top: 15%;
 	}
 
 	footer p {

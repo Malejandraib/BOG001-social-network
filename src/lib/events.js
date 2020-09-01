@@ -1,4 +1,4 @@
-import { gettingData, newPostEvent, gettingDataOrdered } from './firebasefunction.js';
+import { gettingData, newPostEvent, gettingDataOrdered, logOutAccount } from './firebasefunction.js';
 import { editAnyEvent, deleteAnyEvent, likeAnyEvent } from './eventFunctions.js'
 import { eventStructure } from './domStructures.js';
 

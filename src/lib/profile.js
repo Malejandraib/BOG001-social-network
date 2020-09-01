@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { gettingData } from './firebasefunction.js';
+import { gettingData, logOutAccount } from './firebasefunction.js';
 import { postStructure } from './domStructures.js';
 import {editAnyPost, deleteAnyPost, likeAnyPost} from './postFunctions.js';
 
