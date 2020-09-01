@@ -1,4 +1,4 @@
-# Creando una Red Social MusicMood :)
+# Creando una Red Social MusicMood 🎻
 
 ## Índice
 
