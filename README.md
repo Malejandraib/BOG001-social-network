@@ -6,19 +6,11 @@
 * [2. Objetivos de aprendizaje](#2-objetivos-de-aprendizaje)
 * [3. Entrega](#3-entrega)
 
+## 1. Resumen del proyecto
 
-## 2. Resumen del proyecto
+Es un proyecto muy bonito
 
-En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
-Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
-salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
-o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
-[Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
-
-Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
-acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
-
-## 3. Objetivos de aprendizaje
+## 2. Objetivos de aprendizaje
 
 El objetivo principal de aprendizaje de este proyecto es construir una
 [Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
@@ -88,12 +80,12 @@ El objetivo principal de aprendizaje de este proyecto es construir una
 * [ ] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
 * [ ] Planear y ejecutar tests de usabilidad.
 
-## 7. Entrega
+## 3. Entrega
 
 El proyecto está desplegado [aquí](https://malejandraib.github.io/BOG001-social-network/). 
 
 ### Prototipo de Alta fidelidad (Figma)
-![mobile views](https://i.imgur.com/4FwPuPw.png)
+![mobile views](https://i.imgur.com/OckhUrl.png)
 
 ### Resultado final
 ![mobile views](https://i.imgur.com/4FwPuPw.png)
