@@ -202,31 +202,31 @@
 
       <main class="main">
 
-        <div class = "profile-block">
-          <div class = "profile-top">
-            <img class = "user-img user-img-profile" src="../images/pic.jpg">
-          <p class="user-name">Luke Skywalker</p>
-          <button class = "edit-profile"> Edit Profile <i class="fa fa-edit"></i></button>
-          </br>
-          <p><strong>Bio: </strong> <span class = "bio-profile">Tell us more about you, edit your bio :)</span></p>
+        <div class="profile-block">
+          <div class="profile-top">
+            <img class="user-img user-img-profile" src="../images/pic.jpg">
+            <p class="user-name">Luke Skywalker</p>
+            <button class="edit-profile"> Edit Profile <i class="fa fa-edit"></i></button>
+            </br>
+            <p><strong>Bio: </strong> <span class="bio-profile">Tell us more about you, edit your bio :)</span></p>
           </div>
-          
-          <div class = "other-data-profile">
+
+          <div class="other-data-profile">
             <div>
               <p><strong>Artists</strong></p>
-              <p class = "favorite-artists">Null</p>
+              <p class="favorite-artists">Null</p>
             </div>
             <div>
               <p><strong>Genres</strong></p>
-              <p class = "genres">Alternative</p>
+              <p class="genres">Alternative</p>
             </div>
             <div>
               <p><strong>Location</strong></p>
-              <p class = "location">Bogotá</p>
+              <p class="location">Bogotá</p>
             </div>
           </div>
         </div>
-      </br>
+        </br>
         <div class="block-createpost">
           <form class="form-share">
             <textarea class="input-share" placeholder="Share your music ..."> </textarea>
@@ -259,8 +259,8 @@
 
   <template id="modal-edit-profile">
     <div class="modal-container-editprofile">
-      
-      
+
+
       <div class="modal-input">
         <div class="editing-post-title">
           <h2>Update Profile <i class="fa fa-edit"></i></h2>
@@ -278,9 +278,9 @@
           <input type="text" id="uidgenre" name="fname" value="Blues"><br><br>
           <button type="submit" value="Submit">Update profile</button>
         </form>
-        
+
       </div>
-      
+
     </div>
   </template>
 
@@ -338,6 +338,30 @@
     </div>
   </template>
 
+  <template id="modal-edit-event">
+    <div class="modal-container">
+      <div class="modal-input">
+
+        <div class="editing-post-title">
+          <h2>Editing Post <i class="fa fa-edit"></i></h2>
+          <button class="close-modal close-modal__style"> &times;</button>
+        </div>
+        <form class="form-share form-events-modal">
+          <label for="Event">Event<input type="text" class="input-event-modal"></label>
+          <label for="City">City</label><input type="text" class="input-city-modal"></label>
+          <label for="Date">Date<input type="date" class="input-date-modal"></label>
+          <label for="Place">Place</label><input type="text" class="input-place-modal"></label>
+          <label for="Hour">Hour<input type="time" class="input-hour-modal"></label>
+
+          <div class="alone-btn-lol">
+            <button id="btn-edit" class=" btn-modal__style">Save</button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </template>
 
   <script>
     // Your web app's Firebase configuration

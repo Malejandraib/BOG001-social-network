@@ -1,4 +1,5 @@
 import { gettingData, newPostEvent, gettingDataOrdered } from './firebasefunction.js';
+import { editAnyEvent, deleteAnyEvent, likeAnyEvent } from './eventFunctions.js'
 import { eventStructure } from './domStructures.js';
 
 export default () => {
@@ -15,6 +16,7 @@ export default () => {
     const photoUser = document.querySelector('.user-img');
     const nameTimeline = document.querySelector('.user-name');
     const formShare = document.querySelector('.form-share');
+    const specificContainer = document.querySelector('.container-all-post');
 
     //Traer nombre y foto correctamente
     gettingData('users', uid).then((doc) => {
@@ -31,7 +33,7 @@ export default () => {
         const inputPlace = document.querySelector('.input-place').value;
         const inputHour = document.querySelector('.input-hour').value;
 
-        if (inputEvent && inputDate && inputCity && inputHour && inputCity && inputPlace !== ' '){
+        if (inputEvent && inputDate && inputCity && inputHour && inputCity && inputPlace !== ' ') {
             gettingData('users', uid).then((doc) => {
 
                 const eventData = {
@@ -43,55 +45,56 @@ export default () => {
                     hour: inputHour,
                     name: doc.name,
                     photo: doc.photoURL,
-                    date: firebase.firestore.Timestamp.now(),
+                    datePost: firebase.firestore.Timestamp.now(),
                 };
-    
+
                 console.log(eventData);
-    
+
                 newPostEvent(eventData);
             });
             formShare.reset(); //termina nuevo post
         } else {
-        alert("please enter all the inputs")
-        }   
+            alert("please enter all the inputs")
+        }
     });
 
     //onSnapshot observador de los nuevos post 
     db.collection('events').onSnapshot(function (doc) {
-		const specificContainer = document.querySelector('.container-all-post');
-		specificContainer.innerHTML = `<div class = 'loader'></div>`;
 
-		gettingDataOrdered('events', 'date', 'desc').then(function (doc) {
-			specificContainer.innerHTML = '';
-			doc.forEach(function (doc) {
-				const event = doc.id; //Id específico para cada post
-				specificContainer.appendChild(eventStructure(doc, uid)); //Aquí es donde se hace la estructura
-		    });
+        gettingDataOrdered('events', 'date', 'desc').then(function (doc) {
+            specificContainer.innerHTML = '';
+            doc.forEach(function (doc) {
+                const event = doc.id; //Id específico para cada post
+                specificContainer.appendChild(eventStructure(doc, uid)); //Aquí es donde se hace la estructura
+            });
+            editAnyEvent()
+            deleteAnyEvent()
+            likeAnyEvent(uid)
         });
     });
-        
-        const btnLogOut = document.querySelectorAll('.logout');
 
-        btnLogOut.forEach((item) => {
-            item.addEventListener('click', () => {
-                logOutAccount();
-                window.location.hash = '';
-            });
+    const btnLogOut = document.querySelectorAll('.logout');
+
+    btnLogOut.forEach((item) => {
+        item.addEventListener('click', () => {
+            logOutAccount();
+            window.location.hash = '';
         });
+    });
 
-        const menuTimeline = document.querySelectorAll('.menu-timeline');
+    const menuTimeline = document.querySelectorAll('.menu-timeline');
 
-        menuTimeline.forEach((item) => {
-            item.addEventListener('click', () => {
-                window.location.hash = 'timeline';
-            });
+    menuTimeline.forEach((item) => {
+        item.addEventListener('click', () => {
+            window.location.hash = 'timeline';
         });
+    });
 
-        const menuProfile = document.querySelectorAll('.menu-profile');
+    const menuProfile = document.querySelectorAll('.menu-profile');
 
-        menuProfile.forEach((item) => {
-            item.addEventListener('click', () => {
-                window.location.hash = 'profile';
-            });
+    menuProfile.forEach((item) => {
+        item.addEventListener('click', () => {
+            window.location.hash = 'profile';
         });
-    }
+    });
+}

@@ -72,18 +72,18 @@ async function newPost(userGeneral) {
 }
 
 // --------NewPost Event ------------
-async function newPostEvent (userGeneral) {
+async function newPostEvent(userGeneral) {
 	try {
 		const creatingPost = await db.collection('events').add({
 			uid: userGeneral.uid,
-			event:userGeneral.event,
-			city:userGeneral.city,
-			date:userGeneral.date,
-			place:userGeneral.place,
+			event: userGeneral.event,
+			city: userGeneral.city,
+			date: userGeneral.date,
+			place: userGeneral.place,
 			hour: userGeneral.hour,
 			name: userGeneral.name,
 			photo: userGeneral.photo,
-			date: userGeneral.date,
+			datePost: userGeneral.datePost,
 			editPost: false,
 			likes: [],
 		});
@@ -94,7 +94,40 @@ async function newPostEvent (userGeneral) {
 	}
 }
 
-//  -----------Edit post------------
+//  -----------edit event -----------
+async function editingEventDocument(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour) {
+	try {
+		const editPost = await db.collection('events').doc(idPost);
+		console.log(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour);
+		console.log(editPost);
+		const postEditado = editPost.update({
+			event: inputEvent,
+			city: inputCity,
+			date: inputDate,
+			place: inputPlace,
+			hour: inputHour,
+			editState: true
+		});
+		console.log(postEditado);
+
+		return postEditado;
+	} catch (error) {
+		return error;
+	}
+}
+
+//  -----------Delete Event------------
+async function deletingEventModal(idPost) {
+	try {
+		let selectPost = await db.collection('events').doc(idPost);
+		const deletingPost = selectPost.delete();
+		return deletingPost;
+	} catch (error) {
+		return error;
+	}
+}
+
+//  ----------Edit Post---------
 async function editingPostDocument(idPost, inputModal) {
 	try {
 		let editPost = await db.collection('post').doc(idPost);
@@ -113,6 +146,21 @@ async function editingPostDocument(idPost, inputModal) {
 async function updateLikes(idPost, uidArray) {
 	try {
 		let editPost = await db.collection('post').doc(idPost);
+		const update = editPost.update({
+			likes: uidArray,
+		});
+
+		return update;
+	} catch (error) {
+		return error;
+	}
+}
+
+
+// ------- update likes events ----- 
+async function updateLikesEvents(idPost, uidArray) {
+	try {
+		let editPost = await db.collection('events').doc(idPost);
 		const update = editPost.update({
 			likes: uidArray,
 		});
@@ -147,4 +195,4 @@ async function logOutAccount() {
 
 export { createUserEmailAndPassword, registerGoogle, logOutAccount, signInEmailAndPassword };
 export { gettingData, newPost, gettingDataOrdered, editingPostDocument, deletingPostModal, updateLikes };
-export { newPostEvent};
+export { newPostEvent, editingEventDocument, deletingEventModal, updateLikesEvents };

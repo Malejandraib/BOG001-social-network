@@ -43,7 +43,11 @@ export default () => {
 				});
     });
 
+		const editProfileButton = document.querySelector('.edit-profile');
 
+		editProfileButton.addEventListener('click', () => {
+			editProfileModal(uid);
+		});
     
     
     const editProfileModal = (uid) =>{
@@ -74,8 +78,6 @@ export default () => {
         });
     }
 
-	
-	
 		const btnLogOut = document.querySelectorAll('.logout');
 
 	btnLogOut.forEach((item) => {

@@ -30,6 +30,7 @@ const editAnyPost = () => {
                 let inputModal = document.querySelector('.input-share-modal').value;
                 editingPostDocument(idPost, inputModal);
                 modalContainer.style.display = 'none';
+                root.removeChild(modalContainer);
               });
             });
   

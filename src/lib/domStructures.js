@@ -111,6 +111,12 @@ export const eventStructure = (doc, uid) => {
     const divPost4 = document.createElement('div');
     divPost4.classList.add("div-post4");
 
+    const divPost5 = document.createElement('div');
+    divPost5.classList.add("div-post5");
+
+    const info = document.createElement('div');
+    info.classList.add("info");
+
     const userImg = document.createElement('img');
     userImg.src = doc.data().photo;
     userImg.classList.add("user-img");
@@ -130,29 +136,19 @@ export const eventStructure = (doc, uid) => {
     buttonDelete.dataset.idpost = doc.id;
 
     const pEvent = document.createElement('p');
-    pEvent.textContent = doc.data().event;
+    pEvent.textContent = '🎉 Event: ' + doc.data().event;
 
     const pDate = document.createElement('p');
-    let timestamp = doc.data().date
-    const date = new Date(timestamp * 1000);
-    const datevalues = [
-        date.getFullYear(),
-        date.getMonth() + 1,
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds(),
-    ];
-    pDate.textContent = datevalues;
+    pDate.textContent = '📅  Date: '+ doc.data().date;
 
     const pPlace = document.createElement('p');
-    pPlace.textContent = doc.data().place;
+    pPlace.textContent = '🎤  Place: ' + doc.data().place;
 
     const pCity = document.createElement('p');
-    pCity.textContent = doc.data().city;
+    pCity.textContent = '🌇  City: ' + doc.data().city;
 
     const pHour = document.createElement('p');
-    pHour.textContent = doc.data().hour;
+    pHour.textContent = '🕓  Hour: ' + doc.data().hour;
 
     const likeButton = document.createElement('button');
     likeButton.classList.add("likes-button");
@@ -181,17 +177,21 @@ export const eventStructure = (doc, uid) => {
     divPost2.appendChild(pEvent);
 
     divPost3.appendChild(pCity);
-    divPost3.appendChild(pDate);
     divPost3.appendChild(pPlace);
-    divPost3.appendChild(pHour);
 
-    divPost4.appendChild(likesNum);
-    divPost4.appendChild(likeButton);
+    divPost4.appendChild(pDate);
+    divPost4.appendChild(pHour);
+
+    info.appendChild(divPost3)
+    info.appendChild(divPost4)
+
+    divPost5.appendChild(likesNum);
+    divPost5.appendChild(likeButton);
 
     divPost.appendChild(divPost1);
     divPost.appendChild(divPost2);
-    divPost.appendChild(divPost3);
-    divPost.appendChild(divPost4);
+    divPost.appendChild(info);
+    divPost.appendChild(divPost5);
 
     return divPost;
 }

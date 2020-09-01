@@ -60,23 +60,6 @@ export default () => {
 		}); //GettingDataDETimeline
 	}); //Snapshot
 
-	/* db.collection('events').onSnapshot(function (doc) {
-		const specificContainer = document.querySelector('.container-all-post');
-		specificContainer.innerHTML = `<div class = 'loader'></div>`;
-
-		gettingDataOrdered('events', 'date', 'desc').then(function (doc) {
-			specificContainer.innerHTML = '';
-			doc.forEach(function (doc) {
-				specificContainer.appendChild(eventStructure(doc, uid)); //Aquí es donde se hace la estructura
-			});
-
-			var unsubscribe = db.collection("post").onSnapshot(function () { });
-			unsubscribe();
-
-		}); //GettingDataDETimeline
-	}); //Snapshot
- */
-	//
 	//Para hacer logout
 	btnLogOut.forEach((item) => {
 		item.addEventListener('click', () => {
