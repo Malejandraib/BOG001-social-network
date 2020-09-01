@@ -1,5 +1,14 @@
 // Este es el punto de entrada de tu aplicacion
+// Aquí importamos la función de ruteo
+/* eslint-disable */
+import {router} from './router.js';
 
-import { myFunction } from './lib/index.js';
+const init = () => {
+	router(window.location.hash);
 
-myFunction();
+	window.addEventListener('hashchange', () => {
+		router(window.location.hash);
+	});
+};
+
+window.addEventListener('load', init);

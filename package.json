@@ -14,8 +14,9 @@
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --coverage",
-    "start": "serve src/"
+    "test": "jest --verbose --coverage",
+    "start": "serve src/",
+    "deploy": "gh-pages -d src"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -26,11 +27,17 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.1.2",
+    "html-loader": "^1.1.0",
     "htmlhint": "^0.11.0",
     "jest": "^24.8.0",
     "regenerator-runtime": "^0.13.1",
     "serve": "^11.0.2",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0"
+  },
+  "dependencies": {
+    "firebase": "^7.17.1",
+    "html-webpack-plugin": "^4.3.0",
+    "import-html-entry": "^1.7.4"
   }
 }

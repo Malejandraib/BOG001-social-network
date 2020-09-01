@@ -1,0 +1,714 @@
+/* stylelint-disable */
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Cabin', sans-serif;
+	background: #fc4a1a; /*fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #f7b733, #fc4a1a); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to left,
+		#f7b733,
+		#fc4a1a
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color: #1d1d1d;
+}
+
+#signup,
+#signin {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+	font-size: 1.2em;
+	margin: auto 5%;
+}
+
+#logo {
+	width: 100%;
+	height: auto;
+}
+
+#signup-form,
+#form-signin {
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0;
+}
+
+#signup-form p,
+#form-signin p {
+	text-align: center;
+}
+
+#signup-form input,
+#form-signin input {
+	padding: 0.7em;
+	font-size: 1em;
+	border: none;
+	background-color: rgba(151, 151, 151, 0.47);
+	border-radius: 10px;
+	width: 100%;
+	margin: 5px 0px;
+}
+
+input::placeholder {
+	color: white;
+}
+
+.container-btn-google {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.btn-signup,
+.btn-signin-google,
+.btn_share {
+	padding: 0.7em;
+	font-size: 1em;
+	margin: 10px 0px;
+	/*  padding: 10px 5px; */
+	background-color: rgb(36, 33, 33, 0.5);
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 10px;
+	color: white;
+}
+
+span {
+	color: white;
+}
+.container-musicians {
+	flex-basis: 50%;
+}
+
+.hide {
+	display: none;
+}
+
+/* STYLE MOBILE TIMELINE */
+
+#template-timeline {
+	background: white;
+	height: 10vh;
+}
+
+.nav-desktop {
+	display: none;
+}
+/* Header */
+header {
+	background: #fc4a1a; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #f7b733, #fc4a1a); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #f7b733, #fc4a1a);
+	display: flex;
+	justify-content: center;
+	margin-bottom: 1em;
+}
+
+#logo-timeline {
+	width: 50%;
+	padding: 0.5em;
+}
+/* MAIN  */
+
+/*loader */
+.loader {
+	border: 10px solid #f3f3f3; /* Light grey */
+	border-top: 10px solid #e74d1e; /* Blue */
+	border-radius: 50%;
+	margin-top: 25%;
+	width: 80px;
+	height: 80px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.timeline {
+	background: white;
+	padding-bottom: 5em;
+	height: auto;
+	/* height: 50vh; */
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	background: white;
+}
+
+.block-createpost, .profile-createpost{
+	width: 100%;
+	padding: 0 5%;
+}
+
+.block-createpost__user {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.user-img {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.user-name {
+	font-weight: bold;
+	font-size: 18px;
+	padding: 2%;
+	text-align: center;
+	text-align: left;
+}
+
+.form-share {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	margin-top: 1em;
+}
+
+.input-share {
+	width: 100%;
+	height: 6em;
+	border-radius: 10px;
+	font-family: 'Cabin', sans-serif;
+	background-color: #f2f2f2;
+	border: solid 1px rgb(0, 0, 0, 0.37);
+}
+
+.share-options {
+	text-align: right;
+	width: 100%;
+}
+
+.btn_share,
+.btn_file {
+	padding: 0.7em;
+	font-size: 1em;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 10px;
+	background-color: #f37335;
+	width: 45%;
+	color: rgb(248, 248, 248);
+}
+/* Footer */
+footer ul {
+	background: #fc4a1a; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #f86f13, #fc4a1a); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #f86f13, #fc4a1a);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	list-style-type: none;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 0.5em;
+}
+
+li {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 1.2em;
+	color: white;
+}
+
+li .fa {
+	font-size: 1.5em;
+	color: white;
+}
+
+footer p {
+	display: none;
+}
+
+/* ESTILO DE LOS POSTS  #########################*/
+
+/*Style para todos los post */
+
+/* Aquí van todo los posts */
+.container-all-post, .container-my-post {
+	width: 100%;
+	padding: 5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: auto;
+}
+
+.div-post, .div-event{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	border: 0.5px solid rgb(216, 215, 215);
+	margin: 0.5em 0;
+	padding: 5%;
+	border-radius: 10px;
+	background-color: rgb(248, 248, 248);
+}
+
+.div-post1,
+.div-post2,
+.div-post3,
+.div-post4,
+.div-post5 {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	align-items: center;
+	align-content: center;
+	font-size: 1em;
+}
+
+/* Para la parte de nombre, imagen iconos */
+
+/* Estos son los iconos de editar y borrar */
+.edit-post,
+.delete-post {
+	width: 45px;
+	height: 35px;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 8px;
+	background-color: #e68757e5;
+	width: 25%;
+	margin: 1%;
+	padding: 1%;
+	color: rgb(248, 248, 248);
+}
+.div-post1 p {
+	padding: 0 4%;
+	font-weight: bold;
+	/* font-size: 1em; */
+}
+.div-post2 p {
+	font-size: 1.5em;
+	padding: 5%;
+	text-align: center;
+}
+
+.div-post3 {
+	padding-bottom: 5%;
+}
+.div-post3 p {
+	font-weight: bold;
+	padding-right: 2%;
+}
+
+.div-post4 textarea {
+	width: 80%;
+	height: 35px;
+}
+
+.div-post4 button {
+	width: 20%;
+	height: 35px;
+}
+
+/* Botón de likes */
+
+.likes-button {
+	border: none;
+	background-color: rgba(248, 248, 248, 0);
+	font-size: 1em;
+}
+
+.likes-button:hover {
+	font-weight: bold;
+}
+
+/* MODAL STYLE  ################################ */
+
+.modal-container,
+.modal-container-delete,
+.modal-container-editprofile, .modal-edit-event{
+	display: none;
+	position: fixed;
+	padding: 100px 0;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.alone-btn-lol {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.modal-input {
+	background-color: white;
+	border-radius: 5px;
+	margin: 1% 3%;
+	display: flex;
+	padding: 2%;
+	flex-direction: column;
+}
+
+.close-modal__style {
+	width: 30px;
+	height: 30px;
+	background-color: #f37335;
+	color: white;
+	border: none;
+	font-size: 25px;
+}
+
+.btn-modal__style {
+	padding: 0.7em;
+	font-size: 1em;
+	margin: 2px 2px;
+	background-color: #f37335;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 10px;
+	color: white;
+	width: 40%;
+}
+
+.delete-buttons-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding-top: 5%;
+}
+
+.delete-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 5% 0;
+}
+
+.editing-post-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	padding: 4% 0;
+}
+
+.input-share-modal {
+	padding: 4%;
+	color: #1d1d1d;
+	width: 100%;
+	font-size: 1em;
+}
+/* Página de not found ################### */
+
+.notfound-container {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 10%;
+}
+
+.notfound-container p,
+.notfound-container h1 {
+	text-align: center;
+	color: rgb(5, 5, 5);
+}
+
+.notfound-container img {
+	width: 100%;
+	height: auto;
+	max-width: 750px;
+}
+
+.home-page {
+	border: none;
+	background-color: #e74d1e;
+	color: white;
+	width: 50%;
+	max-width: 20em;
+	height: 40px;
+}
+
+.home-page:hover {
+	background-color: #ff3e03;
+}
+
+
+/* PROFILE */
+
+.bio-profile{
+	color: black;
+}
+
+.profile-block{
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: -5%;
+}
+
+.profile-top{
+	background: linear-gradient(to left, #f7b733, #fc4a1a);
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	padding: 5% 10% 20% 10%;
+	align-content: center;
+	align-items: center;
+}
+
+.profile-top p, .profile-top button, .profile-top span{
+	color: white;
+	text-align: center;
+}
+
+.profile-block .user-img-profile{
+	border: solid 3px  #ff822e;
+	width: 85px;
+	height: 85px;
+	text-align: center;
+}
+
+.profile-block .user-name{
+	text-align: center;
+}
+
+.edit-profile{
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
+	width: 35%;
+}
+
+.other-data-profile{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+	padding: 5% 2%;
+	background-color: whitesmoke;
+	border-radius: 10px;
+	margin: -15% 0 -5% 0 ;
+	width: 90%;
+	border: solid 3px #ff822e;
+
+}
+
+.favorite-artists, .genres, .location{
+	width: 30%;
+}
+
+.input-share::placeholder{
+	color: black;
+}
+
+/*EVENTOS*/
+.input-city, .input-date, .input-place, .input-hour, .input-event,.input-city-modal, .input-date-modal, .input-place-modal, .input-hour-modal, .input-event-modal{
+	border-radius: 5px;
+	display: flex;
+	width: 100%;
+	font-size: 1em;
+	padding: 1%;
+}
+.info{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	
+	align-items: center;
+	align-content: flex-start;
+	justify-content: space-around;
+}
+
+.info .div-post5, .info .div-post4{
+	display: flex;
+	justify-content: space-between;
+	align-content: space-around;
+	margin: 1%;
+}
+
+.info .div-post5 p, .info .div-post4 p {
+	font-size: 0.98em;
+	width: 50%;
+	justify-content: space-between;
+}
+
+/* INICIO DE MEDIA QUERYS  */
+
+@media only screen and (min-width: 1025px) {
+	#signup,
+	#signin {
+		flex-direction: row-reverse;
+		justify-content: spa;
+		align-items: center;
+		align-content: space-between;
+		flex-wrap: wrap;
+		border: 0;
+		margin: 0;
+	}
+
+	#container-desktop {
+		background: white;
+		border-radius: 3%;
+		color: black;
+		padding: 0px 2rem;
+		flex-basis: 1;
+		padding: 2em 3.5em;
+		text-align: center;
+	}
+
+	#container-desktop label {
+		text-align: left;
+	}
+
+	input::placeholder {
+		color: rgb(78, 69, 69);
+	}
+
+	.btn-signin-google,
+	.btn-signup {
+		width: 100%;
+		background-color: #fc4a1a;
+		font-weight: bold;
+	}
+
+	.signup-view,
+	.signin-view {
+		color: #fc4a1a;
+		font-weight: bold;
+	}
+	.container-musicians {
+		flex-basis: 0;
+		padding: 10% 0;
+	}
+
+	#signup-form input,
+	#form-signin input {
+		background-color: #ecd38f;
+	}
+
+	#logo {
+		content: url(lib/images/logo_temporal.png);
+		width: 100%;
+		max-width: 500px;
+		height: auto;
+	}
+
+	.nav-desktop {
+		display: block;
+		justify-content: space-between;
+		flex-basis: 50%;
+	}
+
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		list-style-type: none;
+		z-index: 1;
+		margin:0;
+		position: relative;
+	}
+
+	#logo-timeline {
+		width: 10em;
+	}
+
+	header ul {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		list-style-type: none;
+		flex-direction: row;
+	}
+
+	/* Escritorio timeline */
+
+	.container-all-post {
+		width: 40%;
+		max-width: 800px;
+		display: flex;
+		margin: 0 0 0 10%;
+	}
+
+	.container-my-post{
+		width: 60%;
+		max-width: 800px;
+		display: flex;
+		margin: 0;
+	}
+
+	.block-createpost{
+		width: 30%;
+		position: fixed;
+		height: 110vh;
+		background-color: rgba(253, 200, 48, 0.2);
+		left: 0;
+		padding-top: 15%;
+		top:0;
+	}
+
+			/* Escritorio perfil */
+	
+	.profile-createpost{
+		margin:0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		align-content: center;
+		padding-top: 8%;
+		border-radius: 10px;
+		width: 80%;
+	} 
+
+	footer p {
+		display: block;
+	}
+
+	footer {
+		background: #fc4a1a; /* fallback for old browsers */
+		background: -webkit-linear-gradient(to left, #f86f13, #fc4a1a); /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to left, #f86f13, #fc4a1a);
+		position: fixed;
+		height: 5%;
+		bottom: 0;
+		width: 100%;
+	}
+	footer ul {
+		display: none;
+	}
+
+
+
+}
