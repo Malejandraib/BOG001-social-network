@@ -618,7 +618,7 @@ footer p {
 	}
 
 	#logo {
-		content: url(images/logo_temporal.png);
+		content: url(lib/images/logo_temporal.png);
 		width: 100%;
 		max-width: 500px;
 		height: auto;
