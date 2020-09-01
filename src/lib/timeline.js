@@ -42,7 +42,6 @@ export default () => {
 	}); //termina nuevo post
 
 	const specificContainer = document.querySelector('.container-all-post');
-	//OnSnapshot, aún no sabemos bien cómo usarlo
 	db.collection('post').onSnapshot(function (doc) {
 		
 
