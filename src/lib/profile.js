@@ -28,10 +28,10 @@ export default () => {
 		
 	
 		db.collection("post").onSnapshot(function(doc) {
-				console.log("Current data: ", doc);
+			
 				db.collection('post').where('uid', '==', uid).get().then((doc) => {
 					container.innerHTML = '';
-					console.log(doc);
+				
 					doc.forEach(function (doc) {
 						container.appendChild(postStructure(doc, uid));
 					});
@@ -51,14 +51,13 @@ export default () => {
     
     
     const editProfileModal = (uid) =>{
-        console.log('Aquí se abre el modal');
+       
         const template = document.querySelector('#modal-edit-profile');
-				console.log(template);
+				
 				var clon = template.content.cloneNode(true);
         root.appendChild(clon);
         
         const modalContainerEditProfile = document.getElementsByClassName('modal-container-editprofile')[0];
-				console.log(modalContainerEditProfile);
         modalContainerEditProfile.style.display = 'block';
         
         const closeModal = document.querySelector('.close-modal');
@@ -68,7 +67,6 @@ export default () => {
             modalContainerEditProfile.style.display = 'none';
 				});
 				
-				console.log("Edit profile for: ", uid);
 
         modalContainerEditProfile.addEventListener('click', () => {
             if (event.target == modalContainerEditProfile) {

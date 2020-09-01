@@ -48,7 +48,6 @@ export default () => {
                     datePost: firebase.firestore.Timestamp.now(),
                 };
 
-                console.log(eventData);
 
                 newPostEvent(eventData);
             });

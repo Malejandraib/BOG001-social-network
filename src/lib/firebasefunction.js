@@ -3,7 +3,6 @@
 async function createUserEmailAndPassword(email, password) {
 	try {
 		const authentication = await firebase.auth().createUserWithEmailAndPassword(email, password);
-		console.log(authentication);
 		return authentication; //   objeto que trae mucas cosas
 	} catch (error) {
 		let errorMessage = error.message;
@@ -25,7 +24,6 @@ async function registerGoogle(provider) {
 async function signInEmailAndPassword(email, password) {
 	try {
 		const signInUser = await firebase.auth().signInWithEmailAndPassword(email, password);
-		console.log(signInUser);
 		return signInUser;
 	} catch (error) {
 		var errorMessage = error.message;
@@ -87,7 +85,6 @@ async function newPostEvent(userGeneral) {
 			editPost: false,
 			likes: [],
 		});
-		console.log(creatingPost);
 		return creatingPost;
 	} catch (error) {
 		return error.message;
@@ -98,8 +95,6 @@ async function newPostEvent(userGeneral) {
 async function editingEventDocument(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour) {
 	try {
 		const editPost = await db.collection('events').doc(idPost);
-		console.log(idPost, inputEvent, inputCity, inputDate, inputPlace, inputHour);
-		console.log(editPost);
 		const postEditado = editPost.update({
 			event: inputEvent,
 			city: inputCity,
@@ -108,7 +103,6 @@ async function editingEventDocument(idPost, inputEvent, inputCity, inputDate, in
 			hour: inputHour,
 			editState: true
 		});
-		console.log(postEditado);
 
 		return postEditado;
 	} catch (error) {

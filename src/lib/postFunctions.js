@@ -21,7 +21,6 @@ const editAnyPost = () => {
   
             gettingData('post', idPost).then((e) => {
               let inputModal = document.querySelector('.input-share-modal');
-              console.log(e.post);
               inputModal.value = e.post;
               const formEditModal = document.querySelector('.form-edit-modal');
   
@@ -57,12 +56,10 @@ const deleteAnyPost = () => {
       const idPost = e.currentTarget.dataset.idpost;
 
       const template = document.querySelector('#modal-delete');
-      console.log(template);
       var clon = template.content.cloneNode(true);
       root.appendChild(clon);
 
       const modalContainer = document.getElementsByClassName('modal-container-delete')[0];
-      console.log(modalContainer);
       modalContainer.style.display = 'block';
 
       const closeModal = document.querySelector('.close-modal');
@@ -100,17 +97,16 @@ const likeAnyPost = (uid) =>{
 					gettingData('post', idPost).then((e) => {
 						if (e.likes.includes(uid)) {
 							const index = e.likes.indexOf(uid);
-							console.log(e.likes.indexOf(uid));
+							
 
 							const variable = e.likes.splice(index, 1);
-							console.log('Esta es la variable de splice: ' + variable);
-							console.log(e.likes);
+
 							updateLikes(idPost, e.likes);
 						} else {
 							e.likes.push(uid);
-							console.log(uid);
+							
 
-							console.log('Aquí va el e.likes, debe ser un array: ' + e.likes);
+							
 							updateLikes(idPost, e.likes);
 						}
 					});
