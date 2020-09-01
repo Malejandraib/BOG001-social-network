@@ -69,7 +69,19 @@
     </div>
   </template>
 
-
+  <!-- <template id = "header">
+  <header>
+    <img src="../images/logo2.png" id="logo-timeline" />
+    <nav class="nav-desktop">
+      <ul>
+        <li class="active"> Home</li>
+        <li class = "menu-profile"> Profile</li>
+        <li>Events</li>
+        <li class="logout"> LogOut</li>
+      </ul>
+    </nav>
+  </header>
+</template> -->
 
   <template id="template-timeline">
     <div class="timeline">
@@ -79,8 +91,8 @@
         <nav class="nav-desktop">
           <ul>
             <li class="active"> Home</li>
-            <li> Profile</li>
-            <li>Events</li>
+            <li class="menu-profile"> Profile</li>
+            <li class="menu-events">Events</li>
             <li class="logout"> LogOut</li>
           </ul>
         </nav>
@@ -112,8 +124,8 @@
         <nav class="nav-mobile">
           <ul>
             <li class="active"><i class="fa fa-fw fa-home menu-timeline"></i>Home</li>
-            <li><i class="fa fa-fw fa-user-circle menu-profile"></i> Profile</li>
-            <li><i class="fas fa fa-address-book"></i>Events</li>
+            <li class="menu-profile"><i class="fa fa-fw fa-user-circle"></i> Profile</li>
+            <li class="menu-events"><i class="fas fa fa-address-book"></i>Events</li>
             <li class="logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
           </ul>
         </nav>
@@ -134,34 +146,32 @@
         </div>
         <form class="form-edit-modal">
           <textarea class="input-share-modal" placeholder="    Share your music ..."> </textarea>
-          <div class = "alone-btn-lol">
+          <div class="alone-btn-lol">
             <button id="btn-edit" class=" btn-modal__style">Save</button>
           </div>
-          
+
       </div>
     </div>
-    <!-- <button class = "close-modal"> &times;</button> -->
   </template>
 
   <template id="modal-delete">
     <div class="modal-container-delete">
       <div class="modal-input">
-      
+
         <h2>Deleting Post <i class="fa fa-trash"></i></h2>
         <!-- <button class = "close-modal close-modal__style"> &times;</button> -->
-        
-        <div class = "delete-content">
+
+        <div class="delete-content">
           <p>Are you sure you want to delete this post?</p>
-          <div class= "delete-buttons-container">
+          <div class="delete-buttons-container">
             <button class="btn-modal__style close-modal">Cancel</button>
             <button class="btn-modal__style btn-delete">Confirm</button>
           </div>
         </div>
-        
-        
+
+
       </div>
     </div>
-    <!-- <button class = "close-modal"> &times;</button> -->
   </template>
 
   <template id="notfound">
@@ -172,6 +182,184 @@
       <br>
       <button data-dates="Nacidos en septiembre" data-nombrecualquiera="no name" data-names="Alejandra"
         class="home-page">Take me to a safe place!</button>
+    </div>
+  </template>
+
+  <template id="template-profile">
+    <div class="timeline">
+
+      <header>
+        <img src="../images/logo2.png" id="logo-timeline" />
+        <nav class="nav-desktop">
+          <ul>
+            <li class="menu-timeline"> Home</li>
+            <li class="active"> Profile</li>
+            <li class="menu-events">Events</li>
+            <li class="logout"> LogOut</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main">
+
+        <div class="profile-block">
+          <div class="profile-top">
+            <img class="user-img user-img-profile" src="../images/pic.jpg">
+            <p class="user-name">Luke Skywalker</p>
+            <button class="edit-profile"> Edit Profile <i class="fa fa-edit"></i></button>
+            </br>
+            <p><strong>Bio: </strong> <span class="bio-profile">Tell us more about you, edit your bio :)</span></p>
+          </div>
+
+          <div class="other-data-profile">
+            <div>
+              <p><strong>Artists</strong></p>
+              <p class="favorite-artists">Null</p>
+            </div>
+            <div>
+              <p><strong>Genres</strong></p>
+              <p class="genres">Alternative</p>
+            </div>
+            <div>
+              <p><strong>Location</strong></p>
+              <p class="location">Bogotá</p>
+            </div>
+          </div>
+        </div>
+        </br>
+        <div class="block-createpost">
+          <form class="form-share">
+            <textarea class="input-share" placeholder="Share your music ..."> </textarea>
+
+            <div class="share-options">
+              <button class="btn_file">Choose file</button>
+              <button class="btn_share">Share</button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="container-my-post">
+        </div>
+      </main>
+
+      <footer>
+        <nav class="nav-mobile">
+          <ul>
+            <li class="menu-timeline"><i class="fa fa-fw fa-home"></i>Home</li>
+            <li class="active"><i class="fa fa-fw fa-user-circle"></i> Profile</li>
+            <li class="menu-events"><i class="fas fa fa-address-book"></i>Events</li>
+            <li class="logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+          </ul>
+        </nav>
+        <p> Musicmood © 2020 ❤️ Made it by A2C </p>
+      </footer>
+    </div>
+  </template>
+
+  <template id="modal-edit-profile">
+    <div class="modal-container-editprofile">
+
+
+      <div class="modal-input">
+        <div class="editing-post-title">
+          <h2>Update Profile <i class="fa fa-edit"></i></h2>
+          <button class="close-modal close-modal__style"> &times;</button>
+        </div>
+
+        <form action="">
+          <label for="bio">Bio:</label><br>
+          <input type="text" id="uidbio" name="bio" value="Hi! I'm Luke and this is Star Wars"><br>
+          <label for="lname">Current location:</label><br>
+          <input type="text" id="uidlocation" name="lname" value="Bogotá DC"><br>
+          <label for="fname">Favorite Artist:</label><br>
+          <input type="text" id="uidartists" name="fname" value="The Beatles"><br>
+          <label for="fname">Favorite Genre:</label><br>
+          <input type="text" id="uidgenre" name="fname" value="Blues"><br><br>
+          <button type="submit" value="Submit">Update profile</button>
+        </form>
+
+      </div>
+
+    </div>
+  </template>
+
+  <template id="template-events">
+    <div class="events">
+
+      <header>
+        <img src="../images/logo2.png" id="logo-timeline" />
+        <nav class="nav-desktop">
+          <ul>
+            <li class="menu-timeline"> Home</li>
+            <li class="menu-profile"> Profile</li>
+            <li class="active">Events</li>
+            <li class="logout"> LogOut</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main">
+        <div class="block-createpost">
+          <div class="block-createpost__user">
+            <img class="user-img" src="../images/pic.jpg">
+            <p class="user-name">Luke Skywalker</p>
+          </div>
+
+          <form class="form-share form-events">
+            <label for="Event">Event<input type="text" class="input-event"></label>
+            <label for="City">City</label><input type="text" class="input-city"></label>
+            <label for="Date">Date<input type="date" class="input-date"></label>
+            <label for="Place">Place</label><input type="text" class="input-place"></label>
+            <label for="Hour">Hour<input type="time" class="input-hour"></label>
+            <div class="share-options">
+              <button class="btn_file">Choose file</button>
+              <button class="btn_share">Share</button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="container-all-post">
+        </div>
+      </main>
+
+      <footer>
+        <nav class="nav-mobile">
+          <ul>
+            <li class="menu-timeline"><i class="fa fa-fw fa-home "></i>Home</li>
+            <li class="menu-profile"><i class="fa fa-fw fa-user-circle"></i> Profile</li>
+            <li class="active"><i class="fas fa fa-address-book"></i>Events</li>
+            <li class="logout"><i class="fa fa-fw fa-sign-out"></i> LogOut</li>
+          </ul>
+        </nav>
+        <p> Musicmood © 2020 ❤️ Made it by A2C </p>
+      </footer>
+    </div>
+  </template>
+
+  <template id="modal-edit-event">
+    <div class="modal-container">
+      <div class="modal-input">
+
+        <div class="editing-post-title">
+          <h2>Editing Post <i class="fa fa-edit"></i></h2>
+          <button class="close-modal close-modal__style"> &times;</button>
+        </div>
+        <form class="form-share form-events-modal">
+          <label for="Event">Event<input type="text" class="input-event-modal"></label>
+          <label for="City">City</label><input type="text" class="input-city-modal"></label>
+          <label for="Date">Date<input type="date" class="input-date-modal"></label>
+          <label for="Place">Place</label><input type="text" class="input-place-modal"></label>
+          <label for="Hour">Hour<input type="time" class="input-hour-modal"></label>
+
+          <div class="alone-btn-lol">
+            <button id="btn-edit" class=" btn-modal__style">Save</button>
+          </div>
+        </form>
+
+
+      </div>
     </div>
   </template>
 
